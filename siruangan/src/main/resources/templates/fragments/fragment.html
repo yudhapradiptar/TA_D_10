@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+
+<head>
+
+    <head th:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    </head>
+
+    <head th:fragment="title">
+        <title th:text="${pageTitle}"></title>
+    </head>
+
+    <head th:fragment="js">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/esm/popper.min.js"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+    </head>
+</head>
+
+<body>
+    <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark text-light">
+        <a class="navbar-brand" th:text="SI-RUANGAN"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse">
+            <a class="nav-item nav-link active" th:href="@{/}">Home<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" th:href="@{/}">Ruangan<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" th:href="@{/}">Fasilitas<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" th:href="@{/}">Pinjam Ruangan<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" th:href="@{/}">Pengadaan Fasilitas<span class="sr-only">(current)</span></a>
+        </div>
+    </nav>
+    <footer class="page-footer font-small fixed-bottom footer-dark bg-dark text-light" th:fragment="footer">
+        <div class="footer-copyright text-center py-3">© Vote For Setiaki:
+            <p th:text="'Kini Anda berada pada halaman ' + ${title} + ''"></p>
+        </div>
+    </footer>
+</body>
+
+</html>
