@@ -3,22 +3,36 @@
 
 <head>
     <title> Home </title>
-    <!-- <object th:include="fragments/fragment :: css" th:remove="tag"></object>
-    <object th:include="fragments/fragment :: js" th:remove="tag"></object> -->
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 
 <body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6">
+                <br>
+                <h1>Halo!</h1>
+                <p>SI-RUANGAN adalah tugas akhir mata kuliah APAP Kelompok 10, Vote For Setiaki. Mohon doa dan dukungannya kepada 
+                        seluruh pengunjung website kami demi kelulusan kami semua (dan terpilihanya Setiaki). Terima kasih! :)
+                </p>
                 <div class="card">
-                    <div class="card-header">Hello!</div>
+                    <div class="card-header">Milestone 1</div>
                     <div class="card-body">
-                        <p>SI-RUANGAN adalah layanan peminjaman ruangan beserta fasilitas SMA Rajin dan Tekun (SMART).</p>
+                        <ul>
+                            <li>Halaman Utama</li>
+                            <li>Menambah Fasilitas</li>
+                            <li>Menampilkan Detail Ruangan</li>
+                            <li>Mengajukan Peminjaman Ruangan</li>
+                            <li>Mengajukan Pengadaan Fasilitas</li>
+                        </ul>
                     </div>
                 </div>
+                <br>
             </div>
         </div>
     </div>
+    <footer th:replace="fragments/fragment ::footer"></footer>
 </body>
 </html>
