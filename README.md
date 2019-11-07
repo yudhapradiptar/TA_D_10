@@ -8,32 +8,32 @@
 ## Kontrak Tahap 1 Tugas Akhir
 |      NPM      |       Nama Lengkap      | Fitur yang akan diselesaikan |
 | ------------- | ----------------------- | ---------------------------- |
-| 1706043424    | Yudha Pradipta Ramadan  |             7				 |
-| 1706025296    | Aghni Anugrah Raesa     |             5                |
-| 1706043853    | Ariq Haryo Setiaki      |             6                |
+| 1706043424    | Yudha Pradipta Ramadan  |             11				 |
+| 1706025296    | Aghni Anugrah Raesa     |             4                |
+| 1706043853    | Ariq Haryo Setiaki      |             8                |
 | 1706984631    | Irene Pixelyne Romauli  |             1                |
-| 1706043595    | Ramawajdi Kanishka A    |             4                |
+| 1706043595    | Ramawajdi Kanishka A    |             5                |
 
 Notes : Fitur - fitur yang dikerjakan diputuskan oleh setiap kelompok kecil.
 
 ## Kontrak Tahap 2 Tugas Akhir
 |      NPM      |       Nama Lengkap      | Fitur yang akan diselesaikan |
 | ------------- | ----------------------- | ---------------------------- |
-| 1706043424    | Yudha Pradipta Ramadan  |             15,10 			 |
+| 1706043424    | Yudha Pradipta Ramadan  |             15 		         |
 | 1706025296    | Aghni Anugrah Raesa     |             14               |
 | 1706043853    | Ariq Haryo Setiaki      |             16               |
-| 1706984631    | Irene Pixelyne Romauli  |             12,17            |
-| 1706043595    | Ramawajdi Kanishka A    |             3                |
+| 1706984631    | Irene Pixelyne Romauli  |             17               |
+| 1706043595    | Ramawajdi Kanishka A    |             2                |
 
 Notes : Fitur - fitur yang dikerjakan diputuskan oleh setiap kelompok kecil.
 
 ## Kontrak Tahap 3 Tugas Akhir
 |      NPM      |       Nama Lengkap      | Fitur yang akan diselesaikan |
 | ------------- | ----------------------- | ---------------------------- |
-| 1706043424    | Yudha Pradipta Ramadan  |             9	     		 |
-| 1706025296    | Aghni Anugrah Raesa     |             11               |
-| 1706043853    | Ariq Haryo Setiaki      |             8                |
-| 1706984631    | Irene Pixelyne Romauli  |             13               |
-| 1706043595    | Ramawajdi Kanishka A    |             2                |
+| 1706043424    | Yudha Pradipta Ramadan  |             12, 13	     	 |
+| 1706025296    | Aghni Anugrah Raesa     |             6, 7             |
+| 1706043853    | Ariq Haryo Setiaki      |             9                |
+| 1706984631    | Irene Pixelyne Romauli  |             10               |
+| 1706043595    | Ramawajdi Kanishka A    |             3                |
 
 Notes : Fitur - fitur yang dikerjakan diputuskan oleh setiap kelompok kecil.
