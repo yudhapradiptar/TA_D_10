@@ -1,6 +1,7 @@
 package apap.tugasakhir.siruangan.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="fasilitas_ruangan")
@@ -16,6 +17,10 @@ public class FasilitasRuanganModel {
     @ManyToOne
     @JoinColumn(name="idFasilitas")
     FasilitasModel fasilitas;
+
+    @NotNull
+    @Column(name = "jumlahFasilitas", nullable = false)
+    private Integer jumlahFasilitas;
 
     public Long getIdFasilitasRuangan() {
         return idFasilitasRuangan;
@@ -39,5 +44,13 @@ public class FasilitasRuanganModel {
 
     public void setFasilitas(FasilitasModel fasilitas) {
         this.fasilitas = fasilitas;
+    }
+
+    public Integer getJumlahFasilitas() {
+        return jumlahFasilitas;
+    }
+
+    public void setJumlahFasilitas(Integer jumlahFasilitas) {
+        this.jumlahFasilitas = jumlahFasilitas;
     }
 }

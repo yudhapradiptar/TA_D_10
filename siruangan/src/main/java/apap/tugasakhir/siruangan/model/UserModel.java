@@ -1,6 +1,7 @@
 package apap.tugasakhir.siruangan.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -47,6 +48,9 @@ public class UserModel implements Serializable{
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private RoleModel role;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<PengadaanFasilitasModel> listPengadaanFasilitas;
 
     /**
      * @param password the password to set
@@ -95,5 +99,13 @@ public class UserModel implements Serializable{
      */
     public String getIdUser() {
         return idUser;
+    }
+
+    public List<PengadaanFasilitasModel> getListPengadaanFasilitas() {
+        return listPengadaanFasilitas;
+    }
+
+    public void setListPengadaanFasilitas(List<PengadaanFasilitasModel> listPengadaanFasilitas) {
+        this.listPengadaanFasilitas = listPengadaanFasilitas;
     }
 }
