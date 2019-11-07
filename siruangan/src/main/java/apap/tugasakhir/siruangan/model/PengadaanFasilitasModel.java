@@ -10,7 +10,7 @@ import java.math.BigInteger;
 public class PengadaanFasilitasModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idPengadaan;
+    private Long idPengadaan;
 
     @NotNull
     @Size(max = 200)

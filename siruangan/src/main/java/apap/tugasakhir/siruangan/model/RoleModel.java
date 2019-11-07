@@ -14,7 +14,7 @@ import java.util.List;
 public class RoleModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idRole;
+    private Long idRole;
 
     @NotNull
     @Size(max = 200)
