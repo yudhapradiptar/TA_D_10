@@ -23,7 +23,7 @@ public class RuanganModel implements Serializable{
     private int kapasitasRuangan;
 
     @OneToMany(mappedBy="ruangan")
-    List<RuanganFasilitasModel> listRuanganFasilitas;
+    List<FasilitasRuanganModel> listRuanganFasilitas;
 
     public Long getIdRuangan() {
         return idRuangan;
@@ -49,11 +49,11 @@ public class RuanganModel implements Serializable{
         this.kapasitasRuangan = kapasitasRuangan;
     }
 
-    public List<RuanganFasilitasModel> getListRuanganFasilitas() {
+    public List<FasilitasRuanganModel> getListRuanganFasilitas() {
         return listRuanganFasilitas;
     }
 
-    public void setListRuanganFasilitas(List<RuanganFasilitasModel> listRuanganFasilitas) {
+    public void setListRuanganFasilitas(List<FasilitasRuanganModel> listRuanganFasilitas) {
         this.listRuanganFasilitas = listRuanganFasilitas;
     }
 }
