@@ -14,8 +14,6 @@
 | 1706984631    | Irene Pixelyne Romauli  |             1                |
 | 1706043595    | Ramawajdi Kanishka A    |             4                |
 
-Notes : Fitur - fitur yang dikerjakan diputuskan oleh setiap kelompok kecil.
-
 ## Kontrak Tahap 2 Tugas Akhir
 |      NPM      |       Nama Lengkap      | Fitur yang akan diselesaikan |
 | ------------- | ----------------------- | ---------------------------- |
@@ -24,8 +22,6 @@ Notes : Fitur - fitur yang dikerjakan diputuskan oleh setiap kelompok kecil.
 | 1706043853    | Ariq Haryo Setiaki      |             16               |
 | 1706984631    | Irene Pixelyne Romauli  |             12,17            |
 | 1706043595    | Ramawajdi Kanishka A    |             3                |
-
-Notes : Fitur - fitur yang dikerjakan diputuskan oleh setiap kelompok kecil.
 
 ## Kontrak Tahap 3 Tugas Akhir
 |      NPM      |       Nama Lengkap      | Fitur yang akan diselesaikan |
@@ -36,4 +32,3 @@ Notes : Fitur - fitur yang dikerjakan diputuskan oleh setiap kelompok kecil.
 | 1706984631    | Irene Pixelyne Romauli  |             13               |
 | 1706043595    | Ramawajdi Kanishka A    |             2                |
 
-Notes : Fitur - fitur yang dikerjakan diputuskan oleh setiap kelompok kecil.
