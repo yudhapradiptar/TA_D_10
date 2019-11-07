@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark text-light">
+    <nav th:fragment="navbar" class="navbar navbar-expand-lg">
         <a class="navbar-brand" th:text="SI-RUANGAN"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +34,7 @@
             <a class="nav-item nav-link active" th:href="@{/}">Pengadaan Fasilitas<span class="sr-only">(current)</span></a>
         </div>
     </nav>
-    <footer class="page-footer font-small fixed-bottom footer-dark bg-dark text-light" th:fragment="footer">
+    <footer class="page-footer font-small fixed-bottom" th:fragment="footer">
         <div class="footer-copyright text-center py-3">© Vote For Setiaki:
             <p th:text="'Kini Anda berada pada halaman ' + ${title} + ''"></p>
         </div>
