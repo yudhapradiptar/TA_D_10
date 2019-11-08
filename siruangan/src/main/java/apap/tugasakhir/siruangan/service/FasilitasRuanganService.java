@@ -15,4 +15,6 @@ public interface FasilitasRuanganService {
     void addFasilitasRuangan(FasilitasRuanganModel fasilitasRuanganModel);
 
     FasilitasRuanganModel getFasilitasRuanganById(Long id);
+
+    FasilitasRuanganModel getFasilitasRuanganByFasilitas(FasilitasModel fasilitasModel);
 }
