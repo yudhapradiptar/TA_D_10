@@ -25,6 +25,10 @@ public class RuanganModel implements Serializable{
     @OneToMany(mappedBy="ruangan")
     List<FasilitasRuanganModel> listFasilitasRuangan;
 
+    @OneToMany(mappedBy = "ruangan", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    List<PeminjamanRuanganModel> listPeminjamanRuangan;
+
+
     public Long getIdRuangan() {
         return idRuangan;
     }
@@ -55,5 +59,13 @@ public class RuanganModel implements Serializable{
 
     public void setListFasilitasRuangan(List<FasilitasRuanganModel> listFasilitasRuangan) {
         this.listFasilitasRuangan = listFasilitasRuangan;
+    }
+
+    public List<PeminjamanRuanganModel> getListPeminjamanRuangan() {
+        return this.listPeminjamanRuangan;
+    }
+
+    public void setListPeminjamanRuangan(List<PeminjamanRuanganModel> listPeminjamanRuangan) {
+        this.listPeminjamanRuangan = listPeminjamanRuangan;
     }
 }

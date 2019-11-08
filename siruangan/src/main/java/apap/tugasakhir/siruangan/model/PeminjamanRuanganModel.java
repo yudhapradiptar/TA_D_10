@@ -54,13 +54,20 @@ public class PeminjamanRuanganModel implements Serializable {
     @Column(name="is_disetujui", nullable = false)
     private boolean isDisetujui;
 
-    @ManyToOne
-    @JoinColumn(name="idRuangan")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="idRuangan", referencedColumnName = "idRuangan", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     RuanganModel ruangan;
 
     @ManyToOne
-    @JoinColumn(name="idUser")
-    UserModel user;
+    @JoinColumn(name= "idUserPeminjam", referencedColumnName = "idUser")
+    UserModel userPeminjam;
+    
+
+    @ManyToOne
+    @JoinColumn(name = "idUserPenyetuju", referencedColumnName = "idUser")
+    UserModel userPenyetuju;
+    
 
     public Long getIdPeminjamanRuangan() {
         return idPeminjamanRuangan;
@@ -142,11 +149,21 @@ public class PeminjamanRuanganModel implements Serializable {
         this.ruangan = ruangan;
     }
 
-    public UserModel getUser() {
-        return user;
+    public UserModel getUserPeminjam() {
+        return this.userPeminjam;
     }
 
-    public void setUser(UserModel user) {
-        this.user = user;
+    public void setUserPeminjam(UserModel userPeminjam) {
+        this.userPeminjam = userPeminjam;
     }
+
+    public UserModel getUserPenyetuju() {
+        return this.userPenyetuju;
+    }
+
+    public void setUserPenyetuju(UserModel userPenyetuju) {
+        this.userPenyetuju = userPenyetuju;
+    }
+
+    
 }
