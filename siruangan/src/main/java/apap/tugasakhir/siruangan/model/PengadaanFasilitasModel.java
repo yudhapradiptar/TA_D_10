@@ -33,11 +33,11 @@ public class PengadaanFasilitasModel {
     @JoinColumn(name="idUser")
     UserModel user;
 
-    public long getIdPengadaan() {
+    public Long getIdPengadaan() {
         return idPengadaan;
     }
 
-    public void setIdPengadaan(long idPengadaan) {
+    public void setIdPengadaan(Long idPengadaan) {
         this.idPengadaan = idPengadaan;
     }
 
