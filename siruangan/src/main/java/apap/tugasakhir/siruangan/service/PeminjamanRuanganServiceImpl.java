@@ -29,7 +29,7 @@ public class PeminjamanRuanganServiceImpl implements PeminjamanRuanganService {
 
         if(combinedDateTimeMulai.after(waktuTanggalSekarang) 
            && combinedDateTimeMulai.before(combinedDateTimeSelesai)) { 
-            List<PeminjamanRuanganModel> listPeminjamanModel = peminjamanRuanganDB.findAll();
+            List<PeminjamanRuanganModel> listPeminjamanModel = peminjamanRuanganDB.findByRuanganIdRuangan(peminjaman.getRuangan().getIdRuangan());
             for(PeminjamanRuanganModel peminjamanObj : listPeminjamanModel) {
                 Date combinedDateTimeObjMulai = combineStartAndEndDateTime(peminjamanObj.getTanggalMulai(), peminjamanObj.getWaktuMulai());
                 Date combinedDateTimeObjSelesai = combineStartAndEndDateTime(peminjamanObj.getTanggalSelesai(), peminjamanObj.getWaktuSelesai());
