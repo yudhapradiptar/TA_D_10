@@ -52,6 +52,11 @@ public class UserModel implements Serializable{
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PengadaanFasilitasModel> listPengadaanFasilitas;
 
+    @OneToMany(mappedBy = "userPeminjam", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<PeminjamanRuanganModel> listPeminjamanRuanganDiajukan;
+    
+    @OneToMany(mappedBy = "userPenyetuju", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<PeminjamanRuanganModel> listPeminjamanRuanganDisetujui;
     /**
      * @param password the password to set
      */
@@ -107,5 +112,21 @@ public class UserModel implements Serializable{
 
     public void setListPengadaanFasilitas(List<PengadaanFasilitasModel> listPengadaanFasilitas) {
         this.listPengadaanFasilitas = listPengadaanFasilitas;
+    }
+
+    public List<PeminjamanRuanganModel> getListPeminjamanRuanganDiajukan() {
+        return this.listPeminjamanRuanganDiajukan;
+    }
+
+    public void setListPeminjamanRuanganDiajukan(List<PeminjamanRuanganModel> listPeminjamanRuanganDiajukan) {
+        this.listPeminjamanRuanganDiajukan = listPeminjamanRuanganDiajukan;
+    }
+
+    public List<PeminjamanRuanganModel> getListPeminjamanRuanganDisetujui() {
+        return this.listPeminjamanRuanganDisetujui;
+    }
+
+    public void setListPeminjamanRuanganDisetujui(List<PeminjamanRuanganModel> listPeminjamanRuanganDisetujui) {
+        this.listPeminjamanRuanganDisetujui = listPeminjamanRuanganDisetujui;
     }
 }
