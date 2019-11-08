@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymelaf.org">
+<head>
+    <title> Mengajukan Pengadaan Fasilitas</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header" style="background:#ffffff;">
+            <h1>Ajukan Pengadaan Fasilitas</h1>
+        </div>
+        <div class="card-body">
+            <form th:action="@{/pengadaan-fasilitas}" th:object="${pengadaan}" method="POST">
+                <div class="form-group-row">
+                    <label class="col-sm-2 col-form-label">Nama: </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="nama"  class="form-control" th:field="*{nama}" required="true" placeholder="Nama"/>
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <label class="col-sm-2 col-form-label">Jumlah: </label>
+                    <div class="col-sm-10">
+                        <input type="number" name="jumlah" th:field="*{jumlah}" class="form-control" required="true" placeholder="Jumlah"/>
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <label class="col-sm-2 col-form-label">Harga: </label>
+                    <div class="col-sm-10">
+                        <input type="number" name="harga" th:field="*{harga}" class="form-control" required="true" placeholder="Harga"/>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group-row">
+                    <div class="col-sm-10">
+                        <button class="btn btn-primary" style="color: white" type="submit" name="submit"> Submit </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<footer th:replace="fragments/fragment ::footer"></footer>
+</body>
+</html>
