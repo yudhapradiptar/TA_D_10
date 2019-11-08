@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymelaf.org">
+
+<head>
+    <title> Formulir Peminjaman Ruangan </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container-fluid">
+        <div class="row justify-content-center p-3">
+            <div class="card">
+                <div class="card-header">
+                    Pinjam Ruangan
+                </div>
+                <div class="card-body">
+                    <div>
+                        <span style="color: red" th:text = "${message}"></span>
+                    </div>
+                    <form th:action="@{/ruangan/peminjaman(idRuangan = ${ruangan.idRuangan})}" method="POST">
+                        <div class="form-group row">
+                        <label for="waktuMulai" class="col-sm-5 col-form-label">Waktu mulai</label>
+                        <div class="col-sm-7">
+                            <input type="time" class="form-control" id="waktuMulai" name="waktuMulai" required>
+                        </div>
+                        </div>
+                        <div class="form-group row">
+                        <label for="waktuSelesai" class="col-sm-5 col-form-label">Waktu selesai</label>
+                        <div class="col-sm-7">
+                            <input type="time" class="form-control" id="waktuSelesai" name="waktuSelesai" required>
+                        </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="tanggalMulai" class="col-sm-5 col-form-label">Tanggal mulai</label>
+                            <div class="col-sm-7">
+                                <input type="date" class="form-control" id="tanggalMulai" name="tanggalMulai" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="tanggalSelesai" class="col-sm-5 col-form-label">Tanggal selesai</label>
+                            <div class="col-sm-7">
+                                <input type="date" class="form-control" id="tanggalSelesai" name="tanggalSelesai" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="tujuan" class="col-sm-5 col-form-label">Tujuan</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="tujuan" name="tujuan" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="keterangan" class="col-sm-5 col-form-label">Keterangan</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="keterangan" name="keterangan" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="jumlahPeserta" class="col-sm-5 col-form-label">Jumlah peserta</label>
+                            <div class="col-sm-7">
+                                <input type="number" class="form-control" id="jumlahPeserta" name="jumlahPeserta" required>
+                            </div>
+                        </div>
+                        <input type="hidden" id="ruangan" name="ruangan" th:value=${ruangan.idRuangan} />
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+</body>
+</html>
