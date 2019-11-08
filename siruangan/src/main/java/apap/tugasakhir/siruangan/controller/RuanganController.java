@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -36,8 +37,10 @@ public class RuanganController {
     @RequestMapping(path = "/view/{idRuangan}", method = RequestMethod.GET)
     public String viewRuangan(@PathVariable Long idRuangan, Model model){
         RuanganModel ruangan = ruanganService.getRuanganByIdRuangan(idRuangan).get();
-        List<FasilitasModel> listFasilitas = fasilitasRuanganService.getFasilitasList(ruangan);
-        List<FasilitasRuanganModel> listFasilitarRuangan = fasilitasRuanganService.getFasilitasRuanganByRuangan(ruangan);
+        HashMap<FasilitasModel, Integer> pairOfFasilitasAndJumlah = fasilitasRuanganService.getFasilitasDanJumlah(ruangan);
+        model.addAttribute("ruangan", ruangan);
+        model.addAttribute("fasilitasJumlah", pairOfFasilitasAndJumlah);
+        return "view-ruangan";
         
     }
 

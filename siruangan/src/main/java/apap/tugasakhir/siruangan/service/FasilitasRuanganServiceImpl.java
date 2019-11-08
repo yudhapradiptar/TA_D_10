@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -41,6 +42,17 @@ public class FasilitasRuanganServiceImpl implements FasilitasRuanganService {
         }
 
         return listFasilitas;
+    }
+
+    @Override
+    public HashMap<FasilitasModel, Integer> getFasilitasDanJumlah (RuanganModel ruangan){
+        HashMap<FasilitasModel,Integer> fasilitasDanJumlah = new HashMap<FasilitasModel,Integer>();
+        List<FasilitasRuanganModel> listFasilitasRuangan = fasilitasRuanganService.getFasilitasRuanganByRuangan(ruangan);
+        for (FasilitasRuanganModel a : listFasilitasRuangan){
+            fasilitasDanJumlah.put(fasilitasService.getFasilitasByIdFasilitas(a.getFasilitas().getIdFasilitas()).get(),a.getJumlahFasilitas());
+        }
+
+        return fasilitasDanJumlah;
     }
 
 }
