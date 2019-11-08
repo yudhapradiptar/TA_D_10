@@ -55,4 +55,14 @@ public class FasilitasRuanganServiceImpl implements FasilitasRuanganService {
         return fasilitasDanJumlah;
     }
 
+    @Override
+    public void addFasilitasRuangan(FasilitasRuanganModel fasilitasRuanganModel) {
+        fasilitasRuanganDB.save(fasilitasRuanganModel);
+    }
+
+    @Override
+    public FasilitasRuanganModel getFasilitasRuanganById(Long id) {
+        return fasilitasRuanganDB.findById(id).get();
+    }
+
 }

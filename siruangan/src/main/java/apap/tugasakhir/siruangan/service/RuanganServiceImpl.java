@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,6 +19,11 @@ public class RuanganServiceImpl implements RuanganService {
     @Override
     public Optional<RuanganModel> getRuanganByIdRuangan(Long idRuangan){
         return ruanganDB.findById(idRuangan);
+    }
+
+    @Override
+    public List<RuanganModel> getListRuangan() {
+        return ruanganDB.findAll();
     }
 
 }
