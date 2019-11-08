@@ -29,7 +29,7 @@ public class FasilitasRanganController {
     @RequestMapping(value = "/tambah-fasilitas")
     public String addFasilitasForm(Model model) {
         model.addAttribute("listFasilitas", fasilitasService.getListFasilitas());
-        model.addAttribute("listRuangan", ruanganService.getListRuangan());
+        model.addAttribute("listRuangan", ruanganService.getRuanganList());
         return "form-fasilitas-ruang";
     }
 

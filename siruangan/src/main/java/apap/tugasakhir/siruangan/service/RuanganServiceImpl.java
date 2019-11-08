@@ -17,12 +17,12 @@ public class RuanganServiceImpl implements RuanganService {
     private RuanganDB ruanganDB;
 
     @Override
-    public Optional<RuanganModel> getRuanganByIdRuangan(Long idRuangan){
+    public Optional<RuanganModel> getRuanganByIdRuangan(Long idRuangan) {
         return ruanganDB.findById(idRuangan);
     }
 
     @Override
-    public List<RuanganModel> getListRuangan() {
+    public List<RuanganModel> getRuanganList() {
         return ruanganDB.findAll();
     }
 

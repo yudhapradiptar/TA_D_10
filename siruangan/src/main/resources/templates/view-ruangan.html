@@ -22,7 +22,6 @@
         </div>
     </div>
 
-
     <div class="row">
         <div class="col-md-4"></div>
         <div class="card-body col-md-4">
@@ -36,13 +35,10 @@
                 </thead>
                 <tbody>
                 <tr th:each="fasilitas, iterationStatus : *{fasilitasJumlah}">
-
-                    <td th:text="${iterationStatus.count}"><</td>
-                    <td th:text="${fasilitas.key.namaFasilitas}"><</td>
-                    <td th:text="${fasilitas.value}"><</td>
-
+                    <td th:text="${iterationStatus.count}"></td>
+                    <td th:text="${fasilitas.key.namaFasilitas}"></td>
+                    <td th:text="${fasilitas.value}"></td>
                 </tr>
-
                 </tbody>
             </table>
         </div>
