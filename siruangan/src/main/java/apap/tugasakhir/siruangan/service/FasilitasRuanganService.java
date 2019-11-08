@@ -11,4 +11,8 @@ public interface FasilitasRuanganService {
     List<FasilitasModel> getFasilitasList(RuanganModel ruangan);
     List<FasilitasRuanganModel> getFasilitasRuanganByRuangan (RuanganModel ruangan);
     HashMap<FasilitasModel, Integer> getFasilitasDanJumlah (RuanganModel ruangan);
+
+    void addFasilitasRuangan(FasilitasRuanganModel fasilitasRuanganModel);
+
+    FasilitasRuanganModel getFasilitasRuanganById(Long id);
 }

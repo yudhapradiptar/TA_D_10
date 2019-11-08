@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,6 +17,11 @@ public class FasilitasServiceImpl implements FasilitasService {
     FasilitasDB fasilitasDB;
 
     public Optional<FasilitasModel> getFasilitasByIdFasilitas(Long idFasilitas) {
-        return fasilitasDB.findById(idFasilitas);    }
+        return fasilitasDB.findById(idFasilitas);
+    }
 
+    @Override
+    public List<FasilitasModel> getListFasilitas() {
+        return fasilitasDB.findAll();
+    }
 }
