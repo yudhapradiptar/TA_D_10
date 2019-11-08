@@ -16,5 +16,6 @@ public interface FasilitasRuanganService {
 
     FasilitasRuanganModel getFasilitasRuanganById(Long id);
 
-    FasilitasRuanganModel getFasilitasRuanganByFasilitas(FasilitasModel fasilitasModel);
+    FasilitasRuanganModel getFasilitasRuanganByFasilitasAndRuangan(FasilitasModel fasilitasModel, RuanganModel ruanganModel);
+
 }

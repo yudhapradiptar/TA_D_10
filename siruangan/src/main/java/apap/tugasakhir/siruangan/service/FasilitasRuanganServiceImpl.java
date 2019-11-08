@@ -66,9 +66,10 @@ public class FasilitasRuanganServiceImpl implements FasilitasRuanganService {
     }
 
     @Override
-    public FasilitasRuanganModel getFasilitasRuanganByFasilitas(FasilitasModel fasilitasModel) {
+    public FasilitasRuanganModel getFasilitasRuanganByFasilitasAndRuangan(FasilitasModel fasilitasModel, RuanganModel ruanganModel) {
         for (FasilitasRuanganModel fasilitasRuanganModel : fasilitasRuanganDB.findAll()) {
-            if (fasilitasRuanganModel.getFasilitas().getNamaFasilitas().equals(fasilitasModel.getNamaFasilitas())) {
+            if (fasilitasRuanganModel.getFasilitas().getNamaFasilitas().equals(fasilitasModel.getNamaFasilitas()) &&
+            fasilitasRuanganModel.getRuangan().getIdRuangan().equals(ruanganModel.getIdRuangan())) {
                 return fasilitasRuanganModel;
             }
         }

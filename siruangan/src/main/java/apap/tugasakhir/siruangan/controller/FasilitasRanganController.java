@@ -39,7 +39,7 @@ public class FasilitasRanganController {
     public String addFasilitas(Long idFasilitas, Long idRuangan, Model model, int jumlahFasilitas) {
         FasilitasModel existingFasilitas = fasilitasService.getFasilitasByIdFasilitas(idFasilitas).get();
         RuanganModel exisitingRuangan = ruanganService.getRuanganByIdRuangan(idRuangan).get();
-        FasilitasRuanganModel existingFasilitasRuangan = fasilitasRuanganService.getFasilitasRuanganByFasilitas(existingFasilitas);
+        FasilitasRuanganModel existingFasilitasRuangan = fasilitasRuanganService.getFasilitasRuanganByFasilitasAndRuangan(existingFasilitas, exisitingRuangan);
         if (existingFasilitasRuangan == null){
             FasilitasRuanganModel baru = new FasilitasRuanganModel();
             baru.setFasilitas(existingFasilitas);
