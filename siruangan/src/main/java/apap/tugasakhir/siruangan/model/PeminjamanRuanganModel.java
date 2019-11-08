@@ -3,6 +3,7 @@ package apap.tugasakhir.siruangan.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -29,10 +30,12 @@ public class PeminjamanRuanganModel implements Serializable {
     private String waktuSelesai;
 
     @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name="tanggal_mulai", nullable = false)
     private Date tanggalMulai;
 
     @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name="tanggal_selesai", nullable = false)
     private Date tanggalSelesai;
 
@@ -52,7 +55,7 @@ public class PeminjamanRuanganModel implements Serializable {
 
     @NotNull
     @Column(name="is_disetujui", nullable = false)
-    private boolean isDisetujui;
+    private boolean isDisetujui = false;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="idRuangan", referencedColumnName = "idRuangan", nullable = false)
@@ -66,7 +69,7 @@ public class PeminjamanRuanganModel implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "idUserPenyetuju", referencedColumnName = "idUser")
-    UserModel userPenyetuju;
+    UserModel userPenyetuju = null;
     
 
     public Long getIdPeminjamanRuangan() {
