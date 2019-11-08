@@ -31,17 +31,22 @@ public class RuanganController {
 
     @Autowired
     private FasilitasService fasilitasService;
-
-
-
+    
     @RequestMapping(path = "/view/{idRuangan}", method = RequestMethod.GET)
     public String viewRuangan(@PathVariable Long idRuangan, Model model){
         RuanganModel ruangan = ruanganService.getRuanganByIdRuangan(idRuangan).get();
         HashMap<FasilitasModel, Integer> pairOfFasilitasAndJumlah = fasilitasRuanganService.getFasilitasDanJumlah(ruangan);
+        String pageTitle = "Detil Ruangan";
+        model.addAttribute("title", pageTitle);
         model.addAttribute("ruangan", ruangan);
         model.addAttribute("fasilitasJumlah", pairOfFasilitasAndJumlah);
-        return "view-ruangan";
-        
+        return "view-ruangan";  
     }
 
+    @RequestMapping("/daftar-ruangan")
+    public String daftarRuangan (Model model){
+        List<RuanganModel> listRuanganModel = ruanganService.getRuanganList();
+        model.addAttribute("listRuanganModel", listRuanganModel);
+        return "list-ruangan";
+    }
 }

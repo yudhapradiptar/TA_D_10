@@ -7,7 +7,6 @@ import java.util.Optional;
 
 public interface RuanganService {
     Optional<RuanganModel> getRuanganByIdRuangan(Long idRuangan);
-
-    List<RuanganModel> getListRuangan();
+    List<RuanganModel> getRuanganList();
 }
 
