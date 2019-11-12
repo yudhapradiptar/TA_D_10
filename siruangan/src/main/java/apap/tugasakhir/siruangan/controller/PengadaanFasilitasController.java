@@ -45,4 +45,14 @@ public class PengadaanFasilitasController {
             return "error-add-pengadaan";
         }
     }
+
+    @RequestMapping("/pengadaan-fasilitas")
+    public String viewAllPengadaan(Model model){
+        List<PengadaanFasilitasModel> listPengadaan = pengadaanFasilitasService.getListPengadaanFasilitas();
+
+        model.addAttribute("listPengadaan", listPengadaan);
+        model.addAttribute("title", "Pengadaan Fasilitas");
+
+        return "viewall-pengadaan";
+    }
 }
