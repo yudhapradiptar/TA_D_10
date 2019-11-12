@@ -136,11 +136,11 @@ public class PeminjamanRuanganModel implements Serializable {
         this.jumlahPeserta = jumlahPeserta;
     }
 
-    public boolean isDisetujui() {
+    public boolean getIsDisetujui() {
         return isDisetujui;
     }
 
-    public void setDisetujui(boolean disetujui) {
+    public void setIsDisetujui(boolean disetujui) {
         isDisetujui = disetujui;
     }
 
