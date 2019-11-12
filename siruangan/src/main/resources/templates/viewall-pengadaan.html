@@ -35,7 +35,7 @@
                 <span th:unless="${pengadaan.status == '0'}">Menunggu Persetujuan</span>
             </td>
             <td>
-                <a class="btn btn-danger text-white">HAPUS</a>
+                <a th:href="@{/pengadaan-fasilitas/hapus/}+${pengadaan.idPengadaan}" class="btn btn-danger text-white">HAPUS</a>
             </td>
         </tr>
         </tbody>

@@ -11,4 +11,9 @@ public interface PengadaanFasilitasService {
     List<PengadaanFasilitasModel> getListPengadaanFasilitas();
 
     PengadaanFasilitasModel generateStatusPengadaan(PengadaanFasilitasModel pengadaanFasilitas);
+
+    void deletePengadaan(PengadaanFasilitasModel pengadaan);
+
+    PengadaanFasilitasModel getPengadaanByIdPengadaan(Long idPengadaan);
+
 }

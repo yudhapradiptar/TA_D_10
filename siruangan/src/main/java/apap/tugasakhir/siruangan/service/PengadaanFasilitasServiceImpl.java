@@ -25,4 +25,15 @@ public class PengadaanFasilitasServiceImpl implements PengadaanFasilitasService{
         pengadaanFasilitas.setStatus(1);
         return pengadaanFasilitas;
     }
+
+    @Override
+    public void deletePengadaan(PengadaanFasilitasModel pengadaan){
+        pengadaanFasilitasDb.delete(pengadaan);
+
+    }
+
+    @Override
+    public PengadaanFasilitasModel getPengadaanByIdPengadaan(Long idPengadaan){
+        return pengadaanFasilitasDb.findById(idPengadaan).get();
+    }
 }

@@ -45,14 +45,12 @@ public class PengadaanFasilitasController {
             return "error-add-pengadaan";
         }
     }
-
-    @RequestMapping("/pengadaan-fasilitas")
-    public String viewAllPengadaan(Model model){
-        List<PengadaanFasilitasModel> listPengadaan = pengadaanFasilitasService.getListPengadaanFasilitas();
-
-        model.addAttribute("listPengadaan", listPengadaan);
-        model.addAttribute("title", "Pengadaan Fasilitas");
-
-        return "viewall-pengadaan";
+    
+    @RequestMapping(value="/pengadaan-fasilitas/hapus/{idPengadaan}", method = RequestMethod.GET)
+    public String deletePengadaan(@PathVariable Long idPengadaan, Model model){
+        PengadaanFasilitasModel pengadaanDeleted = pengadaanFasilitasService.getPengadaanByIdPengadaan(idPengadaan);
+        model.addAttribute("namaPengadaan", pengadaanDeleted.getNama());
+        pengadaanFasilitasService.deletePengadaan(pengadaanDeleted);
+        return "delete-pengadaan";
     }
 }
