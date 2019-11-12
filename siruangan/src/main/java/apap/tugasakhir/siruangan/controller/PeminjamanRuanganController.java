@@ -1,5 +1,7 @@
 package apap.tugasakhir.siruangan.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,7 @@ public class PeminjamanRuanganController {
     @Autowired
     PeminjamanRuanganService peminjamanRuanganService;
 
-    //
+    
     @RequestMapping(value = "/ruangan/peminjaman", method = RequestMethod.GET)
     public String peminjamanRuanganFormPage(@RequestParam(value = "idRuangan") Long idRuangan,
                                             Model model)
@@ -63,5 +65,22 @@ public class PeminjamanRuanganController {
         return "form-peminjaman-ruangan";
     }
 
+    @RequestMapping(value = "ruangan/daftar-peminjaman-ruangan", method = RequestMethod.GET)
+    public String pengajuanPeminjamanPageList(Model model) {
+        List<PeminjamanRuanganModel> listPeminjamanRuangan = peminjamanRuanganService.getPeminjamanRuanganList();
+        List<String> editedDateFormatTanggalMulaiStrList = new ArrayList<String>();
+        List<String> editedDateFormatTanggalSelesaiStrList = new ArrayList<String>();
+        SimpleDateFormat newDateFormat = new SimpleDateFormat("dd MMM yyyy");
+        for(PeminjamanRuanganModel peminjaman : listPeminjamanRuangan) {
+            String newDateFormatTanggalMulaiStr = newDateFormat.format(peminjaman.getTanggalMulai());
+            String newDateFormatTanggalSelesaiStr = newDateFormat.format(peminjaman.getTanggalSelesai());
+            editedDateFormatTanggalMulaiStrList.add(newDateFormatTanggalMulaiStr);
+            editedDateFormatTanggalSelesaiStrList.add(newDateFormatTanggalSelesaiStr);
+        }
+        model.addAttribute("listPeminjamanRuangan", listPeminjamanRuangan);
+        model.addAttribute("listTanggalMulai", editedDateFormatTanggalMulaiStrList);
+        model.addAttribute("listTanggalSelesai", editedDateFormatTanggalSelesaiStrList);
+        return "viewall-peminjaman-ruangan";
+    }
 
 }
