@@ -98,12 +98,12 @@ public class PeminjamanRuanganController {
             if(status){
                 PeminjamanRuanganModel newStatus = peminjamanRuanganService.changeStatus(peminjaman, true);
                 model.addAttribute("statusPeminjaman", newStatus);
-                return "detail-peminjaman-ruangan";
+                return "redirect:/ruangan/daftar-peminjaman-ruangan/";
             }
             else{
                 PeminjamanRuanganModel newStatus = peminjamanRuanganService.changeStatus(peminjaman, false);
                 model.addAttribute("statusPeminjaman", newStatus);
-                return "detail-peminjaman-ruangan";
+                return "redirect:/ruangan/daftar-peminjaman-ruangan/";
             }
     }
 }

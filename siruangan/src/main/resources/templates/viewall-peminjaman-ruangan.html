@@ -48,7 +48,8 @@
                                     <td class="align-middle" th:text="${peminjamanRuangan.tujuan}"></td>
                                     <td class="align-middle" th:text="${peminjamanRuangan.keterangan}"></td>
                                     <td class="align-middle" text="-"></td>
-                                    <td class="align-middle" th:text="${peminjamanRuangan.isDisetujui == 0} ? 'Disetujui' : 'Belum Disetujui'"></td>
+                                    <!-- <td class="align-middle" th:text="${peminjamanRuangan.isDisetujui == 0} ? 'Disetujui' : 'Belum Disetujui'"></td> -->
+                                    <td class="align-middle" th:text="'Peminjaman ' + (${peminjamanRuangan.isDisetujui == true} ? 'Diterima' : 'Ditolak') "></td>
                                     <!-- <td>
                                         <form th:action="@{/ruangan/status-peminjaman/} + ${peminjamanRuangan.idPeminjamanRuangan}" th:method="POST">
                                             <button class="btn btn-success btn-block" value="submit">Terima</button>
