@@ -16,7 +16,7 @@
             <br>
             <h2>Detil Data Ruangan</h2>
             <p th:text="'Nama : ' + ${ruangan.namaRuangan}"></p>
-            <p th:text="'Kapasitas : ' + ${ruangan.kapasitasRuangan}"></p>
+            <p th:text="'Kapasitas : ' + ${ruangan.kapasitasRuangan}"></p> 
             <br>
             <h5>Daftar Fasilitas</h5>
         </div>
@@ -43,7 +43,7 @@
             </table>
             <br>
             <div class="text-center">
-                <a th:href= "@{/ruangan/peminjaman(idRuangan = ${idRuangan})}"> <button type="button" class="btn btn-primary">Pinjam Ruangan Ini!</button> </a>
+                <a th:href= "@{/peminjaman-ruangan/peminjaman(idRuangan = ${idRuangan})}"> <button type="button" class="btn btn-primary">Pinjam Ruangan Ini!</button> </a>
             </div>
 
         </div>

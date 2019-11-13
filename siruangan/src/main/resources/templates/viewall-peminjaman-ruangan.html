@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymelaf.org">
+
+<head>
+    <title> Daftar Peminjaman Ruangan </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" th:src="@{js/viewall-peminjaman-ruangan.js}"></script>
+
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12"><br>
+                <div class="card text-center">
+                    <div class="card-header" style="background:#ffffff;">
+                            <h1>Daftar Peminjaman Ruangan</h1>
+                    </div>
+                    <div class="card-body">
+                        <table class="table" id="table-daftar-peminjaman-ruangan">
+                            <thead class="thead-dark">
+                                <tr>
+                                <th scope="col" class="align-middle">No</th>
+                                <th scope="col" class="align-middle">Nama Ruangan</th>
+                                <th scope="col" class="align-middle" style="width: 8%">Tanggal Mulai</th>
+                                <th scope="col" class="align-middle" style="width: 8%">Tanggal Selesai</th>
+                                <th scope="col" class="align-middle">Jam Mulai</th>
+                                <th scope="col" class="align-middle">Jam Selesai</th>
+                                <th scope="col" class="align-middle">Tujuan</th>
+                                <th scope="col" class="align-middle">Keterangan</th>
+                                <th scope="col" class="align-middle">Nama Peminjam</th>
+                                <th scope="col" class="align-middle">Status</th>
+                                <th scope="col" class="align-middle">Tindakan</th>
+                                </tr>
+                            </thead>
+                            <tbody th:each="peminjamanRuangan, iterationStatus : ${listPeminjamanRuangan}">
+                                <tr>
+                                    <th scope="row" class="align-middle" th:text="${iterationStatus.count}"></th>
+                                    <td class="align-middle" th:text="${peminjamanRuangan.ruangan.namaRuangan}"></td>
+                                    <td class="align-middle" th:text="${listTanggalMulai[__iterationStatus.index__]}"></td>
+                                    <td class="align-middle" th:text="${listTanggalSelesai[__iterationStatus.index__]}"></td>
+                                    <td class="align-middle" th:text="${peminjamanRuangan.waktuMulai}"></td>
+                                    <td class="align-middle" th:text="${peminjamanRuangan.waktuSelesai}"></td>
+                                    <td class="align-middle" th:text="${peminjamanRuangan.tujuan}"></td>
+                                    <td class="align-middle" th:text="${peminjamanRuangan.keterangan}"></td>
+                                    <td class="align-middle" text="-"></td>
+                                    <td class="align-middle" th:text="${peminjamanRuangan.isDisetujui == 0} ? 'Disetujui' : 'Belum Disetujui'"></td>
+                                    <td>
+                                        <button type="button w-25" class="btn btn-success btn-block">Terima</button>
+                                        <button type="button w-25" class="btn btn-danger btn-block">Tolak</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
