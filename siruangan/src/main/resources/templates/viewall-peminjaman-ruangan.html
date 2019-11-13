@@ -49,9 +49,22 @@
                                     <td class="align-middle" th:text="${peminjamanRuangan.keterangan}"></td>
                                     <td class="align-middle" text="-"></td>
                                     <td class="align-middle" th:text="${peminjamanRuangan.isDisetujui == 0} ? 'Disetujui' : 'Belum Disetujui'"></td>
+                                    <!-- <td>
+                                        <form th:action="@{/ruangan/status-peminjaman/} + ${peminjamanRuangan.idPeminjamanRuangan}" th:method="POST">
+                                            <button class="btn btn-success btn-block" value="submit">Terima</button>
+                                            <button class="btn btn-danger btn-block" value="submit">Tolak</button>
+                                        </form>
+                                    </td> -->
                                     <td>
-                                        <button type="button w-25" class="btn btn-success btn-block">Terima</button>
-                                        <button type="button w-25" class="btn btn-danger btn-block">Tolak</button>
+                                        <form th:action="@{/ruangan/status-peminjaman/} + ${peminjamanRuangan.idPeminjamanRuangan}" th:method="POST">
+                                            <input type="hidden" name="status" th:value="true" />
+                                            <button type="submit" class="btn btn-success btn-block">Terima</button>
+                                        </form>
+                                        <br>
+                                        <form th:action="@{/ruangan/status-peminjaman/} + ${peminjamanRuangan.idPeminjamanRuangan}" th:method="POST">
+                                            <input type="hidden" name="status" th:value="false" />
+                                            <button class="btn btn-danger btn-block" value="submit">Tolak</button>
+                                        </form>
                                     </td>
                                 </tr>
                             </tbody>
