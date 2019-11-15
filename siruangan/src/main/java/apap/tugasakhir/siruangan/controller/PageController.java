@@ -26,6 +26,8 @@ public class PageController{
     @RequestMapping("/user/addUser")
     public String addUser (Model model){
         model.addAttribute("listRole", roleService.findAll());
+        String pageTitle = "Tambah User";
+        model.addAttribute("title", pageTitle);
         return "form-add-user";
     }
 
