@@ -10,12 +10,18 @@
 <body>
     <nav th:replace="fragments/fragment :: navbar"></nav>
     <div class="container-fluid">
-        <div class="row">
+        <div class="container h-100 align-items-center">
+            <br>
+            <div class="row h-100 justify-content-center align-items-center">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header">Tambah User Baru</div>
+                    <div class="card-header bg-dark text-white" align="left"> <h2> Tambah User Baru</h2></div>
                     <div class="card-body">
                         <form th:action="@{/user/addUser}" method="POST">
+
+                            <label> Nama </label>
+                            <input type="text" class="form-control"/>
+
                             <label> User Name </label>
                             <input type="text" name="username" class="form-control"/>
 
@@ -29,12 +35,27 @@
                                 <option selected value=""> -- Pilih Role -- </option>
                                 <option th:each="roleAvailable : ${listRole}" th:value="${roleAvailable.idRole}" th:text="${roleAvailable.nama}"></option>
                             </select>
+
+                            <label> Tempat Lahir </label>
+                            <input type="text" class="form-control"/>
+
+                            <label> Tanggal Lahir </label>
+                            <input type="date" class="form-control"/>
+
+                            <label> Alamat </label>
+                            <input type="text" class="form-control"/>
+
+                            <label> Telepon </label>
+                            <input type="number" class="form-control"/>
+
+
                             <br>
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </form>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
     <footer th:replace="fragments/fragment ::footer"></footer>
