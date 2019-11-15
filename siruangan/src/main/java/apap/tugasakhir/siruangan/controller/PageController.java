@@ -16,7 +16,8 @@ public class PageController{
     RoleService roleService;
 
     @RequestMapping("/")
-    public String home (Model model){
+    public String home (Model model, Authentication auth){
+        System.out.println(auth.getAuthorities());
         String pageTitle = "Home";
         model.addAttribute("title", pageTitle);
         return "home";
