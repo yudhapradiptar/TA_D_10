@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymelaf.org">
+
+<head>
+    <title> Tambah User </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">Tambah User Baru</div>
+                    <div class="card-body">
+                        <form th:action="@{/user/addUser}" method="POST">
+                            <label> User Name </label>
+                            <input type="text" name="username" class="form-control"/>
+
+                            <label> Password </label>
+                            <input type="password" name="password" class="form-control"/>
+                            <!-- <input type="password" name="password" class="form-control" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" 
+                            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required> -->
+
+                            <label> Role </label>
+                            <select name="role" class="form-control">
+                                <option selected value=""> -- Pilih Role -- </option>
+                                <option th:each="roleAvailable : ${listRole}" th:value="${roleAvailable.idRole}" th:text="${roleAvailable.nama}"></option>
+                            </select>
+                            <br>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer th:replace="fragments/fragment ::footer"></footer>
+</body>
+</html>
