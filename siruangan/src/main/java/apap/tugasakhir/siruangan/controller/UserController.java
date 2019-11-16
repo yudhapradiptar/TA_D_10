@@ -35,7 +35,7 @@ public class UserController {
                 messages = "User berhasil ditambahkan.";
                 userService.addUser(user);
                 model.addAttribute("message4", messages);
-                return "form-add-user";
+                return "add-user-success";
             }
             else{
                 messages = "Your password and confirmation password do not match. Refresh the page then try again.";
