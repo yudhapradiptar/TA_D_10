@@ -22,13 +22,19 @@
                             <label> Nama </label>
                             <input type="text" class="form-control"/>
 
+                           
                             <label> User Name </label>
                             <input type="text" name="username" class="form-control"/>
 
+                            
                             <label> Password </label>
                             <input type="password" name="password" class="form-control"/>
-                            <!-- <input type="password" name="password" class="form-control" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" 
-                            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required> -->
+                           
+                           
+                            <label> Konfirmasi Password </label>
+                            <input type="password" name="passwordKonfirmasi" class="form-control"/>
+                            <!-- <input type="password" name="passwordKonfirmasi" class="form-control" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{10,}$" 
+                            title="Must contain at least one number and one uppercase and lowercase letter, and at least 10 or more characters" required> -->
 
                             <label> Role </label>
                             <select name="role" class="form-control">
@@ -47,8 +53,12 @@
 
                             <label> Telepon </label>
                             <input type="number" class="form-control"/>
-
-
+                            <br>
+                            
+                            <div th:text="${message4}" style="color: blue;"></div>
+                            <div th:text="${message3}" style="color: red;"></div>
+                            <div th:text="${message2}" style="color: red;"></div>
+                            <div th:text="${message}" style="color: red;"></div>
                             <br>
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </form>
