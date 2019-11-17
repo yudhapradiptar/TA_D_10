@@ -93,15 +93,15 @@ public class PeminjamanRuanganController {
 
     @RequestMapping(value="ruangan/status-peminjaman/{idPeminjamanRuangan}", method = RequestMethod.POST)
     public String changePeminjamanStatusSubmit(@PathVariable Long idPeminjamanRuangan, @ModelAttribute PeminjamanRuanganModel peminjaman, 
-    @RequestParam(value="status") Boolean status , Model model){
+    @RequestParam(value="status") int status , Model model){
         System.out.println(status);
-            if(status){
-                PeminjamanRuanganModel newStatus = peminjamanRuanganService.changeStatus(peminjaman, true);
+            if(status == 1){
+                PeminjamanRuanganModel newStatus = peminjamanRuanganService.changeStatus(peminjaman, 1);
                 model.addAttribute("statusPeminjaman", newStatus);
                 return "redirect:/ruangan/daftar-peminjaman-ruangan/";
             }
             else{
-                PeminjamanRuanganModel newStatus = peminjamanRuanganService.changeStatus(peminjaman, false);
+                PeminjamanRuanganModel newStatus = peminjamanRuanganService.changeStatus(peminjaman, 2);
                 model.addAttribute("statusPeminjaman", newStatus);
                 return "redirect:/ruangan/daftar-peminjaman-ruangan/";
             }
