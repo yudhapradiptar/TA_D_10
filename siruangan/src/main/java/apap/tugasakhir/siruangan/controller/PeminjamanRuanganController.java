@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -83,4 +84,26 @@ public class PeminjamanRuanganController {
         return "viewall-peminjaman-ruangan";
     }
 
+    // @RequestMapping(value="ruangan/status-peminjaman/{idPeminjamanRuangan}", method = RequestMethod.GET)
+    // public String changePeminjamanStatus(@PathVariable Long idPeminjamanRuangan, Model model){
+    //     PeminjamanRuanganModel oldStatus = peminjamanRuanganService.findRuanganByIdPeminjaman(idPeminjamanRuangan);
+    //     model.addAttribute("statusPeminjaman", oldStatus);
+    //     return "detail-peminjaman-ruangan";
+    // }
+
+    @RequestMapping(value="ruangan/status-peminjaman/{idPeminjamanRuangan}", method = RequestMethod.POST)
+    public String changePeminjamanStatusSubmit(@PathVariable Long idPeminjamanRuangan, @ModelAttribute PeminjamanRuanganModel peminjaman, 
+    @RequestParam(value="status") Boolean status , Model model){
+        System.out.println(status);
+            if(status){
+                PeminjamanRuanganModel newStatus = peminjamanRuanganService.changeStatus(peminjaman, true);
+                model.addAttribute("statusPeminjaman", newStatus);
+                return "redirect:/ruangan/daftar-peminjaman-ruangan/";
+            }
+            else{
+                PeminjamanRuanganModel newStatus = peminjamanRuanganService.changeStatus(peminjaman, false);
+                model.addAttribute("statusPeminjaman", newStatus);
+                return "redirect:/ruangan/daftar-peminjaman-ruangan/";
+            }
+    }
 }
