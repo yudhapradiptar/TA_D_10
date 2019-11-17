@@ -38,7 +38,7 @@ public class PengadaanFasilitasServiceImpl implements PengadaanFasilitasService{
         }
         else if(userLoggedIn.getRole().getIdRole()==3){
             pengadaanFasilitas.setUser(userLoggedIn);
-            pengadaanFasilitas.setStatus(2);
+            pengadaanFasilitas.setStatus(0);
         }
         return pengadaanFasilitas;
     }
