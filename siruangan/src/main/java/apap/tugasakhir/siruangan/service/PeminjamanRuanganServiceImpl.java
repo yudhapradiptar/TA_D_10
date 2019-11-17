@@ -112,7 +112,7 @@ public class PeminjamanRuanganServiceImpl implements PeminjamanRuanganService {
     }
 
     @Override
-    public PeminjamanRuanganModel changeStatus(PeminjamanRuanganModel peminjaman, boolean status) {
+    public PeminjamanRuanganModel changeStatus(PeminjamanRuanganModel peminjaman, int status) {
         PeminjamanRuanganModel targetPinjaman = peminjamanRuanganDB.findByIdPeminjamanRuangan(peminjaman.getIdPeminjamanRuangan());
         try{
             targetPinjaman.setIsDisetujui(status);

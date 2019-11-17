@@ -46,34 +46,35 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal (AuthenticationManagerBuilder auth) throws Exception {
-        // auth.inMemoryAuthentication()
-        //         .passwordEncoder(encoder())
-        //         .withUser("admin").password(encoder().encode("admin"))
-        //         .roles("Admin TU");
-        // auth.inMemoryAuthentication()
-        //         .passwordEncoder(encoder())
-        //         .withUser("kepsek").password(encoder().encode("kepsek"))
-        //         .roles("Kepala Sekolah");
-        // auth.inMemoryAuthentication()
-        //         .passwordEncoder(encoder())
-        //         .withUser("guru").password(encoder().encode("guru"))
-        //         .roles("Guru");
-        // auth.inMemoryAuthentication()
-        //         .passwordEncoder(encoder())
-        //         .withUser("siswa").password(encoder().encode("siswa"))
-        //         .roles("Siswa");
-        // auth.inMemoryAuthentication()
-        //         .passwordEncoder(encoder())
-        //         .withUser("pustakawan").password(encoder().encode("pustakawan"))
-        //         .roles("Pustakawan");
-        // auth.inMemoryAuthentication()
-        //         .passwordEncoder(encoder())
-        //         .withUser("pengurusKoperasi").password(encoder().encode("pengurusKoperasi"))
-        //         .roles("Pengurus Koperasi");
-        // auth.inMemoryAuthentication()
-        //         .passwordEncoder(encoder())
-        //         .withUser("anggotaKoperasi").password(encoder().encode("anggotaKoperasi"))
-        //         .roles("Anggota Koperasi");
+        auth.inMemoryAuthentication()
+                .passwordEncoder(encoder())
+                .withUser("admin").password(encoder().encode("admin"))
+                .roles("Admin TU");
+        auth.inMemoryAuthentication()
+                .passwordEncoder(encoder())
+                .withUser("kepsek").password(encoder().encode("kepsek"))
+                .roles("Kepala Sekolah");
+        auth.inMemoryAuthentication()
+                .passwordEncoder(encoder())
+                .withUser("guru").password(encoder().encode("guru"))
+                .roles("Guru");
+        auth.inMemoryAuthentication()
+                .passwordEncoder(encoder())
+                .withUser("siswa").password(encoder().encode("siswa"))
+                .roles("Siswa");
+        auth.inMemoryAuthentication()
+                .passwordEncoder(encoder())
+                .withUser("pustakawan").password(encoder().encode("pustakawan"))
+                .roles("Pustakawan");
+        auth.inMemoryAuthentication()
+                .passwordEncoder(encoder())
+                .withUser("pengurusKoperasi").password(encoder().encode("pengurusKoperasi"))
+                .roles("Pengurus Koperasi");
+        auth.inMemoryAuthentication()
+                .passwordEncoder(encoder())
+                .withUser("anggotaKoperasi").password(encoder().encode("anggotaKoperasi"))
+                .roles("Anggota Koperasi");
+                
         auth.userDetailsService(userDetailsService).passwordEncoder(encoder());
     }
 }
