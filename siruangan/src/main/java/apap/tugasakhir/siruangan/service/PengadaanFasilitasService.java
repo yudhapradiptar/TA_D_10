@@ -1,6 +1,7 @@
 package apap.tugasakhir.siruangan.service;
 
 import apap.tugasakhir.siruangan.model.PengadaanFasilitasModel;
+import apap.tugasakhir.siruangan.model.UserModel;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,5 +11,5 @@ public interface PengadaanFasilitasService {
 
     List<PengadaanFasilitasModel> getListPengadaanFasilitas();
 
-    PengadaanFasilitasModel generateStatusPengadaan(PengadaanFasilitasModel pengadaanFasilitas);
+    PengadaanFasilitasModel generateStatusPengadaanAndIdUser(PengadaanFasilitasModel pengadaanFasilitas, UserModel userLoggedIn);
 }
