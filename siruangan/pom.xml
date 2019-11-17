@@ -50,7 +50,11 @@
         </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+<<<<<<< HEAD
 			<artifactId>spring-boot-starter-webflux</artifactId>
+=======
+			<artifactId>spring-boot-starter-security</artifactId>
+>>>>>>> b11b2d8946b092adbd579474fb2acbe89f467a3f
 		</dependency>
 	</dependencies>
 	<build>
