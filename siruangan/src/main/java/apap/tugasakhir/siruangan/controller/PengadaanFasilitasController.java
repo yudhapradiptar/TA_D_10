@@ -2,6 +2,7 @@ package apap.tugasakhir.siruangan.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +21,7 @@ public class PengadaanFasilitasController {
     @Autowired
     private PengadaanFasilitasService pengadaanFasilitasService;
 
+
     @RequestMapping(value="/pengadaan-fasilitas/add", method = RequestMethod.GET)
     public String addPengadaanFormPage(Model model){
         PengadaanFasilitasModel newPengadaan = new PengadaanFasilitasModel();
@@ -33,16 +35,25 @@ public class PengadaanFasilitasController {
 
     @RequestMapping(value="/pengadaan-fasilitas", method = RequestMethod.POST)
     public String addPengadaanSubmit(@ModelAttribute PengadaanFasilitasModel pengadaanFasilitas, Model model){
-        try{
-            pengadaanFasilitasService.generateStatusPengadaan(pengadaanFasilitas);
-            pengadaanFasilitasService.addPengadaanFasilitas(pengadaanFasilitas);
-            List<PengadaanFasilitasModel> listPengadaan = pengadaanFasilitasService.getListPengadaanFasilitas();
-            String title = "Pengadaan Fasilitas";
-            model.addAttribute("listPengadaan", listPengadaan);
-            model.addAttribute("title", title);
-            return "viewall-pengadaan";
-        } catch (NullPointerException e){
-            return "error-add-pengadaan";
-        }
+        pengadaanFasilitasService.generateStatusPengadaanAndIdUser(pengadaanFasilitas);
+        pengadaanFasilitasService.addPengadaanFasilitas(pengadaanFasilitas);
+        List<PengadaanFasilitasModel> listPengadaan = pengadaanFasilitasService.getListPengadaanFasilitas();
+        String title = "Pengadaan Fasilitas";
+        model.addAttribute("listPengadaan", listPengadaan);
+        model.addAttribute("title", title);
+        return "viewall-pengadaan";
+
+//        try{
+//            pengadaanFasilitasService.generateStatusPengadaan(pengadaanFasilitas);
+//            pengadaanFasilitasService.addPengadaanFasilitas(pengadaanFasilitas);
+//            List<PengadaanFasilitasModel> listPengadaan = pengadaanFasilitasService.getListPengadaanFasilitas();
+//            String title = "Pengadaan Fasilitas";
+//            model.addAttribute("listPengadaan", listPengadaan);
+//            model.addAttribute("title", title);
+//            return "viewall-pengadaan";
+//        }
+//        catch (NullPointerException e){
+//            return "error-add-pengadaan";
+//        }
     }
 }

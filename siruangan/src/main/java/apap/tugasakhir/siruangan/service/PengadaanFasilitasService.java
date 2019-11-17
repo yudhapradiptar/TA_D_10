@@ -10,5 +10,5 @@ public interface PengadaanFasilitasService {
 
     List<PengadaanFasilitasModel> getListPengadaanFasilitas();
 
-    PengadaanFasilitasModel generateStatusPengadaan(PengadaanFasilitasModel pengadaanFasilitas);
+    PengadaanFasilitasModel generateStatusPengadaanAndIdUser(PengadaanFasilitasModel pengadaanFasilitas);
 }
