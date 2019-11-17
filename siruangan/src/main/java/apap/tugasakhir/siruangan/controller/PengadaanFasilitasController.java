@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import apap.tugasakhir.siruangan.model.*;
 import apap.tugasakhir.siruangan.service.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -47,7 +48,7 @@ public class PengadaanFasilitasController {
             String title = "Pengadaan Fasilitas";
             model.addAttribute("listPengadaan", listPengadaan);
             model.addAttribute("title", title);
-            return "viewall-pengadaan";
+            return viewAllPengadaan(currentUser, model);
         }
         catch (NullPointerException e){
             return "error-add-pengadaan";
@@ -55,10 +56,21 @@ public class PengadaanFasilitasController {
     }
 
     @RequestMapping("/pengadaan-fasilitas")
-    public String viewAllPengadaan(Model model){
+    public String viewAllPengadaan(@AuthenticationPrincipal UserDetails currentUser, Model model){
         List<PengadaanFasilitasModel> listPengadaan = pengadaanFasilitasService.getListPengadaanFasilitas();
+        UserModel userLoggedIn = userService.getUserByUsername(currentUser.getUsername());
+        List<PengadaanFasilitasModel> listPengadaanGuru = new ArrayList<>();
+        if(userLoggedIn.getRole().getIdRole()== 2){
+            model.addAttribute("listPengadaan", listPengadaan);
+        } else if (userLoggedIn.getRole().getIdRole() == 3){
+            for(PengadaanFasilitasModel pengadaan : listPengadaan){
+                if(pengadaan.getUser()==userLoggedIn){
+                    listPengadaanGuru.add(pengadaan);
+                }
+            }
+            model.addAttribute("listPengadaan", listPengadaanGuru);
+        }
 
-        model.addAttribute("listPengadaan", listPengadaan);
         model.addAttribute("title", "Pengadaan Fasilitas");
 
         return "viewall-pengadaan";
