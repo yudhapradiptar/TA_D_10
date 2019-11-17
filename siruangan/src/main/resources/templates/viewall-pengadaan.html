@@ -32,7 +32,9 @@
             <td th:text="${pengadaan.jumlah}"></td>
             <td>
                 <span th:if="${pengadaan.status == 1}">Menunggu Persetujuan</span>
-                <span th:unless="${pengadaan.status == 1}">Usulan Pengguna</span>
+                <span th:if="${pengadaan.status == 0}">Usulan Pengguna</span>
+                <span th:if="${pengadaan.status == 2}">Ditolak</span>
+                <span th:if="${pengadaan.status == 3}">Disetujui</span>
             </td>
             <td>
                 <a class="btn btn-danger text-white">HAPUS</a>
