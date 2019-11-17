@@ -55,7 +55,7 @@ public class PeminjamanRuanganModel implements Serializable {
 
     @NotNull
     @Column(name="is_disetujui", nullable = false)
-    private boolean isDisetujui = false;
+    private int isDisetujui = 0;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="idRuangan", referencedColumnName = "idRuangan", nullable = false)
@@ -136,12 +136,12 @@ public class PeminjamanRuanganModel implements Serializable {
         this.jumlahPeserta = jumlahPeserta;
     }
 
-    public boolean isDisetujui() {
+    public int getIsDisetujui() {
         return isDisetujui;
     }
-
-    public void setDisetujui(boolean disetujui) {
-        isDisetujui = disetujui;
+ 
+    public void setIsDisetujui(int isDisetujui) {
+        this.isDisetujui = isDisetujui;
     }
 
     public RuanganModel getRuangan() {

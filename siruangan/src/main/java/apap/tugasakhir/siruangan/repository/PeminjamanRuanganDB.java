@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PeminjamanRuanganDB extends JpaRepository<PeminjamanRuanganModel, Long> {
     List<PeminjamanRuanganModel> findByRuanganIdRuangan(Long idRuangan);
+    PeminjamanRuanganModel findByIdPeminjamanRuangan(Long idPeminjamanRuangan);
 }
