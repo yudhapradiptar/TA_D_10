@@ -30,8 +30,9 @@ public class PengadaanFasilitasModel {
     private Integer status;
 
     @ManyToOne
-    @JoinColumn(name="idUser")
-    UserModel user;
+    @NotNull
+    @JoinColumn(name="idUser", nullable = false)
+    private UserModel user;
 
     public Long getIdPengadaan() {
         return idPengadaan;

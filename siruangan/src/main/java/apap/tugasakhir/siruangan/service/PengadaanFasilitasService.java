@@ -1,6 +1,8 @@
 package apap.tugasakhir.siruangan.service;
 
 import apap.tugasakhir.siruangan.model.PengadaanFasilitasModel;
+import apap.tugasakhir.siruangan.model.UserModel;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,5 +12,5 @@ public interface PengadaanFasilitasService {
 
     List<PengadaanFasilitasModel> getListPengadaanFasilitas();
 
-    PengadaanFasilitasModel generateStatusPengadaanAndIdUser(PengadaanFasilitasModel pengadaanFasilitas);
+    PengadaanFasilitasModel generateStatusPengadaanAndIdUser(PengadaanFasilitasModel pengadaanFasilitas, UserModel userLoggedIn);
 }

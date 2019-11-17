@@ -31,8 +31,8 @@
             <td th:text="${pengadaan.harga}"></td>
             <td th:text="${pengadaan.jumlah}"></td>
             <td>
-                <span th:if="${pengadaan.status == '2'}">Usulan Pengguna</span>
-                <span th:unless="${pengadaan.status == '2'}">Menunggu Persetujuan</span>
+                <span th:if="${pengadaan.status == 1}">Menunggu Persetujuan</span>
+                <span th:unless="${pengadaan.status == 1}">Usulan Pengguna</span>
             </td>
             <td>
                 <a class="btn btn-danger text-white">HAPUS</a>

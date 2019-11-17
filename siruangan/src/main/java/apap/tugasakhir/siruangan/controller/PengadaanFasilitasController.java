@@ -2,6 +2,8 @@ package apap.tugasakhir.siruangan.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,9 @@ public class PengadaanFasilitasController {
     @Autowired
     private PengadaanFasilitasService pengadaanFasilitasService;
 
+    @Autowired
+    private UserService userService;
+
 
     @RequestMapping(value="/pengadaan-fasilitas/add", method = RequestMethod.GET)
     public String addPengadaanFormPage(Model model){
@@ -34,26 +39,19 @@ public class PengadaanFasilitasController {
     }
 
     @RequestMapping(value="/pengadaan-fasilitas", method = RequestMethod.POST)
-    public String addPengadaanSubmit(@ModelAttribute PengadaanFasilitasModel pengadaanFasilitas, Model model){
-        pengadaanFasilitasService.generateStatusPengadaanAndIdUser(pengadaanFasilitas);
-        pengadaanFasilitasService.addPengadaanFasilitas(pengadaanFasilitas);
-        List<PengadaanFasilitasModel> listPengadaan = pengadaanFasilitasService.getListPengadaanFasilitas();
-        String title = "Pengadaan Fasilitas";
-        model.addAttribute("listPengadaan", listPengadaan);
-        model.addAttribute("title", title);
-        return "viewall-pengadaan";
-
-//        try{
-//            pengadaanFasilitasService.generateStatusPengadaan(pengadaanFasilitas);
-//            pengadaanFasilitasService.addPengadaanFasilitas(pengadaanFasilitas);
-//            List<PengadaanFasilitasModel> listPengadaan = pengadaanFasilitasService.getListPengadaanFasilitas();
-//            String title = "Pengadaan Fasilitas";
-//            model.addAttribute("listPengadaan", listPengadaan);
-//            model.addAttribute("title", title);
-//            return "viewall-pengadaan";
-//        }
-//        catch (NullPointerException e){
-//            return "error-add-pengadaan";
-//        }
+    public String addPengadaanSubmit(@ModelAttribute PengadaanFasilitasModel pengadaanFasilitas, @AuthenticationPrincipal UserDetails currentUser, Model model){
+        UserModel userLoggedIn = userService.getUserByUsername(currentUser.getUsername());
+        try{
+            pengadaanFasilitasService.generateStatusPengadaanAndIdUser(pengadaanFasilitas, userLoggedIn);
+            pengadaanFasilitasService.addPengadaanFasilitas(pengadaanFasilitas);
+            List<PengadaanFasilitasModel> listPengadaan = pengadaanFasilitasService.getListPengadaanFasilitas();
+            String title = "Pengadaan Fasilitas";
+            model.addAttribute("listPengadaan", listPengadaan);
+            model.addAttribute("title", title);
+            return "viewall-pengadaan";
+        }
+        catch (NullPointerException e){
+            return "error-add-pengadaan";
+        }
     }
 }

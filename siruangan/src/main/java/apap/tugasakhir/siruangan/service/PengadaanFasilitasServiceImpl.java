@@ -8,6 +8,7 @@ import apap.tugasakhir.siruangan.service.*;
 import apap.tugasakhir.siruangan.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -19,6 +20,7 @@ public class PengadaanFasilitasServiceImpl implements PengadaanFasilitasService{
     @Autowired
     private PengadaanFasilitasDB pengadaanFasilitasDb;
 
+
     @Autowired
     private UserDB userDb;
 
@@ -29,13 +31,13 @@ public class PengadaanFasilitasServiceImpl implements PengadaanFasilitasService{
     public List<PengadaanFasilitasModel> getListPengadaanFasilitas() { return pengadaanFasilitasDb.findAll();}
 
     @Override
-    public PengadaanFasilitasModel generateStatusPengadaanAndIdUser(PengadaanFasilitasModel pengadaanFasilitas){
-        if(SecurityContextHolder.getContext().getAuthentication().getName().equals("admin")){
-            pengadaanFasilitas.setUser(userDb.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName()));
+    public PengadaanFasilitasModel generateStatusPengadaanAndIdUser(PengadaanFasilitasModel pengadaanFasilitas, UserModel userLoggedIn){
+        if(userLoggedIn.getRole().getIdRole()==2){
+            pengadaanFasilitas.setUser(userLoggedIn);
             pengadaanFasilitas.setStatus(1);
         }
-        else if(SecurityContextHolder.getContext().getAuthentication().getName().equals("guru")){
-            pengadaanFasilitas.setUser(userDb.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName()));
+        else if(userLoggedIn.getRole().getIdRole()==3){
+            pengadaanFasilitas.setUser(userLoggedIn);
             pengadaanFasilitas.setStatus(2);
         }
         return pengadaanFasilitas;
