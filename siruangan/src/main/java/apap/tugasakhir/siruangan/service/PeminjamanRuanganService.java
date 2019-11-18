@@ -9,4 +9,6 @@ public interface PeminjamanRuanganService {
     PeminjamanRuanganModel mengajukanPeminjamanRuangan(PeminjamanRuanganModel peminjaman);
     boolean dateTimeValidation(PeminjamanRuanganModel peminjaman);
     boolean capacityValidation(PeminjamanRuanganModel peminjaman);
+    PeminjamanRuanganModel changeStatus (PeminjamanRuanganModel peminjaman, int status);
+    PeminjamanRuanganModel findRuanganByIdPeminjaman (Long idPeminjamanRuangan);
 }

@@ -111,7 +111,21 @@ public class PeminjamanRuanganServiceImpl implements PeminjamanRuanganService {
         return peminjamanRuanganDB.findAll();
     }
 
-    
+    @Override
+    public PeminjamanRuanganModel changeStatus(PeminjamanRuanganModel peminjaman, int status) {
+        PeminjamanRuanganModel targetPinjaman = peminjamanRuanganDB.findByIdPeminjamanRuangan(peminjaman.getIdPeminjamanRuangan());
+        try{
+            targetPinjaman.setIsDisetujui(status);
+            peminjamanRuanganDB.save(targetPinjaman);
+            return targetPinjaman;
+        }
+        catch (NullPointerException nullException) {
+            return null;
+        }
+    }
 
-
+    @Override
+    public PeminjamanRuanganModel findRuanganByIdPeminjaman(Long idPeminjamanRuangan) {
+        return peminjamanRuanganDB.findByIdPeminjamanRuangan(idPeminjamanRuangan);
+    }
 }
