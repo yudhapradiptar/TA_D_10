@@ -48,8 +48,8 @@ public class PengadaanFasilitasController {
             String title = "Pengadaan Fasilitas";
             model.addAttribute("listPengadaan", listPengadaan);
             model.addAttribute("title", title);
-            model.addAttribute("notif", "Pengadaan Fasilitas " + pengadaanFasilitas.getNama() + " telah berhasil diajukan");
-            return "viewall-pengadaan";
+            String notif = "Pengadaan Fasilitas " + pengadaanFasilitas.getNama() + " telah berhasil diajukan";
+            return viewAllPengadaan(currentUser, notif, model);
         } catch (NullPointerException e) {
             return "form-pengadaan";
         }
@@ -59,6 +59,7 @@ public class PengadaanFasilitasController {
     public String deletePengadaan(@PathVariable Long idPengadaan, @AuthenticationPrincipal UserDetails currentUser, Model model) {
         PengadaanFasilitasModel pengadaanDeleted = pengadaanFasilitasService.getPengadaanByIdPengadaan(idPengadaan);
         UserModel userLoggedIn = userService.getUserByUsername(currentUser.getUsername());
+        String notif = "Pengadaan Fasilitas " + pengadaanDeleted.getNama() + " telah berhasil dihapus";
         if(userLoggedIn.getRole().getIdRole()==3){
             if(pengadaanDeleted.getUser()==userLoggedIn){
                 pengadaanFasilitasService.deletePengadaan(pengadaanDeleted);
@@ -66,12 +67,11 @@ public class PengadaanFasilitasController {
         } else if(userLoggedIn.getRole().getIdRole()==2){
             pengadaanFasilitasService.deletePengadaan(pengadaanDeleted);
         }
-        model.addAttribute("notif", "Pengadaan Fasilitas " + pengadaanDeleted.getNama() + " telah berhasil dihapus");
-        return "viewall-pengadaan";
+        return viewAllPengadaan(currentUser, notif, model);
     }
 
     @RequestMapping("/pengadaan-fasilitas")
-    public String viewAllPengadaan(@AuthenticationPrincipal UserDetails currentUser, Model model) {
+    public String viewAllPengadaan(@AuthenticationPrincipal UserDetails currentUser, String notif, Model model) {
         List<PengadaanFasilitasModel> listPengadaan = pengadaanFasilitasService.getListPengadaanFasilitas();
         UserModel userLoggedIn = userService.getUserByUsername(currentUser.getUsername());
         List<PengadaanFasilitasModel> listPengadaanGuru = new ArrayList<>();
@@ -85,7 +85,7 @@ public class PengadaanFasilitasController {
             }
             model.addAttribute("listPengadaan", listPengadaanGuru);
         }
-        model.addAttribute("notif", "");
+        model.addAttribute("notif", notif);
         model.addAttribute("title", "Pengadaan Fasilitas");
 
         return "viewall-pengadaan";
