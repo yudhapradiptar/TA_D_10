@@ -58,8 +58,15 @@ public class PengadaanFasilitasController {
     @RequestMapping(value = "/pengadaan-fasilitas/hapus/{idPengadaan}", method = RequestMethod.GET)
     public String deletePengadaan(@PathVariable Long idPengadaan, @AuthenticationPrincipal UserDetails currentUser, Model model) {
         PengadaanFasilitasModel pengadaanDeleted = pengadaanFasilitasService.getPengadaanByIdPengadaan(idPengadaan);
+        UserModel userLoggedIn = userService.getUserByUsername(currentUser.getUsername());
+        if(userLoggedIn.getRole().getIdRole()==3){
+            if(pengadaanDeleted.getUser()==userLoggedIn){
+                pengadaanFasilitasService.deletePengadaan(pengadaanDeleted);
+            }
+        } else if(userLoggedIn.getRole().getIdRole()==2){
+            pengadaanFasilitasService.deletePengadaan(pengadaanDeleted);
+        }
         model.addAttribute("notif", "Pengadaan Fasilitas " + pengadaanDeleted.getNama() + " telah berhasil dihapus");
-        pengadaanFasilitasService.deletePengadaan(pengadaanDeleted);
         return "viewall-pengadaan";
     }
 
