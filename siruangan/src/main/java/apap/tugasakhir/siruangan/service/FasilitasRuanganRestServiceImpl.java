@@ -16,15 +16,13 @@ public class FasilitasRuanganRestServiceImpl implements FasilitasRuanganRestServ
     FasilitasRuanganDB fasilitasRuanganDB;
 
     @Override
-    public List<FasilitasRuanganModel> getFasilitasByIdRuangan(Long idRuangan) {
-        List<FasilitasRuanganModel> fasilitas = new ArrayList<>();
+    public List<FasilitasRuanganModel> findByNamaRuangan(String namaRuangan) {
+        List<FasilitasRuanganModel> fasilitasRuanganModels = new ArrayList<>();
         for (FasilitasRuanganModel fasilitasRuanganModel : fasilitasRuanganDB.findAll()) {
-            if (fasilitasRuanganModel.getRuangan().getIdRuangan().equals(idRuangan)) {
-                System.out.println(fasilitasRuanganModel.getFasilitas().getNamaFasilitas());
-                fasilitas.add(fasilitasRuanganModel);
+            if (fasilitasRuanganModel.getRuangan().getNamaRuangan().equals(namaRuangan)) {
+                fasilitasRuanganModels.add(fasilitasRuanganModel);
             }
         }
-        return fasilitas;
+        return fasilitasRuanganModels;
     }
-
 }
