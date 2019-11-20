@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,6 +20,7 @@ import apap.tugasakhir.siruangan.model.RuanganModel;
 import apap.tugasakhir.siruangan.model.UserModel;
 import apap.tugasakhir.siruangan.service.PeminjamanRuanganService;
 import apap.tugasakhir.siruangan.service.RuanganService;
+import apap.tugasakhir.siruangan.service.UserService;
 
 
 @Controller
@@ -29,15 +32,15 @@ public class PeminjamanRuanganController {
     @Autowired
     PeminjamanRuanganService peminjamanRuanganService;
 
+    @Autowired
+    UserService userService;
+
     
     @RequestMapping(value = "/pinjam", method = RequestMethod.GET)
     public String peminjamanRuanganFormPage(@RequestParam(value = "idRuangan") Long idRuangan,
                                             Model model)
     {
         String message = "";
-        //UserModel belum bisa diimplementasikan karena belum terdapat fitur login
-        
-        // UserModel user = userService.getCurrentLoggedInUser();
         RuanganModel ruangan = ruanganService.getRuanganByIdRuangan(idRuangan).get();
         model.addAttribute("ruangan", ruangan);
         model.addAttribute("message", message);
@@ -52,9 +55,13 @@ public class PeminjamanRuanganController {
     {   
         String message;
         RuanganModel ruangan = ruanganService.getRuanganByIdRuangan(idRuangan).get();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentLoggedInUsername = authentication.getName();
+        UserModel userPeminjam = userService.getUserByUsername(currentLoggedInUsername);
+    
         if(peminjamanRuanganService.dateTimeValidation(peminjaman) 
             && peminjamanRuanganService.capacityValidation(peminjaman)) {
-
+            peminjaman.setUserPeminjam(userPeminjam);
             peminjamanRuanganService.mengajukanPeminjamanRuangan(peminjaman);
             message = "Pengajuan peminjaman ruangan berhasil!";
             
