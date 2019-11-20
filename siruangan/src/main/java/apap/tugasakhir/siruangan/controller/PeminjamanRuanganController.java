@@ -21,6 +21,7 @@ import apap.tugasakhir.siruangan.service.RuanganService;
 
 
 @Controller
+@RequestMapping("/peminjaman-ruangan")
 public class PeminjamanRuanganController {
     @Autowired
     RuanganService ruanganService;
@@ -29,7 +30,7 @@ public class PeminjamanRuanganController {
     PeminjamanRuanganService peminjamanRuanganService;
 
     
-    @RequestMapping(value = "/ruangan/peminjaman", method = RequestMethod.GET)
+    @RequestMapping(value = "/pinjam", method = RequestMethod.GET)
     public String peminjamanRuanganFormPage(@RequestParam(value = "idRuangan") Long idRuangan,
                                             Model model)
     {
@@ -44,7 +45,7 @@ public class PeminjamanRuanganController {
     }
 
 
-    @RequestMapping(value = "/ruangan/peminjaman", method = RequestMethod.POST)
+    @RequestMapping(value = "/pinjam", method = RequestMethod.POST)
     public String peminjamanRuanganSubmitButton(@RequestParam(value = "idRuangan") Long idRuangan,
                                                 @ModelAttribute PeminjamanRuanganModel peminjaman,
                                                 Model model)
@@ -66,7 +67,7 @@ public class PeminjamanRuanganController {
         return "form-peminjaman-ruangan";
     }
 
-    @RequestMapping(value = "ruangan/daftar-peminjaman-ruangan", method = RequestMethod.GET)
+    @RequestMapping(value = "/daftar", method = RequestMethod.GET)
     public String pengajuanPeminjamanPageList(Model model) {
         List<PeminjamanRuanganModel> listPeminjamanRuangan = peminjamanRuanganService.getPeminjamanRuanganList();
         List<String> editedDateFormatTanggalMulaiStrList = new ArrayList<String>();
@@ -84,26 +85,20 @@ public class PeminjamanRuanganController {
         return "viewall-peminjaman-ruangan";
     }
 
-    // @RequestMapping(value="ruangan/status-peminjaman/{idPeminjamanRuangan}", method = RequestMethod.GET)
-    // public String changePeminjamanStatus(@PathVariable Long idPeminjamanRuangan, Model model){
-    //     PeminjamanRuanganModel oldStatus = peminjamanRuanganService.findRuanganByIdPeminjaman(idPeminjamanRuangan);
-    //     model.addAttribute("statusPeminjaman", oldStatus);
-    //     return "detail-peminjaman-ruangan";
-    // }
 
-    @RequestMapping(value="ruangan/status-peminjaman/{idPeminjamanRuangan}", method = RequestMethod.POST)
+    @RequestMapping(value="/status-peminjaman/{idPeminjamanRuangan}", method = RequestMethod.POST)
     public String changePeminjamanStatusSubmit(@PathVariable Long idPeminjamanRuangan, @ModelAttribute PeminjamanRuanganModel peminjaman, 
     @RequestParam(value="status") int status , Model model){
         System.out.println(status);
             if(status == 1){
                 PeminjamanRuanganModel newStatus = peminjamanRuanganService.changeStatus(peminjaman, 1);
                 model.addAttribute("statusPeminjaman", newStatus);
-                return "redirect:/ruangan/daftar-peminjaman-ruangan/";
+                return "redirect:/peminjaman-ruangan/daftar";
             }
             else{
                 PeminjamanRuanganModel newStatus = peminjamanRuanganService.changeStatus(peminjaman, 2);
                 model.addAttribute("statusPeminjaman", newStatus);
-                return "redirect:/ruangan/daftar-peminjaman-ruangan/";
+                return "redirect:/peminjaman-ruangan/daftar";
             }
     }
 }
