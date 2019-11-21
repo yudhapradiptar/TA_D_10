@@ -1,6 +1,8 @@
 package apap.tugasakhir.siruangan.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,7 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import apap.tugasakhir.siruangan.model.UserModel;
+import apap.tugasakhir.siruangan.rest.GuruDetail;
+import apap.tugasakhir.siruangan.rest.SiswaDetail;
+import apap.tugasakhir.siruangan.service.UserRestService;
 import apap.tugasakhir.siruangan.service.UserService;
+import reactor.core.publisher.Mono;
+
 import java.util.regex.Pattern;
 
 @Controller
@@ -17,6 +24,9 @@ import java.util.regex.Pattern;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserRestService userRestService;
 
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
     private String addUserSubmit(@ModelAttribute UserModel user, 
@@ -58,4 +68,22 @@ public class UserController {
             return false;
         }
     }
+
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+    public String viewUserProfile(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentLoggedInUsername = authentication.getName();
+        UserModel user = userService.getUserByUsername(currentLoggedInUsername);
+        if(user.getRole().getNama().equals("Guru")) {
+            GuruDetail guruDetailFromSivitas = userRestService.getGuruDetail(user).block();
+            model.addAttribute("userDetail", guruDetailFromSivitas);
+        } else if (user.getRole().getNama().equals("Siswa")) {
+            SiswaDetail siswaDetailFromSivitas = userRestService.getSiswaDetail(user).block();
+            model.addAttribute("userDetail", siswaDetailFromSivitas);
+        }
+        model.addAttribute("user", user);
+        return "view-user-profile";
+    }
+
+
 }
