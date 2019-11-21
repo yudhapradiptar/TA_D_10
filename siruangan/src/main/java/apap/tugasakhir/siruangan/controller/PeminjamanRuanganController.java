@@ -34,10 +34,6 @@ public class PeminjamanRuanganController {
 
     @Autowired
     PeminjamanRuanganService peminjamanRuanganService;
-
-    @Autowired
-    UserService userService;
-
     
     @RequestMapping(value = "/pinjam", method = RequestMethod.GET)
     public String peminjamanRuanganFormPage(@RequestParam(value = "idRuangan") Long idRuangan,
