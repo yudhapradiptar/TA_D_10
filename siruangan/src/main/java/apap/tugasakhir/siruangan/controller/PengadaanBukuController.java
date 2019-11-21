@@ -5,6 +5,7 @@ import apap.tugasakhir.siruangan.rest.PengadaanBukuDetail;
 import apap.tugasakhir.siruangan.service.PengadaanBukuRestService;
 import apap.tugasakhir.siruangan.service.RoleService;
 import apap.tugasakhir.siruangan.service.UserService;
+import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,7 +18,7 @@ import java.text.ParseException;
 
 @Controller
 @RequestMapping("/pengadaan-buku")
-public class PengadaanBukuRestController {
+public class PengadaanBukuController {
     @Autowired
     private UserService userService;
 
@@ -40,7 +41,7 @@ public class PengadaanBukuRestController {
                                  @RequestParam String harga,
                                  @ModelAttribute PengadaanBukuDetail buku,
                                  @AuthenticationPrincipal UserDetails currentUser,
-                                 RedirectAttributes redirect) throws ParseException {
+                                 RedirectAttributes redirect) throws ParseException, JSONException {
 
         buku.setUuid(userService.getUserByUsername(currentUser.getUsername()).getIdUser());
         buku.setJudul(judul);

@@ -68,7 +68,7 @@ public class PengadaanBukuDetail {
 
     public void setStatus(String status) {
         if(Integer.parseInt(status)<4) {
-            this.status = status;
+            this.status=status;
         }
     }
 
