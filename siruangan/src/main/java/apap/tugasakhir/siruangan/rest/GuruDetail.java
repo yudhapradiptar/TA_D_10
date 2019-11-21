@@ -3,26 +3,31 @@ package apap.tugasakhir.siruangan.rest;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIgnoreProperties
 public class GuruDetail {
-
     @JsonProperty("idUser")
-    String uuid;
+    private String uuid;
 
-    String nig;
+    @JsonProperty("nig")
+    private String nig;
 
-    String nama;
+    @JsonProperty("nama")
+    private String nama;
 
-    String tempatLahir;
+    @JsonProperty("tempatLahir")
+    private String tempatLahir;
 
-    String tanggalLahir;
+    @JsonProperty("tanggalLahir")
+    private String tanggalLahir;
 
-    String alamat;
+    @JsonProperty("alamat")
+    private String alamat;
 
-    String telepon;
+    @JsonProperty("telepon")
+    private String telepon;
 
     public String getUuid() {
-        return this.uuid;
+        return uuid;
     }
 
     public void setUuid(String uuid) {
@@ -30,7 +35,7 @@ public class GuruDetail {
     }
 
     public String getNig() {
-        return this.nig;
+        return nig;
     }
 
     public void setNig(String nig) {
@@ -38,7 +43,7 @@ public class GuruDetail {
     }
 
     public String getNama() {
-        return this.nama;
+        return nama;
     }
 
     public void setNama(String nama) {
@@ -54,7 +59,7 @@ public class GuruDetail {
     }
 
     public String getTanggalLahir() {
-        return this.tanggalLahir;
+        return tanggalLahir;
     }
 
     public void setTanggalLahir(String tanggalLahir) {
@@ -62,7 +67,7 @@ public class GuruDetail {
     }
 
     public String getAlamat() {
-        return this.alamat;
+        return alamat;
     }
 
     public void setAlamat(String alamat) {
@@ -70,12 +75,10 @@ public class GuruDetail {
     }
 
     public String getTelepon() {
-        return this.telepon;
+        return telepon;
     }
 
     public void setTelepon(String telepon) {
         this.telepon = telepon;
     }
-
-
 }

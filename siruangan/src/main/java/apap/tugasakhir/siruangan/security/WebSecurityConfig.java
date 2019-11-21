@@ -24,10 +24,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/pengadaan-fasilitas/**").hasAnyAuthority("Admin TU","Guru")
                 .antMatchers("/fasilitas/**").hasAnyAuthority("ROLE_Admin TU")
+                .antMatchers("/api/v1/fasilitas/**").permitAll()
                 .antMatchers("/ruangan/peminjaman/**").hasAnyAuthority("ROLE_Guru","ROLE_Siswa")
                 .antMatchers("/ruangan/daftar-peminjaman-ruangan/**").hasAnyAuthority("ROLE_Admin TU","ROLE_Guru","ROLE_Siswa")
                 .antMatchers("/ruangan/status-peminjaman/**").hasAnyAuthority("ROLE_Admin TU")
-
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -74,7 +74,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(encoder())
                 .withUser("anggotaKoperasi").password(encoder().encode("anggotaKoperasi"))
                 .roles("Anggota Koperasi");
-                
+
         auth.userDetailsService(userDetailsService).passwordEncoder(encoder());
     }
 }

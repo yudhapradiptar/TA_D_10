@@ -1,44 +1,53 @@
 package apap.tugasakhir.siruangan.rest;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+import java.time.LocalDate;
+import java.util.Date;
+
+@JsonIgnoreProperties
 public class SiswaDetail {
-
     @JsonProperty("idUser")
-    String uuid;
+    private String uuid_user;
 
-    String nis;
+    @JsonProperty("nis")
+    private String nis;
 
-    String nama;
+    @JsonProperty("nama")
+    private String nama;
 
-    String tempatLahir;
+    @JsonProperty("tempatLahir")
+    private String tempatLahir;
 
-    String tanggalLahir;
+    @JsonProperty("tanggalLahir")
+    private String tanggalLahir;
 
-    String alamat;
+    @JsonProperty("alamat")
+    private String alamat;
 
-    String telepon;
+    @JsonProperty("telepon")
+    private String telepon;
 
-    public String getUuid() {
-        return this.uuid;
+    public String getUuid_user() {
+        return uuid_user;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
+    public void setUuid_user(String uuid_user) {
+        this.uuid_user = uuid_user;
     }
 
     public String getNis() {
-        return this.nis;
+        return nis;
     }
 
-    public void setNig(String nis) {
+    public void setNis(String nis) {
         this.nis = nis;
     }
 
     public String getNama() {
-        return this.nama;
+        return nama;
     }
 
     public void setNama(String nama) {
@@ -46,7 +55,7 @@ public class SiswaDetail {
     }
 
     public String getTempatLahir() {
-        return this.tempatLahir;
+        return tempatLahir;
     }
 
     public void setTempatLahir(String tempatLahir) {
@@ -54,7 +63,7 @@ public class SiswaDetail {
     }
 
     public String getTanggalLahir() {
-        return this.tanggalLahir;
+        return tanggalLahir;
     }
 
     public void setTanggalLahir(String tanggalLahir) {
@@ -62,7 +71,7 @@ public class SiswaDetail {
     }
 
     public String getAlamat() {
-        return this.alamat;
+        return alamat;
     }
 
     public void setAlamat(String alamat) {
@@ -70,12 +79,10 @@ public class SiswaDetail {
     }
 
     public String getTelepon() {
-        return this.telepon;
+        return telepon;
     }
 
     public void setTelepon(String telepon) {
         this.telepon = telepon;
     }
-
-
 }

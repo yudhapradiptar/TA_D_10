@@ -1,5 +1,12 @@
 package apap.tugasakhir.siruangan.service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.Random;
+import java.text.SimpleDateFormat;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -29,5 +36,41 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserModel getUserByUsername(String username) {
         return userDb.findByUsername(username);
+    }
+
+    @Override
+    public String generateNig(UserModel user, String tanggalLahir) throws ParseException {
+        String NIG= "G";
+        String[] tanggal = tanggalLahir.split("-");
+        NIG += tanggal[2] + tanggal[1] + tanggal[0];
+        Random rnds = new Random();
+        String c = String.valueOf((char) (rnds.nextInt(26) + 'A'));
+        String b = String.valueOf((char) (rnds.nextInt(26) + 'A'));
+        String stringRandom= (c+b).toUpperCase();
+        NIG=NIG.concat(stringRandom);
+        Random rnd = new Random();
+        int number = rnd.nextInt(999);
+        String numberRandom= String.format("%03d", number);
+        NIG=NIG.concat(numberRandom);
+        NIG=NIG.concat(user.getIdUser());
+        return NIG;
+    }
+
+    @Override
+    public String generateNis(UserModel user, String tanggalLahir) throws ParseException {
+        String NIS= "S";
+        String[] tanggal = tanggalLahir.split("-");
+        NIS += tanggal[2] + tanggal[1] + tanggal[0];
+        Random rnds = new Random();
+        String c = String.valueOf((char) (rnds.nextInt(26) + 'A'));
+        String b = String.valueOf((char) (rnds.nextInt(26) + 'A'));
+        String stringRandom= (c+b).toUpperCase();
+        NIS=NIS.concat(stringRandom);
+        Random rnd = new Random();
+        int number = rnd.nextInt(999);
+        String numberRandom= String.format("%03d", number);
+        NIS=NIS.concat(numberRandom);
+        NIS=NIS.concat(user.getIdUser());
+        return NIS;
     }
 }

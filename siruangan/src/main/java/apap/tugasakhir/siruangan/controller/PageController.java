@@ -23,7 +23,7 @@ public class PageController{
         return "home";
     }
 
-    @RequestMapping("/user/addUser")
+    @RequestMapping("/user/add-user")
     public String addUser (Model model){
         model.addAttribute("listRole", roleService.findAll());
         String pageTitle = "Tambah Anggota";
