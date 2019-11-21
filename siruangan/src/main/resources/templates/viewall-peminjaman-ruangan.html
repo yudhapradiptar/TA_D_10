@@ -57,15 +57,19 @@
                                             <p th:case="2">Ditolak</p>
                                         </div>
                                     </td>
+                                    <!-- <td>
+                                        <form th:action="@{/ruangan/status-peminjaman/} + ${peminjamanRuangan.idPeminjamanRuangan}" th:method="POST">
+                                            <button class="btn btn-success btn-block" value="submit">Terima</button>
+                                            <button class="btn btn-danger btn-block" value="submit">Tolak</button>
+                                        </form>
+                                    </td> -->
                                     <td th:if="${role.equals('ROLE_Admin TU')}">
                                         <form th:action="@{/ruangan/status-peminjaman/} + ${peminjamanRuangan.idPeminjamanRuangan}" th:method="POST">
-                                    <td>
-                                        <form th:action="@{/peminjaman-ruangan/status-peminjaman/} + ${peminjamanRuangan.idPeminjamanRuangan}" th:method="POST">
                                             <input type="hidden" name="status" th:value="1" />
                                             <button type="button w-25 submit" class="btn btn-success btn-block">Terima</button>
                                         </form>
                                         <br>
-                                        <form th:action="@{/peminjaman-ruangan/status-peminjaman/} + ${peminjamanRuangan.idPeminjamanRuangan}" th:method="POST">
+                                        <form th:action="@{/ruangan/status-peminjaman/} + ${peminjamanRuangan.idPeminjamanRuangan}" th:method="POST">
                                             <input type="hidden" name="status" th:value="2" />
                                             <button type="button w-25 submit" class="btn btn-danger btn-block">Tolak</button>
                                         </form>
