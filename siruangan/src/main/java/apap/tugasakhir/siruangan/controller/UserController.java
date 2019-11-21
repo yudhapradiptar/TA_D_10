@@ -4,58 +4,83 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import apap.tugasakhir.siruangan.model.RoleModel;
 import apap.tugasakhir.siruangan.model.UserModel;
+import apap.tugasakhir.siruangan.rest.GuruDetail;
+import apap.tugasakhir.siruangan.rest.SiswaDetail;
+import apap.tugasakhir.siruangan.service.RoleService;
+import apap.tugasakhir.siruangan.service.UserRestService;
 import apap.tugasakhir.siruangan.service.UserService;
-import java.util.regex.Pattern;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
 
 @Controller
-@RequestMapping("/user")
+// @RequestMapping("/user")
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
-    private String addUserSubmit(@ModelAttribute UserModel user, 
-    @RequestParam("passwordKonfirmasi") String confirmPassword, Model model){
-        String messages = "";
+    @Autowired
+    private RoleService roleService;
 
-        UserModel checkUser = userService.getUserByUsername(user.getUsername());
-        if(checkUser != null) {
-            messages = "Username has been taken. Refresh the page then try again.";
-            model.addAttribute("message3", messages);
-            return "form-add-user";
-        }
+    @Autowired
+    private UserRestService userRestService;
 
-        if (validatePassword(user.getPassword())) {
-            if(confirmPassword.equals(user.getPassword())){
-                messages = "User berhasil ditambahkan.";
-                userService.addUser(user);
-                model.addAttribute("message4", messages);
-                return "add-user-success";
-            }
-            else{
-                messages = "Your password and confirmation password do not match. Refresh the page then try again.";
-                model.addAttribute("message2", messages);
-                return "form-add-user";
-            }
-        }
-        else {
-            messages = "Your password must be at least 8 characters long and contain minimum one number and one letter. Refresh the page then try again.";
-            model.addAttribute("message", messages);
-            return "form-add-user";
-        }
+    @RequestMapping(value = "/user/add-user", method = RequestMethod.GET)
+    private String addUserSubmit(Model model) {
+        List<RoleModel> listRole= roleService.findAll().subList(2,4);
+        model.addAttribute("listRole", listRole );
+        String pageTitle = "Tambah Anggota";
+        model.addAttribute("title", pageTitle);
+        return "form-add-user";
     }
 
-    public boolean validatePassword(String password) {
-        if (password.length()>=8 && Pattern.compile("[0-9]").matcher(password).find() &&  Pattern.compile("[a-zA-Z]").matcher(password).find())  {
-            return true;
+    @PostMapping(value = "/user/add-user")
+    private String addUserSubmit(@ModelAttribute UserModel user,
+                                @RequestParam String nama, 
+                                @RequestParam String tempatLahir,
+                                @RequestParam String tanggalLahir,
+                                @RequestParam String alamat,
+                                @RequestParam String telepon,    
+                                RedirectAttributes redirect) throws ParseException{
+        userService.addUser(user);
+        // Date tanggalLahirUser = new SimpleDateFormat("yyyy-mm-dd").parse(tanggalLahir);
+        if(user.getRole().getNama().equals("Guru")){
+            GuruDetail guru = new GuruDetail();
+            String nig = userService.generateNig(user, tanggalLahir);
+            guru.setNig(nig);
+            guru.setNama(nama);
+            guru.setTempatLahir(tempatLahir);
+            guru.setTanggalLahir(tanggalLahir);
+            guru.setAlamat(alamat);
+            guru.setTelepon(telepon);
+            if(userRestService.addGuru(user, guru).block().getStatus()=="200"){
+                return "home";
+            }
         }
         else {
-            return false;
+            SiswaDetail siswa = new SiswaDetail();
+            String nis = userService.generateNis(user, tanggalLahir);
+            siswa.setNis(nis);
+            siswa.setNama(nama);
+            siswa.setTempatLahir(tempatLahir);
+            siswa.setTanggalLahir(tanggalLahir);
+            siswa.setAlamat(alamat);
+            siswa.setTelepon(telepon);
+            if(userRestService.addSiswa(user, siswa).block().getStatus()=="200"){
+                return "redirect:/";
+            }
         }
+        return "redirect:/";
     }
 }
