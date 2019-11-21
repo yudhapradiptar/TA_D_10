@@ -30,4 +30,5 @@ public class UserServiceImpl implements UserService{
     public UserModel getUserByUsername(String username) {
         return userDb.findByUsername(username);
     }
+
 }
