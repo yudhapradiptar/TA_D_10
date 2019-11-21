@@ -9,6 +9,7 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 
 import apap.tugasakhir.siruangan.model.UserModel;
 import apap.tugasakhir.siruangan.rest.GuruDetail;
+import apap.tugasakhir.siruangan.rest.PegawaiDetail;
 import apap.tugasakhir.siruangan.rest.Setting;
 import apap.tugasakhir.siruangan.rest.SiswaDetail;
 import reactor.core.publisher.Mono;
@@ -41,6 +42,16 @@ public class UserRestServiceImpl implements UserRestService {
         try {
             return this.webClient.get().uri("/api/students/"+user.getIdUser())
                     .retrieve().bodyToMono(SiswaDetail.class);
+        } catch (WebClientResponseException.NotFound notFound) {
+            return null;
+        }
+    }
+
+    @Override
+    public Mono<PegawaiDetail> getPegawaiDetail(UserModel user) {
+        try {
+            return this.webClient.get().uri("/api/employees"+user.getIdUser())
+                .retrieve().bodyToMono(PegawaiDetail.class);
         } catch (WebClientResponseException.NotFound notFound) {
             return null;
         }
