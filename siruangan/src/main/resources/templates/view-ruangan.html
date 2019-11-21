@@ -39,7 +39,7 @@
                     <td th:text="${iterationStatus.count}"></td>
                     <td th:text="${fasilitas.fasilitas.namaFasilitas}"></td>
                     <td th:text="${fasilitas.jumlahFasilitas}"></td>
-                    <td><a class="btn btn-warning" th:href="@{/fasilitas/edit(idFasilitasRuang=${fasilitas.idFasilitasRuangan})}" role="button">Edit</a></td>
+                    <td><a class="btn btn-warning" th:href="@{/fasilitas/edit(idFasilitasRuang=${fasilitas.idFasilitasRuangan})}" role="button">Edit</a><a class="btn btn-danger" th:href="@{/fasilitas/delete(idFasilitasRuang=${fasilitas.idFasilitasRuangan})}" role="button">Delete</a></td>
                 </tr>
                 </tbody>
             </table>

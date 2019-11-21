@@ -76,4 +76,8 @@ public class FasilitasRuanganServiceImpl implements FasilitasRuanganService {
         return null;
     }
 
+    @Override
+    public void deleteFasilitasRuang(FasilitasRuanganModel fasilitasRuanganModel) {
+        fasilitasRuanganDB.delete(fasilitasRuanganModel);
+    }
 }
