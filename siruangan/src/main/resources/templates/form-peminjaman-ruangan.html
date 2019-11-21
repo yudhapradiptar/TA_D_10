@@ -17,7 +17,7 @@
                     <div>
                         <span style="color: red" th:text = "${message}"></span>
                     </div>
-                    <form th:action="@{/ruangan/peminjaman(idRuangan = ${ruangan.idRuangan})}" method="POST">
+                    <form th:action="@{/peminjaman-ruangan/pinjam(idRuangan = ${ruangan.idRuangan})}" method="POST">
                         <div class="form-group row">
                         <label for="waktuMulai" class="col-sm-5 col-form-label">Waktu mulai</label>
                         <div class="col-sm-7">

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,9 +20,11 @@ import apap.tugasakhir.siruangan.model.RuanganModel;
 import apap.tugasakhir.siruangan.model.UserModel;
 import apap.tugasakhir.siruangan.service.PeminjamanRuanganService;
 import apap.tugasakhir.siruangan.service.RuanganService;
+import apap.tugasakhir.siruangan.service.UserService;
 
 
 @Controller
+@RequestMapping("/peminjaman-ruangan")
 public class PeminjamanRuanganController {
     @Autowired
     RuanganService ruanganService;
@@ -28,15 +32,15 @@ public class PeminjamanRuanganController {
     @Autowired
     PeminjamanRuanganService peminjamanRuanganService;
 
+    @Autowired
+    UserService userService;
+
     
-    @RequestMapping(value = "/ruangan/peminjaman", method = RequestMethod.GET)
+    @RequestMapping(value = "/pinjam", method = RequestMethod.GET)
     public String peminjamanRuanganFormPage(@RequestParam(value = "idRuangan") Long idRuangan,
                                             Model model)
     {
         String message = "";
-        //UserModel belum bisa diimplementasikan karena belum terdapat fitur login
-        
-        // UserModel user = userService.getCurrentLoggedInUser();
         RuanganModel ruangan = ruanganService.getRuanganByIdRuangan(idRuangan).get();
         model.addAttribute("ruangan", ruangan);
         model.addAttribute("message", message);
@@ -44,16 +48,20 @@ public class PeminjamanRuanganController {
     }
 
 
-    @RequestMapping(value = "/ruangan/peminjaman", method = RequestMethod.POST)
+    @RequestMapping(value = "/pinjam", method = RequestMethod.POST)
     public String peminjamanRuanganSubmitButton(@RequestParam(value = "idRuangan") Long idRuangan,
                                                 @ModelAttribute PeminjamanRuanganModel peminjaman,
                                                 Model model)
     {   
         String message;
         RuanganModel ruangan = ruanganService.getRuanganByIdRuangan(idRuangan).get();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentLoggedInUsername = authentication.getName();
+        UserModel userPeminjam = userService.getUserByUsername(currentLoggedInUsername);
+    
         if(peminjamanRuanganService.dateTimeValidation(peminjaman) 
             && peminjamanRuanganService.capacityValidation(peminjaman)) {
-
+            peminjaman.setUserPeminjam(userPeminjam);
             peminjamanRuanganService.mengajukanPeminjamanRuangan(peminjaman);
             message = "Pengajuan peminjaman ruangan berhasil!";
             
@@ -66,7 +74,7 @@ public class PeminjamanRuanganController {
         return "form-peminjaman-ruangan";
     }
 
-    @RequestMapping(value = "ruangan/daftar-peminjaman-ruangan", method = RequestMethod.GET)
+    @RequestMapping(value = "/daftar", method = RequestMethod.GET)
     public String pengajuanPeminjamanPageList(Model model) {
         List<PeminjamanRuanganModel> listPeminjamanRuangan = peminjamanRuanganService.getPeminjamanRuanganList();
         List<String> editedDateFormatTanggalMulaiStrList = new ArrayList<String>();
@@ -84,26 +92,20 @@ public class PeminjamanRuanganController {
         return "viewall-peminjaman-ruangan";
     }
 
-    // @RequestMapping(value="ruangan/status-peminjaman/{idPeminjamanRuangan}", method = RequestMethod.GET)
-    // public String changePeminjamanStatus(@PathVariable Long idPeminjamanRuangan, Model model){
-    //     PeminjamanRuanganModel oldStatus = peminjamanRuanganService.findRuanganByIdPeminjaman(idPeminjamanRuangan);
-    //     model.addAttribute("statusPeminjaman", oldStatus);
-    //     return "detail-peminjaman-ruangan";
-    // }
 
-    @RequestMapping(value="ruangan/status-peminjaman/{idPeminjamanRuangan}", method = RequestMethod.POST)
+    @RequestMapping(value="/status-peminjaman/{idPeminjamanRuangan}", method = RequestMethod.POST)
     public String changePeminjamanStatusSubmit(@PathVariable Long idPeminjamanRuangan, @ModelAttribute PeminjamanRuanganModel peminjaman, 
     @RequestParam(value="status") int status , Model model){
         System.out.println(status);
             if(status == 1){
                 PeminjamanRuanganModel newStatus = peminjamanRuanganService.changeStatus(peminjaman, 1);
                 model.addAttribute("statusPeminjaman", newStatus);
-                return "redirect:/ruangan/daftar-peminjaman-ruangan/";
+                return "redirect:/peminjaman-ruangan/daftar";
             }
             else{
                 PeminjamanRuanganModel newStatus = peminjamanRuanganService.changeStatus(peminjaman, 2);
                 model.addAttribute("statusPeminjaman", newStatus);
-                return "redirect:/ruangan/daftar-peminjaman-ruangan/";
+                return "redirect:/peminjaman-ruangan/daftar";
             }
     }
 }
