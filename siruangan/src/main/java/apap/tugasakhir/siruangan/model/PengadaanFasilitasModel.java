@@ -30,7 +30,8 @@ public class PengadaanFasilitasModel {
     private Integer status;
 
     @ManyToOne
-    @JoinColumn(name="idUser")
+    @NotNull
+    @JoinColumn(name="idUser", nullable = false)
     UserModel user;
 
     public Long getIdPengadaan() {
@@ -70,7 +71,9 @@ public class PengadaanFasilitasModel {
     }
 
     public void setStatus(Integer status) {
-        this.status = status;
+        if(status<=3){
+            this.status=status;
+        }
     }
 
     public UserModel getUser() {
