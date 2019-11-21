@@ -49,6 +49,7 @@ public class UserServiceImpl implements UserService{
             role = each.getAuthority();
         }
         return role;
+    }
 
     public String generateNig(UserModel user, String tanggalLahir) throws ParseException {
         String NIG= "G";
