@@ -1,24 +1,43 @@
 package apap.tugasakhir.siruangan.rest;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 import java.util.Date;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
-
+@JsonIgnoreProperties
 public class GuruDetail {
-    private String uuidUser;
+    @JsonProperty("idUser")
+    private String uuid;
 
-    public String getUuidUser() {
-        return uuidUser;
-    }
-
-    public void setUuidUser(String uuidUser) {
-        this.uuidUser = uuidUser;
-    }
-
+    @JsonProperty("nig")
     private String nig;
+
+    @JsonProperty("nama")
+    private String nama;
+
+    @JsonProperty("tempatLahir")
+    private String tempatLahir;
+
+    @JsonProperty("tanggalLahir")
+    private String tanggalLahir;
+
+    @JsonProperty("alamat")
+    private String alamat;
+
+    @JsonProperty("telepon")
+    private String telepon;
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
     public String getNig() {
         return nig;
@@ -28,8 +47,6 @@ public class GuruDetail {
         this.nig = nig;
     }
 
-    private String nama;
-
     public String getNama() {
         return nama;
     }
@@ -37,8 +54,6 @@ public class GuruDetail {
     public void setNama(String nama) {
         this.nama = nama;
     }
-
-    private String tempatLahir;
 
     public String getTempatLahir() {
         return tempatLahir;
@@ -48,18 +63,13 @@ public class GuruDetail {
         this.tempatLahir = tempatLahir;
     }
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date tanggalLahir;
-
-    public Date getTanggalLahir() {
+    public String getTanggalLahir() {
         return tanggalLahir;
     }
 
-    public void setTanggalLahir(Date tanggalLahir) {
+    public void setTanggalLahir(String tanggalLahir) {
         this.tanggalLahir = tanggalLahir;
     }
-
-    private String alamat;
 
     public String getAlamat() {
         return alamat;
@@ -68,8 +78,6 @@ public class GuruDetail {
     public void setAlamat(String alamat) {
         this.alamat = alamat;
     }
-
-    private String telepon;
 
     public String getTelepon() {
         return telepon;

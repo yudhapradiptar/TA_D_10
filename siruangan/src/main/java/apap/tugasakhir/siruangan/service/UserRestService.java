@@ -8,8 +8,9 @@ import apap.tugasakhir.siruangan.rest.SiswaDetailResponse;
 import reactor.core.publisher.Mono;
 
 public interface UserRestService {
+    UserModel getUserById(String uuid);
     Mono<GuruDetailResponse> addGuru(UserModel user, GuruDetail guru);
     Mono<SiswaDetailResponse> addSiswa(UserModel user, SiswaDetail siswa);
-    Mono<GuruDetailResponse> getGuru(String uuid);
-    Mono<SiswaDetailResponse> getSiswa(String uuid);
+    GuruDetailResponse getGuru(String uuid);
+    SiswaDetailResponse getSiswa(String uuid);
 }
