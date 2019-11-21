@@ -3,47 +3,42 @@ package apap.tugasakhir.siruangan.rest;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonIgnoreProperties
-public class GuruDetail {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class PegawaiDetail {
+
     @JsonProperty("idUser")
-    private String uuid;
+    String uuid;
 
-    @JsonProperty("nig")
-    private String nig;
+    String nip;
 
-    @JsonProperty("nama")
-    private String nama;
+    String nama;
 
-    @JsonProperty("tempatLahir")
-    private String tempatLahir;
+    String tempatLahir;
 
-    @JsonProperty("tanggalLahir")
-    private String tanggalLahir;
+    String tanggalLahir;
 
-    @JsonProperty("alamat")
-    private String alamat;
+    String alamat;
 
-    @JsonProperty("telepon")
-    private String telepon;
+    String telepon;
 
     public String getUuid() {
-        return uuid;
+        return this.uuid;
     }
 
     public void setUuid(String uuid) {
         this.uuid = uuid;
     }
 
-    public String getNig() {
-        return nig;
+    public String getNip() {
+        return this.nip;
     }
 
-    public void setNig(String nig) {
-        this.nig = nig;
+    public void setNip(String nip) {
+        this.nip = nip;
     }
 
     public String getNama() {
-        return nama;
+        return this.nama;
     }
 
     public void setNama(String nama) {
@@ -59,7 +54,7 @@ public class GuruDetail {
     }
 
     public String getTanggalLahir() {
-        return tanggalLahir;
+        return this.tanggalLahir;
     }
 
     public void setTanggalLahir(String tanggalLahir) {
@@ -67,7 +62,7 @@ public class GuruDetail {
     }
 
     public String getAlamat() {
-        return alamat;
+        return this.alamat;
     }
 
     public void setAlamat(String alamat) {
@@ -75,10 +70,12 @@ public class GuruDetail {
     }
 
     public String getTelepon() {
-        return telepon;
+        return this.telepon;
     }
 
     public void setTelepon(String telepon) {
         this.telepon = telepon;
     }
+
+
 }

@@ -16,6 +16,8 @@ import apap.tugasakhir.siruangan.model.UserModel;
 import apap.tugasakhir.siruangan.repository.UserDB;
 import apap.tugasakhir.siruangan.rest.GuruDetail;
 import apap.tugasakhir.siruangan.rest.GuruDetailResponse;
+import apap.tugasakhir.siruangan.rest.PegawaiDetail;
+import apap.tugasakhir.siruangan.rest.PegawaiDetailResponse;
 import apap.tugasakhir.siruangan.rest.Setting;
 import apap.tugasakhir.siruangan.rest.SiswaDetail;
 import apap.tugasakhir.siruangan.rest.SiswaDetailResponse;
@@ -26,14 +28,21 @@ import org.json.JSONObject;
 @Service
 @Transactional
 public class UserRestServiceImpl implements UserRestService {
-    @Autowired
-    private UserDB userDB;
     private final WebClient webClient;
 
+    @Autowired
+    private UserDB userDB;
+
+
+    //Service Consumer
     public UserRestServiceImpl(WebClient.Builder webClientBuilder) {
         this.webClient = webClientBuilder.baseUrl(Setting.sivitasUrl).build();
     }
 
+    
+
+    
+    
     @Override
     public UserModel getUserById(String uuid) {
         Optional<UserModel> user = userDB.findByIdUser(uuid);
@@ -78,7 +87,7 @@ public class UserRestServiceImpl implements UserRestService {
     public GuruDetailResponse getGuru(String uuid) {
         try {
             return this.webClient.get().uri(uriBuilder -> uriBuilder
-                    .path("/teachers")
+                    .path("api/teachers")
                     .path("/")
                     .path(uuid)
                     .build())
@@ -88,11 +97,12 @@ public class UserRestServiceImpl implements UserRestService {
         }
     }
 
+    
     @Override
     public SiswaDetailResponse getSiswa(String uuid) {
         try {
             return this.webClient.get().uri(uriBuilder -> uriBuilder
-                    .path("/students")
+                    .path("api/students")
                     .path("/")
                     .path(uuid)
                     .build())
@@ -101,4 +111,53 @@ public class UserRestServiceImpl implements UserRestService {
             return null;
         }
     }
+
+    @Override
+    public PegawaiDetailResponse getPegawai(String uuid) {
+        try {
+            return this.webClient.get().uri(uriBuilder -> uriBuilder
+                    .path("api/employees")
+                    .path("/")
+                    .path(uuid)
+                    .build())
+                    .retrieve().bodyToMono(PegawaiDetailResponse.class).block();
+        } catch (WebClientResponseException.NotFound notFound) {
+            return null;
+        }
+    }
+
+    // @Override
+    // public Mono<PegawaiDetail> getPegawaiDetail(UserModel user) {
+    //     try {
+    //         return this.webClient.get().uri("/api/employees/"+user.getIdUser())
+    //             .retrieve().bodyToMono(PegawaiDetail.class);
+    //     } catch (Exception notFound) {
+    //         return null;
+    //     } 
+
+    // }
+
+    // @Override
+    // public Mono<SiswaDetail> getSiswaDetail(UserModel user) {
+    //     try {
+    //         return this.webClient.get().uri("/api/students/"+user.getIdUser())
+    //                 .retrieve().bodyToMono(SiswaDetail.class);
+    //     } catch (WebClientResponseException.NotFound notFound) {
+    //         return null;
+    //     }
+    // }
+
+    // @Override
+    // public Mono<GuruDetail> getGuruDetail(UserModel user) {
+    //     try {
+    //         return this.webClient.get().uri(uriBuilder -> uriBuilder
+    //             .path("/api/teachers/")
+    //             .path(user.getIdUser())
+    //             .build())
+    //             .retrieve().bodyToMono(GuruDetail.class);
+    //     } catch (WebClientResponseException.NotFound notFound) {
+    //         return null;
+    //     }
+        
+    // }
 }
