@@ -18,12 +18,16 @@ import apap.tugasakhir.siruangan.model.RuanganModel;
 import apap.tugasakhir.siruangan.model.UserModel;
 import apap.tugasakhir.siruangan.service.PeminjamanRuanganService;
 import apap.tugasakhir.siruangan.service.RuanganService;
+import apap.tugasakhir.siruangan.service.UserService;
 
 
 @Controller
 public class PeminjamanRuanganController {
     @Autowired
     RuanganService ruanganService;
+
+    @Autowired
+    UserService userService;
 
     @Autowired
     PeminjamanRuanganService peminjamanRuanganService;
@@ -81,20 +85,13 @@ public class PeminjamanRuanganController {
         model.addAttribute("listPeminjamanRuangan", listPeminjamanRuangan);
         model.addAttribute("listTanggalMulai", editedDateFormatTanggalMulaiStrList);
         model.addAttribute("listTanggalSelesai", editedDateFormatTanggalSelesaiStrList);
+        model.addAttribute("role", userService.getUserRole());
         return "viewall-peminjaman-ruangan";
     }
-
-    // @RequestMapping(value="ruangan/status-peminjaman/{idPeminjamanRuangan}", method = RequestMethod.GET)
-    // public String changePeminjamanStatus(@PathVariable Long idPeminjamanRuangan, Model model){
-    //     PeminjamanRuanganModel oldStatus = peminjamanRuanganService.findRuanganByIdPeminjaman(idPeminjamanRuangan);
-    //     model.addAttribute("statusPeminjaman", oldStatus);
-    //     return "detail-peminjaman-ruangan";
-    // }
 
     @RequestMapping(value="ruangan/status-peminjaman/{idPeminjamanRuangan}", method = RequestMethod.POST)
     public String changePeminjamanStatusSubmit(@PathVariable Long idPeminjamanRuangan, @ModelAttribute PeminjamanRuanganModel peminjaman, 
     @RequestParam(value="status") int status , Model model){
-        System.out.println(status);
             if(status == 1){
                 PeminjamanRuanganModel newStatus = peminjamanRuanganService.changeStatus(peminjaman, 1);
                 model.addAttribute("statusPeminjaman", newStatus);
@@ -107,3 +104,4 @@ public class PeminjamanRuanganController {
             }
     }
 }
+

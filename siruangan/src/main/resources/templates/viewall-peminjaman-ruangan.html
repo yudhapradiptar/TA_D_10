@@ -34,7 +34,7 @@
                                 <th scope="col" class="align-middle">Keterangan</th>
                                 <th scope="col" class="align-middle">Nama Peminjam</th>
                                 <th scope="col" class="align-middle">Status</th>
-                                <th scope="col" class="align-middle">Tindakan</th>
+                                <th th:if="${role.equals('ROLE_Admin TU')}" scope="col" class="align-middle">Tindakan</th>
                                 </tr>
                             </thead>
                             <tbody th:each="peminjamanRuangan, iterationStatus : ${listPeminjamanRuangan}">
@@ -63,7 +63,7 @@
                                             <button class="btn btn-danger btn-block" value="submit">Tolak</button>
                                         </form>
                                     </td> -->
-                                    <td>
+                                    <td th:if="${role.equals('ROLE_Admin TU')}">
                                         <form th:action="@{/ruangan/status-peminjaman/} + ${peminjamanRuangan.idPeminjamanRuangan}" th:method="POST">
                                             <input type="hidden" name="status" th:value="1" />
                                             <button type="button w-25 submit" class="btn btn-success btn-block">Terima</button>
