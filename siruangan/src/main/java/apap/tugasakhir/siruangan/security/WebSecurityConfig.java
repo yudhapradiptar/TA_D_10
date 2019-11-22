@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,6 +17,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+//     @Override
+//     public void configure(WebSecurity web) throws Exception {
+//             super.configure(web);
+//             web.ignoring().antMatchers("/api/**");
+//     }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -23,13 +30,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/pengadaan-fasilitas/**").hasAnyAuthority("Admin TU","Guru")
-                .antMatchers("/fasilitas/**").hasAnyAuthority("ROLE_Admin TU")
-                .antMatchers("/api/v1/fasilitas/**").permitAll()
-                .antMatchers("/ruangan/peminjaman/**").hasAnyAuthority("ROLE_Guru","ROLE_Siswa")
-                .antMatchers("/ruangan/daftar-peminjaman-ruangan/**").hasAnyAuthority("ROLE_Admin TU","ROLE_Guru","ROLE_Siswa")
-                .antMatchers("/ruangan/status-peminjaman/**").hasAnyAuthority("ROLE_Admin TU")
+                .antMatchers("/fasilitas/**").hasAnyAuthority("Admin TU")
+                .antMatchers("/api/**").permitAll()
+                .antMatchers("/peminjaman-ruangan/pinjam/**").hasAnyAuthority("Guru","Siswa")
+                .antMatchers("/peminjaman-ruangan/daftar/**").hasAnyAuthority("Admin TU" ,"Guru", "Siswa")
+                .antMatchers("/peminjaman-ruangan/status-peminjaman/**").hasAnyAuthority("Admin TU")
                 .anyRequest().authenticated()
                 .and()
+                .csrf()
+                .disable()
                 .formLogin()
                 .loginPage("/login").permitAll()
                 .and()

@@ -8,6 +8,9 @@ import java.util.Random;
 import java.text.SimpleDateFormat;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +42,15 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public String getUserRole() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String role = "";
+        for(GrantedAuthority each : auth.getAuthorities()){
+            role = each.getAuthority();
+        }
+        return role;
+    }
+
     public String generateNig(UserModel user, String tanggalLahir) throws ParseException {
         String NIG= "G";
         String[] tanggal = tanggalLahir.split("-");
@@ -73,4 +85,12 @@ public class UserServiceImpl implements UserService{
         NIS=NIS.concat(user.getIdUser());
         return NIS;
     }
+
+    @Override
+    public UserModel getCurrentLoggedInUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentLoggedInUsername = authentication.getName();
+        return userDb.findByUsername(currentLoggedInUsername);
+    }
+
 }

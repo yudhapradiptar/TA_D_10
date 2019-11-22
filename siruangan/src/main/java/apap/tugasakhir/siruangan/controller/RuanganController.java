@@ -4,9 +4,12 @@ package apap.tugasakhir.siruangan.controller;
 import apap.tugasakhir.siruangan.model.FasilitasModel;
 import apap.tugasakhir.siruangan.model.FasilitasRuanganModel;
 import apap.tugasakhir.siruangan.model.RuanganModel;
+import apap.tugasakhir.siruangan.model.UserModel;
 import apap.tugasakhir.siruangan.service.FasilitasRuanganService;
 import apap.tugasakhir.siruangan.service.FasilitasService;
 import apap.tugasakhir.siruangan.service.RuanganService;
+import apap.tugasakhir.siruangan.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -32,14 +35,26 @@ public class RuanganController {
     @Autowired
     private FasilitasService fasilitasService;
     
+    @Autowired
+    private UserService userService;
+
     @RequestMapping(path = "/view/{idRuangan}", method = RequestMethod.GET)
     public String viewRuangan(@PathVariable Long idRuangan, Model model){
+        
         RuanganModel ruangan = ruanganService.getRuanganByIdRuangan(idRuangan).get();
         HashMap<FasilitasModel, Integer> pairOfFasilitasAndJumlah = fasilitasRuanganService.getFasilitasDanJumlah(ruangan);
+        boolean isPinjamRuanganAuthorized;
+        UserModel currentLoggedInUser = userService.getCurrentLoggedInUser();
+        if(currentLoggedInUser.getRole().getNama().equals("Guru") || currentLoggedInUser.getRole().getNama().equals("Siswa")) {
+            isPinjamRuanganAuthorized = true;
+        } else {
+            isPinjamRuanganAuthorized = false;
+        }
         String pageTitle = "Detil Ruangan";
         model.addAttribute("title", pageTitle);
         model.addAttribute("ruangan", ruangan);
         model.addAttribute("fasilitasJumlah", pairOfFasilitasAndJumlah);
+        model.addAttribute("isPinjamRuanganAuthorized", isPinjamRuanganAuthorized);
         return "view-ruangan";  
     }
 
