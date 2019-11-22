@@ -65,6 +65,7 @@ public class PeminjamanRuanganModel implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="idRuangan", referencedColumnName = "idRuangan", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
+    // @JsonProperty("idRuangan")
     RuanganModel ruangan;
 
     @ManyToOne

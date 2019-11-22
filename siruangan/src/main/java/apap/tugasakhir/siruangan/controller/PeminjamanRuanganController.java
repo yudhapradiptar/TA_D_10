@@ -30,11 +30,10 @@ public class PeminjamanRuanganController {
     RuanganService ruanganService;
 
     @Autowired
-    PeminjamanRuanganService peminjamanRuanganService;
-
-    @Autowired
     UserService userService;
 
+    @Autowired
+    PeminjamanRuanganService peminjamanRuanganService;
     
     @RequestMapping(value = "/pinjam", method = RequestMethod.GET)
     public String peminjamanRuanganFormPage(@RequestParam(value = "idRuangan") Long idRuangan,
@@ -94,14 +93,13 @@ public class PeminjamanRuanganController {
         model.addAttribute("listPeminjamanRuangan", listPeminjamanRuangan);
         model.addAttribute("listTanggalMulai", editedDateFormatTanggalMulaiStrList);
         model.addAttribute("listTanggalSelesai", editedDateFormatTanggalSelesaiStrList);
+        model.addAttribute("role", userService.getUserRole());
         return "viewall-peminjaman-ruangan";
     }
-
 
     @RequestMapping(value="/status-peminjaman/{idPeminjamanRuangan}", method = RequestMethod.POST)
     public String changePeminjamanStatusSubmit(@PathVariable Long idPeminjamanRuangan, @ModelAttribute PeminjamanRuanganModel peminjaman, 
     @RequestParam(value="status") int status , Model model){
-        System.out.println(status);
             if(status == 1){
                 PeminjamanRuanganModel newStatus = peminjamanRuanganService.changeStatus(peminjaman, 1);
                 model.addAttribute("statusPeminjaman", newStatus);
@@ -114,3 +112,4 @@ public class PeminjamanRuanganController {
             }
     }
 }
+

@@ -19,6 +19,7 @@ import apap.tugasakhir.siruangan.service.PeminjamanRuanganRestService;
 import apap.tugasakhir.siruangan.service.PeminjamanRuanganService;
 import apap.tugasakhir.siruangan.service.UserService;
 
+
 @RestController
 @RequestMapping(value = "/api/peminjaman-ruangan")
 public class PeminjamanRuanganRestController {
@@ -30,7 +31,6 @@ public class PeminjamanRuanganRestController {
 
     @Autowired
     UserService userService;
-
 
     @PostMapping(value = "/pinjam")
     private PeminjamanRuanganModel pinjamRuangan(@Valid @RequestBody PeminjamanRuanganModel peminjaman, BindingResult bindingResult) {    
@@ -48,7 +48,6 @@ public class PeminjamanRuanganRestController {
                     HttpStatus.INTERNAL_SERVER_ERROR, "Input waktu peminjaman tidak valid/peminjaman bentrok/melebihi kapasitas"
                 );
             }
-            
         }
     }
 
