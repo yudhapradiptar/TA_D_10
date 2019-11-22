@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymelaf.org">
+
+<head>
+    <title> Home </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container-fluid">
+        <div class="row justify-content-center p-3"> 
+            <div class="card">
+                <div class="card-header">Profil Pengguna</div>
+                <div class="card-body">
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>Nama</td>
+                                <td th:text="': ' + ${user.username}"></td>
+                            </tr>
+                            <tr>
+                                <td>Role</td>
+                                <td th:text="': ' + ${user.role.nama}"></td>
+                            </tr>
+                            <div th:if="${isDataFromSivitasAvailable}">
+                                <tr>
+                                    <td th:switch="${user.role.nama}"> 
+                                        <span th:case="'Guru'">NIG</span>
+                                        <span th:case="'Siswa'">NIS</span>
+                                        <span th:case="Pegawai">NIP</span>
+                                    </td>
+                                    <td th:switch="${user.role.nama}">
+                                        <span th:case="'Guru'" th:text="': ' + ${userDetail.nig}"></span>
+                                        <span th:case="'Siswa'" th:text="': ' + ${userDetail.nis}"></span>
+                                        <span th:case="'Pegawai'" th:text="': ' + ${userDetail.nip}"></span>
+                                    </td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>Tempat lahir</td>
+                                    <td th:text="': ' + ${userDetail.tempatLahir}"> </td>
+                                </tr>
+                                <tr>
+                                    <td>Tanggal lahir</td>
+                                    <td th:text="': ' + ${userDetail.tanggalLahir}"> </td>
+                                </tr>
+                                <tr>
+                                    <td>Alamat</td>
+                                    <td th:text="': ' + ${userDetail.alamat}"> </td>
+                                </tr>
+                                <tr>
+                                    <td>Telepon</td>
+                                    <td th:text="': ' + ${userDetail.telepon}"></td>
+                                </tr>
+                            </div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

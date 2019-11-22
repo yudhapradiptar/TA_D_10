@@ -17,6 +17,7 @@
         <h3 style="color: red" th:text = "${message}"></h3>
     </div>
     <table class="table">
+        <span style="color: red" th:text="${notif}"></span>
         <thead class="thead-dark">
         <tr>
             <th scope="col">NO</th>
@@ -34,8 +35,10 @@
             <td th:text="${pengadaan.harga}"></td>
             <td th:text="${pengadaan.jumlah}"></td>
             <td>
-                <span th:if="${pengadaan.status == '0'}">Usulan Pengguna</span>
-                <span th:unless="${pengadaan.status == '0'}">Menunggu Persetujuan</span>
+                <span th:if="${pengadaan.status == 0}">Usulan Pengguna</span>
+                <span th:IF="${pengadaan.status == 1}">Menunggu Persetujuan</span>
+                <span th:IF="${pengadaan.status == 2}">Ditolak</span>
+                <span th:IF="${pengadaan.status == 3}">Disetujui</span>
             </td>
             <td>
                 <a th:href="@{/pengadaan-fasilitas/hapus/}+${pengadaan.idPengadaan}" class="btn btn-danger text-white">HAPUS</a>
