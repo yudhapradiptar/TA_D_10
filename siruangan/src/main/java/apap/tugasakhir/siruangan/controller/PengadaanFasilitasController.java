@@ -90,4 +90,16 @@ public class PengadaanFasilitasController {
 
         return "viewall-pengadaan";
     }
+
+    @RequestMapping(value="/pengadaan-fasilitas/hapus/{idPengadaan}", method = RequestMethod.GET)
+    public String deletePengadaan(@PathVariable Long idPengadaan, Model model){
+        PengadaanFasilitasModel pengadaanDeleted = pengadaanFasilitasService.getPengadaanByIdPengadaan(idPengadaan);
+        String message = "Pengadaan " + pengadaanDeleted.getNama() + " telah berhasil dihapus";
+        model.addAttribute("namaPengadaan", pengadaanDeleted.getNama());
+        model.addAttribute("message", message);
+        pengadaanFasilitasService.deletePengadaan(pengadaanDeleted);
+        List<PengadaanFasilitasModel> listPengadaan = pengadaanFasilitasService.getListPengadaanFasilitas();
+        model.addAttribute("listPengadaan", listPengadaan);
+        return "viewall-pengadaan";
+    }
 }

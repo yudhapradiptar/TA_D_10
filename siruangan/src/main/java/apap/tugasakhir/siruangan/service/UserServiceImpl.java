@@ -41,6 +41,7 @@ public class UserServiceImpl implements UserService{
         return userDb.findByUsername(username);
     }
 
+
     @Override
     public String getUserRole() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
