@@ -20,12 +20,16 @@
                                 <td>Nama</td>
                                 <td th:text="': ' + ${user.username}"></td>
                             </tr>
+                            <tr>
+                                <td>Role</td>
+                                <td th:text="': ' + ${user.role.nama}"></td>
+                            </tr>
                             <div th:if="${isDataFromSivitasAvailable}">
                                 <tr>
                                     <td th:switch="${user.role.nama}"> 
                                         <span th:case="'Guru'">NIG</span>
                                         <span th:case="'Siswa'">NIS</span>
-                                        <span th:case="*">NIP</span>
+                                        <span th:case="Pegawai">NIP</span>
                                     </td>
                                     <td th:switch="${user.role.nama}">
                                         <span th:case="'Guru'" th:text="': ' + ${userDetail.nig}"></span>
