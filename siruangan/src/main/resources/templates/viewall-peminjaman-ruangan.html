@@ -34,7 +34,7 @@
                                 <th scope="col" class="align-middle">Keterangan</th>
                                 <th scope="col" class="align-middle">Nama Peminjam</th>
                                 <th scope="col" class="align-middle">Status</th>
-                                <th scope="col" class="align-middle">Tindakan</th>
+                                <th th:if="${isTindakanAuthorized}" scope="col" class="align-middle">Tindakan</th>
                                 </tr>
                             </thead>
                             <tbody th:each="peminjamanRuangan, iterationStatus : ${listPeminjamanRuangan}">
@@ -47,9 +47,7 @@
                                     <td class="align-middle" th:text="${peminjamanRuangan.waktuSelesai}"></td>
                                     <td class="align-middle" th:text="${peminjamanRuangan.tujuan}"></td>
                                     <td class="align-middle" th:text="${peminjamanRuangan.keterangan}"></td>
-                                    <td class="align-middle" text="-"></td>
-                                    <!-- <td class="align-middle" th:text="${peminjamanRuangan.isDisetujui == 0} ? 'Disetujui' : 'Belum Disetujui'"></td> -->
-                                    <!-- <td class="align-middle" th:text="'Peminjaman ' + (${peminjamanRuangan.isDisetujui == true} ? 'Diterima' : 'Ditolak') "></td> -->
+                                    <td class="align-middle" text="${peminjamRuangan.userPeminjam.username}"></td>
                                     <td class="align-middle">
                                         <div th:switch="${peminjamanRuangan.isDisetujui}">
                                             <p th:case="0">Menunggu persetujuan</p>
@@ -57,13 +55,7 @@
                                             <p th:case="2">Ditolak</p>
                                         </div>
                                     </td>
-                                    <!-- <td>
-                                        <form th:action="@{/ruangan/status-peminjaman/} + ${peminjamanRuangan.idPeminjamanRuangan}" th:method="POST">
-                                            <button class="btn btn-success btn-block" value="submit">Terima</button>
-                                            <button class="btn btn-danger btn-block" value="submit">Tolak</button>
-                                        </form>
-                                    </td> -->
-                                    <td>
+                                    <td th:if="${isTindakanAuthorized}">
                                         <form th:action="@{/peminjaman-ruangan/status-peminjaman/} + ${peminjamanRuangan.idPeminjamanRuangan}" th:method="POST">
                                             <input type="hidden" name="status" th:value="1" />
                                             <button type="button w-25 submit" class="btn btn-success btn-block">Terima</button>

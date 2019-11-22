@@ -16,12 +16,20 @@ import org.springframework.web.server.ResponseStatusException;
 
 import apap.tugasakhir.siruangan.model.PeminjamanRuanganModel;
 import apap.tugasakhir.siruangan.service.PeminjamanRuanganRestService;
+import apap.tugasakhir.siruangan.service.PeminjamanRuanganService;
+import apap.tugasakhir.siruangan.service.UserService;
 
 @RestController
 @RequestMapping(value = "/api/peminjaman-ruangan")
 public class PeminjamanRuanganRestController {
     @Autowired
     PeminjamanRuanganRestService peminjamanRuanganRestService;
+
+    @Autowired
+    PeminjamanRuanganService peminjamanRuanganService;
+
+    @Autowired
+    UserService userService;
 
 
     @PostMapping(value = "/pinjam")
@@ -31,7 +39,16 @@ public class PeminjamanRuanganRestController {
                 HttpStatus.BAD_REQUEST, "Request body has invalid type or missing field"
             );
         } else {
-            return peminjamanRuanganRestService.mengajukanPeminjamanRuangan(peminjaman);
+            if(peminjamanRuanganService.dateTimeValidation(peminjaman)
+               && peminjamanRuanganService.capacityValidation(peminjaman)) {
+                peminjaman.setUserPeminjam(userService.getUserByUsername("SI-KOPERASI"));
+                return peminjamanRuanganRestService.mengajukanPeminjamanRuangan(peminjaman);
+            } else {
+                throw new ResponseStatusException(
+                    HttpStatus.INTERNAL_SERVER_ERROR, "Input waktu peminjaman tidak valid/peminjaman bentrok/melebihi kapasitas"
+                );
+            }
+            
         }
     }
 

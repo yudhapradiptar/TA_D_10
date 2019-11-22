@@ -10,6 +10,8 @@ public interface UserService {
     UserModel getUserByUsername (String username);
     public String generateNig(UserModel user, String tanggalLahir) throws ParseException;
     public String generateNis(UserModel user, String tanggalLahir) throws ParseException;
+    UserModel getCurrentLoggedInUser();
+
 }
 
 
