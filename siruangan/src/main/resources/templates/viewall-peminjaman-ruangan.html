@@ -47,7 +47,7 @@
                                     <td class="align-middle" th:text="${peminjamanRuangan.waktuSelesai}"></td>
                                     <td class="align-middle" th:text="${peminjamanRuangan.tujuan}"></td>
                                     <td class="align-middle" th:text="${peminjamanRuangan.keterangan}"></td>
-                                    <td class="align-middle" text="${peminjamRuangan.userPeminjam.username}"></td>
+                                    <td class="align-middle" th:text="${peminjamanRuangan.userPeminjam.username}"></td>
                                     <td class="align-middle">
                                         <div th:switch="${peminjamanRuangan.isDisetujui}">
                                             <p th:case="0">Menunggu persetujuan</p>
