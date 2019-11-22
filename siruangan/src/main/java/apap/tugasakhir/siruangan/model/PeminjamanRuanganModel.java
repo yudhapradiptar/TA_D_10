@@ -1,6 +1,9 @@
 package apap.tugasakhir.siruangan.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -31,11 +34,13 @@ public class PeminjamanRuanganModel implements Serializable {
 
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name="tanggal_mulai", nullable = false)
     private Date tanggalMulai;
 
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name="tanggal_selesai", nullable = false)
     private Date tanggalSelesai;
 
@@ -60,6 +65,7 @@ public class PeminjamanRuanganModel implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="idRuangan", referencedColumnName = "idRuangan", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
+    // @JsonProperty("idRuangan")
     RuanganModel ruangan;
 
     @ManyToOne
@@ -70,6 +76,7 @@ public class PeminjamanRuanganModel implements Serializable {
     @ManyToOne
     @JoinColumn(name = "idUserPenyetuju", referencedColumnName = "idUser")
     UserModel userPenyetuju = null;
+
     
 
     public Long getIdPeminjamanRuangan() {
