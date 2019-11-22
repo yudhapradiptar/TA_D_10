@@ -41,6 +41,7 @@ public class UserModel implements Serializable{
     @Lob
     @Size(max=200)
     @Column(name="password", nullable = false)
+    @JsonIgnore
     private String password;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -50,12 +51,15 @@ public class UserModel implements Serializable{
     private RoleModel role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<PengadaanFasilitasModel> listPengadaanFasilitas;
 
     @OneToMany(mappedBy = "userPeminjam", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<PeminjamanRuanganModel> listPeminjamanRuanganDiajukan;
     
     @OneToMany(mappedBy = "userPenyetuju", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<PeminjamanRuanganModel> listPeminjamanRuanganDisetujui;
     /**
      * @param password the password to set

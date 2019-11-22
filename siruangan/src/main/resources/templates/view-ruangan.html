@@ -42,7 +42,7 @@
                 </tbody>
             </table>
             <br>
-            <div class="text-center">
+            <div th:if="${isPinjamRuanganAuthorized}" class="text-center">
                 <a th:href= "@{/peminjaman-ruangan/pinjam(idRuangan = ${idRuangan})}"> <button type="button" class="btn btn-primary">Pinjam Ruangan Ini!</button> </a>
             </div>
 

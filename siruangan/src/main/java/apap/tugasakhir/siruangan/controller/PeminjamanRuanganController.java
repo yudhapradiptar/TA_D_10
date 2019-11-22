@@ -54,10 +54,7 @@ public class PeminjamanRuanganController {
     {   
         String message;
         RuanganModel ruangan = ruanganService.getRuanganByIdRuangan(idRuangan).get();
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentLoggedInUsername = authentication.getName();
-        UserModel userPeminjam = userService.getUserByUsername(currentLoggedInUsername);
-    
+        UserModel userPeminjam = userService.getCurrentLoggedInUser();
         if(peminjamanRuanganService.dateTimeValidation(peminjaman) 
             && peminjamanRuanganService.capacityValidation(peminjaman)) {
             peminjaman.setUserPeminjam(userPeminjam);
@@ -75,6 +72,13 @@ public class PeminjamanRuanganController {
 
     @RequestMapping(value = "/daftar", method = RequestMethod.GET)
     public String pengajuanPeminjamanPageList(Model model) {
+        UserModel currentLoggedInUser = userService.getCurrentLoggedInUser();
+        boolean isTindakanAuthorized;
+        if(currentLoggedInUser.getRole().getNama().equals("Admin TU")) {
+            isTindakanAuthorized = true;
+        } else {
+            isTindakanAuthorized = false;
+        }
         List<PeminjamanRuanganModel> listPeminjamanRuangan = peminjamanRuanganService.getPeminjamanRuanganList();
         List<String> editedDateFormatTanggalMulaiStrList = new ArrayList<String>();
         List<String> editedDateFormatTanggalSelesaiStrList = new ArrayList<String>();
@@ -85,6 +89,7 @@ public class PeminjamanRuanganController {
             editedDateFormatTanggalMulaiStrList.add(newDateFormatTanggalMulaiStr);
             editedDateFormatTanggalSelesaiStrList.add(newDateFormatTanggalSelesaiStr);
         }
+        model.addAttribute("isTindakanAuthorized", isTindakanAuthorized);
         model.addAttribute("listPeminjamanRuangan", listPeminjamanRuangan);
         model.addAttribute("listTanggalMulai", editedDateFormatTanggalMulaiStrList);
         model.addAttribute("listTanggalSelesai", editedDateFormatTanggalSelesaiStrList);

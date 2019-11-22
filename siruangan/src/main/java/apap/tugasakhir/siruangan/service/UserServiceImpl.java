@@ -85,4 +85,12 @@ public class UserServiceImpl implements UserService{
         NIS=NIS.concat(user.getIdUser());
         return NIS;
     }
+
+    @Override
+    public UserModel getCurrentLoggedInUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentLoggedInUsername = authentication.getName();
+        return userDb.findByUsername(currentLoggedInUsername);
+    }
+
 }

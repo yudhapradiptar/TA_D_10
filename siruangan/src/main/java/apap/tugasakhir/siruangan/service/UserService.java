@@ -11,6 +11,8 @@ public interface UserService {
     String getUserRole();
     public String generateNig(UserModel user, String tanggalLahir) throws ParseException;
     public String generateNis(UserModel user, String tanggalLahir) throws ParseException;
+    UserModel getCurrentLoggedInUser();
+
 }
 
 
