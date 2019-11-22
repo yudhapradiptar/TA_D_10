@@ -27,9 +27,10 @@ public class PengadaanBukuController {
     private PengadaanBukuRestService bukuRestService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    private String createPengadaanBukuFormPage(Model model) {
+    private String createPengadaanBukuFormPage(String notif, Model model) {
         PengadaanBukuDetail buku = new PengadaanBukuDetail();
         model.addAttribute("buku", buku);
+        model.addAttribute("notif", notif);
         return "form-pengadaan-buku";
     }
 
@@ -41,7 +42,7 @@ public class PengadaanBukuController {
                                  @RequestParam String harga,
                                  @ModelAttribute PengadaanBukuDetail buku,
                                  @AuthenticationPrincipal UserDetails currentUser,
-                                 RedirectAttributes redirect) throws ParseException, JSONException {
+                                 RedirectAttributes redirect, Model model) throws ParseException, JSONException {
 
         buku.setUuid(userService.getUserByUsername(currentUser.getUsername()).getIdUser());
         buku.setJudul(judul);
@@ -50,9 +51,10 @@ public class PengadaanBukuController {
         buku.setJumlah(jumlah);
         buku.setHarga(harga);
         bukuRestService.generateStatusBuku(buku, currentUser);
+        String notif = "Pengadaan Buku telah berhasil diajukan";
         if(bukuRestService.createPengadaanBuku(currentUser, buku).block().getStatus().equals("200")){
-            return "home";
+            return createPengadaanBukuFormPage(notif, model);
         }
-        return "home";
+        return createPengadaanBukuFormPage(notif, model);
     }
 }

@@ -45,7 +45,7 @@ public class PengadaanBukuRestServiceImpl implements PengadaanBukuRestService{
         data.put("status",buku.getStatus());
         System.out.println(data);
         return this.webClient.post()
-                .uri("v2/5dd67d97320000874a888ae1")
+                .uri("api/add/pengadaan")
                 .contentType(MediaType.APPLICATION_JSON)
                 .syncBody(data.toString())
                 .retrieve()
