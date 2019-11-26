@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name="user")
@@ -39,6 +40,7 @@ public class UserModel implements Serializable{
 
     @NotNull
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     @Size(max=200)
     @Column(name="password", nullable = false)
     @JsonIgnore
