@@ -1,1 +1,1 @@
-web: sh -c 'cd ./siruangan/' && java -Dserver.port=$PORT $JAVA_OPTS -jar target/*.jar --spring.profiles.active=production
+web: java -Dserver.port=$PORT $JAVA_OPTS -jar target/*.jar --spring.profiles.active=production
