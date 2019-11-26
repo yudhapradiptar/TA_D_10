@@ -26,7 +26,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.Type;
 
 @Entity
-@Table(name="user")
+@Table(name="pengguna")
 public class UserModel implements Serializable{
     @Id
     @GeneratedValue(generator = "system-uuid")
