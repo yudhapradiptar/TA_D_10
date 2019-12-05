@@ -9,10 +9,7 @@ import apap.tugasakhir.siruangan.service.RuanganService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -39,7 +36,8 @@ public class FasilitasRanganController {
     public String addFasilitas(Long idFasilitas, Long idRuangan, Model model, int jumlahFasilitas) {
         FasilitasModel existingFasilitas = fasilitasService.getFasilitasByIdFasilitas(idFasilitas).get();
         RuanganModel exisitingRuangan = ruanganService.getRuanganByIdRuangan(idRuangan).get();
-        FasilitasRuanganModel existingFasilitasRuangan = fasilitasRuanganService.getFasilitasRuanganByFasilitasAndRuangan(existingFasilitas, exisitingRuangan);
+        FasilitasRuanganModel existingFasilitasRuangan = fasilitasRuanganService
+                .getFasilitasRuanganByFasilitasAndRuangan(existingFasilitas, exisitingRuangan);
         if (existingFasilitasRuangan == null){
             FasilitasRuanganModel baru = new FasilitasRuanganModel();
             baru.setFasilitas(existingFasilitas);
@@ -56,5 +54,37 @@ public class FasilitasRanganController {
         model.addAttribute("ruangan", exisitingRuangan);
         model.addAttribute("fasilitas", existingFasilitas);
         return "success-fasilitas-ruangan";
+    }
+
+    //TODO kalo ga ada, lempar ke 404
+    @RequestMapping(value = "/edit")
+    public String editFasilitas(@RequestParam("idFasilitasRuang") Long idFasilitasRuang, Model model) {
+        FasilitasRuanganModel existingFasilitasRuang = fasilitasRuanganService.getFasilitasRuanganById(idFasilitasRuang);
+        if (existingFasilitasRuang != null) {
+            model.addAttribute("idFasilitasRuang", existingFasilitasRuang.getIdFasilitasRuangan());
+            model.addAttribute("namaFasilitas", existingFasilitasRuang.getFasilitas().getNamaFasilitas());
+            model.addAttribute("namaRuangan", existingFasilitasRuang.getRuangan().getNamaRuangan());
+            model.addAttribute("jumlahFasilitas", existingFasilitasRuang.getJumlahFasilitas());
+            return "form-edit-fasilitas-ruangan";
+        }
+        return "form-edit-fasilitas-ruangan";
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String editFasilitasSave(Model model, Long idFasilitasRuang, Integer jumlahFasilitas) {
+        FasilitasRuanganModel existingFasilitasRuang = fasilitasRuanganService.getFasilitasRuanganById(idFasilitasRuang);
+        RuanganModel exisitingRuangan = ruanganService.getRuanganByIdRuangan(existingFasilitasRuang.getRuangan()
+                .getIdRuangan()).get();
+        FasilitasModel existingFasilitas = fasilitasService.getFasilitasByIdFasilitas(existingFasilitasRuang
+                .getFasilitas().getIdFasilitas()).get();
+        exisitingRuangan.getListFasilitasRuangan().remove(existingFasilitasRuang);
+        existingFasilitas.getListFasilitasRuangan().remove(existingFasilitasRuang);
+        existingFasilitasRuang.setJumlahFasilitas(jumlahFasilitas);
+        fasilitasRuanganService.addFasilitasRuangan(existingFasilitasRuang);
+        exisitingRuangan.getListFasilitasRuangan().add(existingFasilitasRuang);
+        existingFasilitas.getListFasilitasRuangan().add(existingFasilitasRuang);
+        model.addAttribute("ruangan", exisitingRuangan);
+        model.addAttribute("fasilitas", existingFasilitas);
+        return "success-edit-fasilitas-ruang";
     }
 }

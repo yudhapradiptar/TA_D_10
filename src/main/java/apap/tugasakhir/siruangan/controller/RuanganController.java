@@ -50,12 +50,15 @@ public class RuanganController {
         } else {
             isPinjamRuanganAuthorized = false;
         }
+        List<FasilitasRuanganModel> fasilitasRuang = ruanganService.getFasilitasRuanganList(idRuangan);
         String pageTitle = "Detil Ruangan";
         model.addAttribute("title", pageTitle);
         model.addAttribute("ruangan", ruangan);
         model.addAttribute("fasilitasJumlah", pairOfFasilitasAndJumlah);
         model.addAttribute("isPinjamRuanganAuthorized", isPinjamRuanganAuthorized);
         return "view-ruangan";  
+        model.addAttribute("fasilitasRuang", fasilitasRuang);
+        return "view-ruangan";
     }
 
     @RequestMapping("/daftar-ruangan")
