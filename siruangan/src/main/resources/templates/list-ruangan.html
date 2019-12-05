@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html xmlns:th="http://www.thymelaf.org">
 
 <head>
@@ -42,4 +42,142 @@
         </div>
     </div>
 </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="/image/png" sizes="16x16" href="/images/favicon.png">
+    <title> Home </title>
+    <link href="/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/colors/blue.css" id="theme" rel="stylesheet">
+</head>
+
+<body class="fix-header fix-sidebar card-no-border">
+    <div id="main-wrapper">
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-toggleable-sm navbar-light">
+                <div class="navbar-header">
+                    <a class="navbar-brand">
+                        <b>
+                            <img src="/images/logo.png" width="50" height="50">
+                        </b>
+                    </a>
+                </div>
+         
+                <div class="navbar-collapse">
+                 
+                    <ul class="navbar-nav mr-auto mt-md-0 ">
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <li class="nav-item hidden-sm-down">
+                            <form class="app-search p-l-20">
+                                <input type="text" class="form-control" placeholder="Cari ruangan.."> <a class="srh-btn"><i class="ti-search"></i></a>
+                            </form>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav my-lg-0">
+                        <li class="nav-item dropdown">
+                            <img src="/images/1.png" alt="user" class="profile-pic m-r-5" />
+                            <a th:text="${#httpServletRequest.remoteUser}" th:href="@{/user/profile}" class="nav-link dropdown-toggle text-muted waves-effect waves-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+       
+        <aside class="left-sidebar">
+          
+            <div class="scroll-sidebar">
+             
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li>
+                            <a th:href="@{/}" class="waves-effect">Home</a>
+                        </li>
+                        <li class="active">
+                            <a th:href="@{/ruangan/daftar-ruangan}" class="waves-effect">Ruangan</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/pengadaan-fasilitas}" class="waves-effect">Pengadaan Fasilitas</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/ruangan/daftar-peminjaman-ruangan}" class="waves-effect">Status Peminjaman</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/fasilitas/tambah-fasilitas}" class="waves-effect">Fasilitas</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/user/add-user}" class="waves-effect">Tambah Anggota</a>
+                        </li>
+                    </ul>
+                    <div class="text-center m-t-30">
+                        <a th:href="@{/logout}" class="btn btn-danger">Logout<span class="sr-only">(current)</span></a>
+                    </div>
+                </nav>
+           
+            </div>
+          
+        </aside>
+      
+        <div class="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- column -->
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <h4 class="card-title">Daftar Ruangan</h4>
+                                <h6 class="card-subtitle">Berikut adalah daftar ruangan yang tersedia</h6>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                            <th scope="col">No</th>
+                                            <th scope="col">ID Ruangan</th>
+                                            <th scope="col">Nama Ruangan</th>
+                                            <th scope="col">Kapasitas Ruangan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody th:each="ruangan, iterationStatus : ${listRuanganModel}">
+                                            <tr>
+                                                <th scope="row" th:text="${iterationStatus.count}"></th>
+                                                <td th:text="${ruangan.idRuangan}"></td>
+                                                <td><a th:text="${ruangan.namaRuangan}" th:href="@{/ruangan/view/} + ${ruangan.idRuangan}"></a></td>
+                                                <td th:text="${ruangan.kapasitasRuangan}"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <footer class="footer text-center">
+            © 2019 Vote for Setiaki
+        </footer>
+    </div>
+    <script src="/plugins/jquery/jquery.min.js"></script>
+    <script src="/plugins/bootstrap/js/tether.min.js"></script>
+    <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery.slimscroll.js"></script>
+    <script src="js/waves.js"></script>
+    <script src="js/sidebarmenu.js"></script>
+    <script src="/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <script src="js/custom.min.js"></script>
+    <script src="/plugins/flot/jquery.flot.js"></script>
+    <script src="/plugins/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+    <script src="js/flot-data.js"></script>
+    <script src="/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+</body>
+
 </html>
+
