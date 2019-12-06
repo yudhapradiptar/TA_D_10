@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html
-  xmlns:th="http://www.thymeleaf.org"
-  th:replace="fragments/fragment :: main-layout (title=~{:: title}, head=~{:: header}, content=~{:: content})"
->
+<html xmlns:th="http://www.thymeleaf.org" th:replace="fragments/fragment :: main-layout (title=~{:: title}, head=~{:: header}, content=~{:: content})">
+
   <title th:remove="tag">Error</title>
   <header th:remove="tag">Error</header>
+
   <content th:remove="tag">
-    <body>
       <nav th:replace="fragments/fragment :: navbar (pageTitle='Error')"></nav>
       <h1>403</h1>
       <h3>Forbidden</h3>
-    </body>
   </content>
+  
 </html>
