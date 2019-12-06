@@ -33,7 +33,7 @@ public class PengadaanFasilitasController {
         String title = "Form Pengajuan Pengadaan Fasilitas";
         model.addAttribute("pengadaan", newPengadaan);
         model.addAttribute("title", title);
-
+        model.addAttribute("role", userService.getUserRole());
 
         return "form-pengadaan";
     }
@@ -48,8 +48,9 @@ public class PengadaanFasilitasController {
             String title = "Pengadaan Fasilitas";
             model.addAttribute("listPengadaan", listPengadaan);
             model.addAttribute("title", title);
-            String notif = "Pengadaan Fasilitas " + pengadaanFasilitas.getNama() + " telah berhasil diajukan";
-            return viewAllPengadaan(currentUser, notif, model);
+            String notifGood = "Pengadaan Fasilitas " + pengadaanFasilitas.getNama() + " telah berhasil diajukan";
+            String notifBad = "";
+            return viewAllPengadaan(currentUser, notifBad, notifGood, model);
         } catch (NullPointerException e) {
             return "form-pengadaan";
         }
@@ -59,7 +60,8 @@ public class PengadaanFasilitasController {
     public String deletePengadaan(@PathVariable Long idPengadaan, @AuthenticationPrincipal UserDetails currentUser, Model model) {
         PengadaanFasilitasModel pengadaanDeleted = pengadaanFasilitasService.getPengadaanByIdPengadaan(idPengadaan);
         UserModel userLoggedIn = userService.getUserByUsername(currentUser.getUsername());
-        String notif = "Pengadaan Fasilitas " + pengadaanDeleted.getNama() + " telah berhasil dihapus";
+        String notifBad = "Pengadaan Fasilitas " + pengadaanDeleted.getNama() + " telah berhasil dihapus";
+        String notifGood = "";
         if(userLoggedIn.getRole().getIdRole()==3){
             if(pengadaanDeleted.getUser()==userLoggedIn){
                 pengadaanFasilitasService.deletePengadaan(pengadaanDeleted);
@@ -67,11 +69,11 @@ public class PengadaanFasilitasController {
         } else if(userLoggedIn.getRole().getIdRole()==2){
             pengadaanFasilitasService.deletePengadaan(pengadaanDeleted);
         }
-        return viewAllPengadaan(currentUser, notif, model);
+        return viewAllPengadaan(currentUser, notifBad, notifGood, model);
     }
 
     @RequestMapping("/pengadaan-fasilitas")
-    public String viewAllPengadaan(@AuthenticationPrincipal UserDetails currentUser, String notif, Model model) {
+    public String viewAllPengadaan(@AuthenticationPrincipal UserDetails currentUser, String notifBad, String notifGood, Model model) {
         List<PengadaanFasilitasModel> listPengadaan = pengadaanFasilitasService.getListPengadaanFasilitas();
         UserModel userLoggedIn = userService.getUserByUsername(currentUser.getUsername());
         List<PengadaanFasilitasModel> listPengadaanGuru = new ArrayList<>();
@@ -85,8 +87,11 @@ public class PengadaanFasilitasController {
             }
             model.addAttribute("listPengadaan", listPengadaanGuru);
         }
-        model.addAttribute("notif", notif);
+        model.addAttribute("notifBad", notifBad);
+        model.addAttribute("notifGood", notifGood);
+
         model.addAttribute("title", "Pengadaan Fasilitas");
+        model.addAttribute("role", userLoggedIn.getRole().getNama());
 
         return "viewall-pengadaan";
     }

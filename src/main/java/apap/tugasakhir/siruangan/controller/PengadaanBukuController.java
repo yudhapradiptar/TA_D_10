@@ -31,6 +31,7 @@ public class PengadaanBukuController {
         PengadaanBukuDetail buku = new PengadaanBukuDetail();
         model.addAttribute("buku", buku);
         model.addAttribute("notif", notif);
+        model.addAttribute("role", userService.getUserRole());
         return "form-pengadaan-buku";
     }
 
