@@ -56,7 +56,6 @@ public class FasilitasRanganController {
         return "success-fasilitas-ruangan";
     }
 
-    //TODO kalo ga ada, lempar ke 404
     @RequestMapping(value = "/edit")
     public String editFasilitas(@RequestParam("idFasilitasRuang") Long idFasilitasRuang, Model model) {
         FasilitasRuanganModel existingFasilitasRuang = fasilitasRuanganService.getFasilitasRuanganById(idFasilitasRuang);
@@ -67,7 +66,7 @@ public class FasilitasRanganController {
             model.addAttribute("jumlahFasilitas", existingFasilitasRuang.getJumlahFasilitas());
             return "form-edit-fasilitas-ruangan";
         }
-        return "form-edit-fasilitas-ruangan";
+        return "404";
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
