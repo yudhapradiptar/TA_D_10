@@ -87,4 +87,19 @@ public class FasilitasRanganController {
         model.addAttribute("fasilitas", existingFasilitas);
         return "success-edit-fasilitas-ruang";
     }
+
+    @RequestMapping(value = "/delete")
+    public String deleteFasilitasRuang(@RequestParam("idFasilitasRuang") Long idFasilitasRuang, Model model) {
+        FasilitasRuanganModel existingFasilitasRuang = fasilitasRuanganService.getFasilitasRuanganById(idFasilitasRuang);
+        RuanganModel exisitingRuangan = ruanganService.getRuanganByIdRuangan(existingFasilitasRuang.getRuangan()
+                .getIdRuangan()).get();
+        FasilitasModel existingFasilitas = fasilitasService.getFasilitasByIdFasilitas(existingFasilitasRuang
+                .getFasilitas().getIdFasilitas()).get();
+        exisitingRuangan.getListFasilitasRuangan().remove(existingFasilitasRuang);
+        existingFasilitas.getListFasilitasRuangan().remove(existingFasilitasRuang);
+        fasilitasRuanganService.deleteFasilitasRuang(existingFasilitasRuang);
+        model.addAttribute("ruangan", exisitingRuangan);
+        model.addAttribute("fasilitas", existingFasilitas);
+        return "success-delete-fasilitas";
+    }
 }
