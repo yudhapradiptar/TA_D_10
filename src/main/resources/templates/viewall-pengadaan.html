@@ -12,11 +12,9 @@
             <h1>Daftar Pengadaan Fasilitas</h1>
         </div>
     </div>
-    <div>
-        <h3 style="color: red" th:text = "${message}"></h3>
-    </div>
     <table class="table">
-        <span style="color: red" th:text="${notif}"></span>
+        <span style="color: red" th:text="${notifBad}"></span>
+        <span style="color: greenyellow" th:text="${notifGood}"></span>
         <thead class="thead-dark">
         <tr>
             <th scope="col">NO</th>
