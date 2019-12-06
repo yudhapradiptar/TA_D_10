@@ -30,7 +30,7 @@
                             <label for="jumlahFasilitas" class="col-sm-3 col-form-label">Jumlah Fasilitas</label>
                             <div class="col-sm-9">
                                 <input name="jumlahFasilitas" id="jumlahFasilitas" type="number" class="form-control"
-                                       th:value="${jumlahFasilitas}">
+                                       th:value="${jumlahFasilitas}" required="true" min="1">
                             </div>
                         </div>
                         <button type="submit" name="addRow" class="btn btn-primary">Edit Jumlah Fasilitas</button>
