@@ -1,48 +1,134 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org/">
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="main-layout">
 
 <head>
-
-    <head th:fragment="css">
-        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    </head>
-
-    <head th:fragment="title">
-        <title th:text="${pageTitle}"></title>
-    </head>
-
-    <head th:fragment="js">
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/esm/popper.min.js"></script>
-        <script th:src="@{/js/bootstrap.min.js}"></script>
-    </head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+        <th:block th:replace="${title} ?: ~{}"></th:block>
+    </title>
+    <th:block th:fragment="css">
+        <!--     Fonts and icons     -->
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+        <!-- Material Kit CSS -->
+        <link href="/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
+    </th:block>
+    <th:block th:fragment="js">
+    </th:block>
 </head>
-
 <body>
-    <nav th:fragment="navbar" class="navbar navbar-expand-lg">
-        <a class="navbar-brand" th:text="SI-RUANGAN"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse">
-            <a class="nav-item nav-link active" th:href="@{/}">Home<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link active" th:href="@{/ruangan/daftar-ruangan}">Ruangan<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link active" th:href="@{/pengadaan-fasilitas}">Pengadaan Fasilitas<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link active" th:href="@{/ruangan/daftar-peminjaman-ruangan}">Status Peminjaman<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link active" th:href="@{/peminjaman-ruangan/daftar}">Status Peminjaman<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link active" th:href="@{/fasilitas/tambah-fasilitas}">Fasilitas<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link active" th:href="@{/user/profile}">Profile<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link active" th:href="@{/user/add-user}">Tambah Anggota<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link active" th:href="@{/logout}">Logout<span class="sr-only">(current)</span></a>
-        </div>
-    </nav>
-    <footer class="page-footer font-small" th:fragment="footer">
-        <div class="footer-copyright text-center py-3">© Vote For Setiaki:
-            <p th:text="'Kini Anda berada pada halaman ' + ${title} + ''"></p>
-        </div>
-    </footer>
-</body>
+<div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="white">
+        <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
+        Tip 2: you can also add an image using data-image tag
+    -->
+        <div class="logo">
+            <a class="simple-text logo-normal">
+                <img th:src="@{/images/logo.png}" alt="Avatar" class="avatar" style="width:50px; height:50px;">
+            </a>
+        </div>
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">
+                        <i class="material-icons">dashboard</i>
+                        <p>Home</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" th:href="@{/user/profile}">
+                        <i class="material-icons">person</i>
+                        <p>Profile</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" th:href="@{/ruangan/daftar-ruangan}">
+                        <i class="material-icons">room</i>
+                        <p>Ruangan</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" th:href="@{/pengadaan-fasilitas}">
+                        <i class="material-icons">add</i>
+                        <p>Pengadaan Fasilitas</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" th:href="@{/ruangan/daftar-peminjaman-ruangan}">
+                        <i class="material-icons">search</i>
+                        <p>Status Peminjaman</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" th:href="@{/fasilitas/tambah-fasilitas}">
+                        <i class="material-icons">room</i>
+                        <p>Fasilitas</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link"  th:href="@{/user/add-user}" >
+                        <i class="material-icons">add</i>
+                        <p>Tambah Anggota</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" th:href="@{/logout}">
+                        <i class="material-icons">input</i>
+                        <p>Logout</p>
+                    </a>
+                </li>
+                <!-- your sidebar here -->
+            </ul>
+        </div>
+    </div>
+    <div class="main-panel">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a th:text="${#httpServletRequest.remoteUser}" th:href="@{/user/profile}" class="nav-link dropdown-toggle text-muted waves-effect waves-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                        </li>
+                        <!-- your navbar here -->
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- End Navbar -->
+        <div class="content">
+            <div class="container-fluid">
+                <!-- your content here -->
+                <th:block th:replace="${content} ?: ~{}"></th:block>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container-fluid">
+                <nav class="float-left">
+                    <ul>
+                        <li>
+                            <a href="https://www.creative-tim.com">
+                                 © 2019 Vote for Setiaki
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- your footer here -->
+            </div>
+        </footer>
+    </div>
+</div>
+</body>
 </html>
