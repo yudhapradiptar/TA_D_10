@@ -45,7 +45,7 @@ public class RuanganController {
         HashMap<FasilitasModel, Integer> pairOfFasilitasAndJumlah = fasilitasRuanganService.getFasilitasDanJumlah(ruangan);
         boolean isPinjamRuanganAuthorized;
         boolean isTindakanAuthorized;
-        UserModel currentLoggedInUser = userService.getCurrentLoggedInUser();UserModel currentLoggedInUser = userService.getCurrentLoggedInUser();
+        UserModel currentLoggedInUser = userService.getCurrentLoggedInUser();
         if(currentLoggedInUser.getRole().getNama().equals("Admin TU")) {
             isTindakanAuthorized = true;
         } else {
