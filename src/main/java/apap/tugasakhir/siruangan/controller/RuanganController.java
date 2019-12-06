@@ -63,6 +63,7 @@ public class RuanganController {
         model.addAttribute("fasilitasJumlah", pairOfFasilitasAndJumlah);
         model.addAttribute("isPinjamRuanganAuthorized", isPinjamRuanganAuthorized);
         model.addAttribute("fasilitasRuang", fasilitasRuang);
+        model.addAttribute("isTindakanAuthorized", isTindakanAuthorized);
         return "view-ruangan";
     }
 
