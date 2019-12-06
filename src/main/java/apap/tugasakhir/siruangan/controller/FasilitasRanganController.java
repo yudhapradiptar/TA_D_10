@@ -29,6 +29,17 @@ public class FasilitasRanganController {
     public String addFasilitasForm(Model model) {
         model.addAttribute("listFasilitas", fasilitasService.getListFasilitas());
         model.addAttribute("listRuangan", ruanganService.getRuanganList());
+        System.out.println("AAAAAAAAA!!!!!!!!!AAAAAAAAA!!!!!");
+        System.out.println("AAAAAAAAA!!!!!!!!!AAAAAAAAA!!!!!");
+        System.out.println("AAAAAAAAA!!!!!!!!!AAAAAAAAA!!!!!");
+        System.out.println("AAAAAAAAA!!!!!!!!!AAAAAAAAA!!!!!");
+        System.out.println("AAAAAAAAA!!!!!!!!!AAAAAAAAA!!!!!");
+        System.out.println("AAAAAAAAA!!!!!!!!!AAAAAAAAA!!!!!");
+        System.out.println("AAAAAAAAA!!!!!!!!!AAAAAAAAA!!!!!");
+        System.out.println("AAAAAAAAA!!!!!!!!!AAAAAAAAA!!!!!");
+        System.out.println("AAAAAAAAA!!!!!!!!!AAAAAAAAA!!!!!");
+        System.out.println("AAAAAAAAA!!!!!!!!!AAAAAAAAA!!!!!");
+        System.out.println("AAAAAAAAA!!!!!!!!!AAAAAAAAA!!!!!");
         return "form-fasilitas-ruang";
     }
 
