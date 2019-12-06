@@ -1,53 +1,70 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="fragments/fragment :: main-layout (title=~{:: title}, head=~{:: header}, content=~{:: content})">
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="fragments/fragment :: main-layout (title=~{:: title}, head=~{:: header}, content=~{:: content})"
+>
+  <title th:remove="tag">View Ruangan</title>
+  <header th:remove="tag">View Ruangan</header>
 
-<title th:remove="tag">View Ruangan</title>
-<header th:remove="tag">View Ruangan</header>
-
-
-<content th:remove="tag">
-<div class="container-fluid">
-    <div class="row text-center">
+  <content th:remove="tag">
+    <div class="container-fluid">
+      <div class="row text-center">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-            <br>
-            <h2>Detil Data Ruangan</h2>
-            <p th:text="'Nama : ' + ${ruangan.namaRuangan}"></p>
-            <p th:text="'Kapasitas : ' + ${ruangan.kapasitasRuangan}"></p> 
-            <br>
-            <h5>Daftar Fasilitas</h5>
+          <br />
+          <h2>Detil Data Ruangan</h2>
+          <p th:text="'Nama : ' + ${ruangan.namaRuangan}"></p>
+          <p th:text="'Kapasitas : ' + ${ruangan.kapasitasRuangan}"></p>
+          <br />
+          <h5>Daftar Fasilitas</h5>
         </div>
-    </div>
+      </div>
 
-    <div class="row">
+      <div class="row">
         <div class="col-md-4"></div>
         <div class="card-body col-md-4">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Nama</th>
-                    <th scope="col">Jumlah di Ruangan</th>
-                    <th scope="col"></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="fasilitas, iterationStatus : *{fasilitasRuang}">
-                    <td th:text="${iterationStatus.count}"></td>
-                    <td th:text="${fasilitas.fasilitas.namaFasilitas}"></td>
-                    <td th:text="${fasilitas.jumlahFasilitas}"></td>
-                    <td><a class="btn btn-warning" th:href="@{/fasilitas/edit(idFasilitasRuang=${fasilitas.idFasilitasRuangan})}" role="button">Edit</a><a class="btn btn-danger" th:href="@{/fasilitas/delete(idFasilitasRuang=${fasilitas.idFasilitasRuangan})}" role="button">Delete</a></td>
-                </tr>
-                </tbody>
-            </table>
-            <br>
-            <div th:if="${isPinjamRuanganAuthorized}" class="text-center">
-                <a th:href= "@{/peminjaman-ruangan/pinjam(idRuangan = ${idRuangan})}"> <button type="button" class="btn btn-primary">Pinjam Ruangan Ini!</button> </a>
-            </div>
-
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">No</th>
+                <th scope="col">Nama</th>
+                <th scope="col">Jumlah di Ruangan</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="fasilitas, iterationStatus : *{fasilitasRuang}">
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${fasilitas.fasilitas.namaFasilitas}"></td>
+                <td th:text="${fasilitas.jumlahFasilitas}"></td>
+                <td th:if="${isTindakanAuthorized}">
+                  <a
+                    class="btn btn-warning"
+                    th:href="@{/fasilitas/edit(idFasilitasRuang=${fasilitas.idFasilitasRuangan})}"
+                    role="button"
+                    >Edit</a
+                  ><a
+                    class="btn btn-danger"
+                    th:href="@{/fasilitas/delete(idFasilitasRuang=${fasilitas.idFasilitasRuangan})}"
+                    role="button"
+                    >Delete</a
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <br />
+          <div th:if="${isPinjamRuanganAuthorized}" class="text-center">
+            <a
+              th:href="@{/peminjaman-ruangan/pinjam(idRuangan = ${idRuangan})}"
+            >
+              <button type="button" class="btn btn-primary">
+                Pinjam Ruangan Ini!
+              </button>
+            </a>
+          </div>
         </div>
+      </div>
     </div>
-
-</div>
-</content>
+  </content>
 </html>

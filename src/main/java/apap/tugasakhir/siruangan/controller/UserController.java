@@ -49,6 +49,7 @@ public class UserController {
         model.addAttribute("listRole", listRole );
         String pageTitle = "Tambah Anggota";
         model.addAttribute("title", pageTitle);
+        model.addAttribute("role", userService.getUserRole());
         return "form-add-user";
     }
 
@@ -58,7 +59,8 @@ public class UserController {
                                 @RequestParam String tempatLahir,
                                 @RequestParam String tanggalLahir,
                                 @RequestParam String alamat,
-                                @RequestParam String telepon,    
+                                @RequestParam String telepon,
+                                Model model,
                                 RedirectAttributes redirect) throws ParseException{
         userService.addUser(user);
         // Date tanggalLahirUser = new SimpleDateFormat("yyyy-mm-dd").parse(tanggalLahir);
@@ -88,6 +90,7 @@ public class UserController {
                 return "home";
             }
         }
+        model.addAttribute("role", userService.getUserRole());
         return "add-user-success";
     }
 
@@ -102,6 +105,7 @@ public class UserController {
             try {
                 GuruDetailResponse guruDetailFromSivitas = userRestService.getGuru(uuid);
                 model.addAttribute("userDetail", guruDetailFromSivitas.getResult());
+                
             } catch (Exception e) {
                 isDataFromSivitasAvailable = false;
             }
@@ -125,6 +129,7 @@ public class UserController {
         }
         model.addAttribute("isDataFromSivitasAvailable", isDataFromSivitasAvailable);
         model.addAttribute("user", user);
+        model.addAttribute("role", userService.getUserRole());
         return "view-user-profile";
     }
 
