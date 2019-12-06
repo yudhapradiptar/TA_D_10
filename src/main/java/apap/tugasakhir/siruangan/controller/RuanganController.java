@@ -34,7 +34,7 @@ public class RuanganController {
 
     @Autowired
     private FasilitasService fasilitasService;
-
+    
     @Autowired
     private UserService userService;
 
@@ -44,7 +44,13 @@ public class RuanganController {
         RuanganModel ruangan = ruanganService.getRuanganByIdRuangan(idRuangan).get();
         HashMap<FasilitasModel, Integer> pairOfFasilitasAndJumlah = fasilitasRuanganService.getFasilitasDanJumlah(ruangan);
         boolean isPinjamRuanganAuthorized;
+        boolean isTindakanAuthorized;
         UserModel currentLoggedInUser = userService.getCurrentLoggedInUser();
+        if(currentLoggedInUser.getRole().getNama().equals("Admin TU")) {
+            isTindakanAuthorized = true;
+        } else {
+            isTindakanAuthorized = false;
+        }
         if(currentLoggedInUser.getRole().getNama().equals("Guru") || currentLoggedInUser.getRole().getNama().equals("Siswa")) {
             isPinjamRuanganAuthorized = true;
         } else {
@@ -54,9 +60,11 @@ public class RuanganController {
         String pageTitle = "Detil Ruangan";
         model.addAttribute("title", pageTitle);
         model.addAttribute("ruangan", ruangan);
+        model.addAttribute("role", userService.getUserRole());
         model.addAttribute("fasilitasJumlah", pairOfFasilitasAndJumlah);
         model.addAttribute("isPinjamRuanganAuthorized", isPinjamRuanganAuthorized);
         model.addAttribute("fasilitasRuang", fasilitasRuang);
+        model.addAttribute("isTindakanAuthorized", isTindakanAuthorized);
         return "view-ruangan";
     }
 
@@ -64,6 +72,7 @@ public class RuanganController {
     public String daftarRuangan (Model model){
         List<RuanganModel> listRuanganModel = ruanganService.getRuanganList();
         model.addAttribute("listRuanganModel", listRuanganModel);
+        model.addAttribute("role", userService.getUserRole());
         return "list-ruangan";
     }
 }
