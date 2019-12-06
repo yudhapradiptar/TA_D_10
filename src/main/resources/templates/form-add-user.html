@@ -37,7 +37,7 @@
                                                 <label class="col-md-12">Select Role</label>
                                                 <div class="col-sm-12">
                                                         <select name="role" class="form-control form-control-line">
-                                                            <option selected value=""> Guru </option>
+                                                            <option selected value=""> --Select Role-- </option>
                                                             <option th:each="roleAvailable : ${listRole}" th:value="${roleAvailable.idRole}" th:text="${roleAvailable.nama}"></option>
                                                         </select>
                                                 </div>
