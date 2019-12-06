@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface FasilitasRuanganRestService {
     List<FasilitasRuanganModel> findByNamaRuangan(String namaRuangan);
+    List<FasilitasRuanganModel> findById(Long idRuangan);
 }

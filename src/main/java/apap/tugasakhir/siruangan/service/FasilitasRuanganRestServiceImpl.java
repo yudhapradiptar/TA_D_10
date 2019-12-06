@@ -25,4 +25,15 @@ public class FasilitasRuanganRestServiceImpl implements FasilitasRuanganRestServ
         }
         return fasilitasRuanganModels;
     }
+
+    @Override
+    public List<FasilitasRuanganModel> findById(Long idRuangan) {
+        List<FasilitasRuanganModel> fasilitasRuanganModels = new ArrayList<>();
+        for (FasilitasRuanganModel fasilitasRuanganModel : fasilitasRuanganDB.findAll()) {
+            if (fasilitasRuanganModel.getRuangan().getNamaRuangan() == (namaRuangan)) {
+                fasilitasRuanganModels.add(fasilitasRuanganModel);
+            }
+        }
+        return fasilitasRuanganModels;
+    }
 }

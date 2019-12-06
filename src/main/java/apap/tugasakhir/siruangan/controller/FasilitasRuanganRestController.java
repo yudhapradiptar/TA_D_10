@@ -19,8 +19,8 @@ public class FasilitasRuanganRestController {
     private FasilitasRuanganRestService fasilitasRuanganRestService;
 
     @GetMapping(value = "/fasilitas")
-    private List<FasilitasRuanganDetail> getAllFasilitasByRuangan(@RequestParam("namaRuangan") String namaRuangan) {
-        List<FasilitasRuanganModel> fasilitas = fasilitasRuanganRestService.findByNamaRuangan(namaRuangan);
+    private List<FasilitasRuanganDetail> getAllFasilitasByRuangan(@RequestParam("idRuangan") Long idRuangan) {
+        List<FasilitasRuanganModel> fasilitas = fasilitasRuanganRestService.findById(idRuangan);
         List<FasilitasRuanganDetail> cleanFasilitas = new ArrayList<>();
         for (FasilitasRuanganModel fasilitasRuanganModel : fasilitas) {
             FasilitasRuanganDetail newCleanFasilitas = new FasilitasRuanganDetail();
