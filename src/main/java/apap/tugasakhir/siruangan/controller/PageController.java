@@ -2,6 +2,7 @@ package apap.tugasakhir.siruangan.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,9 +18,15 @@ public class PageController{
 
     @RequestMapping("/")
     public String home (Model model, Authentication auth){
-        System.out.println(auth.getAuthorities());
+        String role = "";
+        for (GrantedAuthority a : auth.getAuthorities()){
+            role = a.getAuthority();
+            break;
+        }
+        System.out.println(role);
         String pageTitle = "Home";
         model.addAttribute("title", pageTitle);
+        model.addAttribute("role", role);
         return "home";
     }
 
@@ -32,7 +39,10 @@ public class PageController{
     }
 
     @RequestMapping("/login")
-    public String login (){
+
+    public String login (Model model)
+    {
+        model.addAttribute("login",true);
         return "login";
     }
 }
