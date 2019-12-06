@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymelaf.org">
-<head>
-    <title> Mengajukan Pengadaan Fasilitas</title>
-    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
-    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
-</head>
-<body>
-<nav th:replace="fragments/fragment :: navbar"></nav>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="fragments/fragment :: main-layout (title=~{:: title}, head=~{:: header}, content=~{:: content})">
+
+<title th:remove="tag">Mengajukan Pengaadan Fasilitas</title>
+<header th:remove="tag">Mengajukan Pengadaan Fasilitas</header>
+
+
+<content th:remove="tag">
 <div class="container-fluid">
     <div class="card">
         <div class="card-header" style="background:#ffffff;">
@@ -42,6 +41,6 @@
         </div>
     </div>
 </div>
-<footer th:replace="fragments/fragment ::footer"></footer>
-</body>
+
+</content>
 </html>
