@@ -12,6 +12,7 @@ import apap.tugasakhir.siruangan.rest.Setting;
 import apap.tugasakhir.siruangan.rest.SuratDetail;
 import apap.tugasakhir.siruangan.rest.SuratDetailResponse;
 import reactor.core.publisher.Mono;
+import java.lang.Exception;
 
 @Service
 @Transactional
@@ -40,7 +41,7 @@ public class SuratRestServiceImpl implements SuratRestService {
             }
         } catch (WebClientResponseException.NotFound notFound) {
             return null;
-        } catch (NoSuchElementException noSuchElement) {
+        } catch (Exception e) {
             return null;
         }
     }
