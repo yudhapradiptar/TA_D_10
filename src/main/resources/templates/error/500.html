@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
-<head>
-    <title>Error</title>
-    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
-    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
-</head>
-<body>
-    <nav th:replace="fragments/fragment :: navbar (pageTitle='Error')"></nav>
-    <h2>505: Internal Server Error</h2>
-</body>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="fragments/fragment :: main-layout (title=~{:: title}, head=~{:: header}, content=~{:: content})">
+
+  <title th:remove="tag">Error</title>
+  <header th:remove="tag">Error</header>
+
+  <content th:remove="tag">
+      <nav th:replace="fragments/fragment :: navbar (pageTitle='Error')"></nav>
+      <h1>500</h1>
+      <h3>Internal Server Error</h3>
+  </content>
+  
 </html>
+
