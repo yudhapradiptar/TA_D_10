@@ -29,6 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/js/**").permitAll()
+                .antMatchers("/api/**").permitAll()
                 .antMatchers("/pengadaan-fasilitas/**").hasAnyAuthority("Admin TU","Guru")
                 .antMatchers("/fasilitas/**").hasAnyAuthority("Admin TU")
                 .antMatchers("/peminjaman-ruangan/pinjam/**").hasAnyAuthority("Guru","Siswa")
@@ -43,7 +44,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").permitAll();
     }
-    // .antMatchers("/api/**").permitAll()
 
     @Bean
     public BCryptPasswordEncoder encoder() {
