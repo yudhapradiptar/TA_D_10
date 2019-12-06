@@ -59,7 +59,8 @@ public class UserController {
                                 @RequestParam String tempatLahir,
                                 @RequestParam String tanggalLahir,
                                 @RequestParam String alamat,
-                                @RequestParam String telepon,    
+                                @RequestParam String telepon,
+                                Model model,
                                 RedirectAttributes redirect) throws ParseException{
         userService.addUser(user);
         // Date tanggalLahirUser = new SimpleDateFormat("yyyy-mm-dd").parse(tanggalLahir);
@@ -89,6 +90,7 @@ public class UserController {
                 return "home";
             }
         }
+        model.addAttribute("role", userService.getUserRole());
         return "add-user-success";
     }
 

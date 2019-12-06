@@ -53,7 +53,7 @@
                                             <button type="button w-25 submit" class="btn btn-success btn-block">Terima</button>
                                         </form>
                                         <br>
-                                        <form th:action="@{/ruangan/status-peminjaman/} + ${peminjamanRuangan.idPeminjamanRuangan}" th:method="POST">
+                                        <form th:action="@{/peminjaman-ruangan/status-peminjaman/} + ${peminjamanRuangan.idPeminjamanRuangan}" th:method="POST">
                                             <input type="hidden" name="status" th:value="2" />
                                             <button type="button w-25 submit" class="btn btn-danger btn-block">Tolak</button>
                                         </form>
