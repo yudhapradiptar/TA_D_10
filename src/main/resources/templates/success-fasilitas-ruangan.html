@@ -1,17 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymelaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="fragments/fragment :: main-layout (title=~{:: title}, head=~{:: header}, content=~{:: content})">
 
-<head>
-    <title>Penyimpanan Berhasil</title>
-    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
-    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
-</head>
+<title th:remove="tag">Penyimpanan Berhasil</title>
+<header th:remove="tag">Penyimpanan Berhasil</header>
 
-<body>
-<nav th:replace="fragments/fragment :: navbar"></nav>
+
+<content th:remove="tag">
 <div class="container-fluid">
     <h1 th:text="'Fasilitas ' + ${fasilitas.namaFasilitas} + ' berhasil ditambahkan ke ruangan ' + ${ruangan.namaRuangan}"></h1>
     <a th:href="@{/ruangan/view/{idRuangan}(idRuangan=${ruangan.idRuangan})}" th:text="'Lihat detail ruangan ' + ${ruangan.namaRuangan}"></a>
 </div>
-</body>
+</content>
 </html>
