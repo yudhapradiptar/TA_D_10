@@ -66,7 +66,7 @@ public class PeminjamanRuanganController {
             peminjaman.setUserPeminjam(userPeminjam);
             SuratDetail suratPeminjamanRuangan = suratRestService.getSuratPeminjamanRuangan(nomorSurat);
             if(suratPeminjamanRuangan == null) {
-                suratMessage = "surat tidak tersedia";
+                suratMessage = "Surat tidak tersedia";
             } else {
                 if(suratPeminjamanRuangan.getStatus().equals("Disetujui")
                 || suratPeminjamanRuangan.getStatus().equals("Diproses")
@@ -74,7 +74,7 @@ public class PeminjamanRuanganController {
                     peminjaman.setIsDisetujui(1);
                 }
                 peminjaman.setIsDisetujui(1);
-                suratMessage = "surat tersedia";
+                suratMessage = "Surat tersedia";
             }
             peminjamanRuanganService.mengajukanPeminjamanRuangan(peminjaman);
             message = "Pengajuan peminjaman ruangan berhasil!";

@@ -23,35 +23,53 @@
 <div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="white" >
         <div class="logo">
-            <a class="simple-text logo-normal">
-                <img th:src="@{/images/logo.png}" alt="Avatar" class="avatar" style="width:50px; height:50px;">
+            <a class="simple-text logo-normal" th:href=@{/}>
+                <img  th:src="@{/images/logo.png}" alt="Avatar" class="avatar" style="width:50px; height:50px;">
             </a>
         </div>
         <div th:if="${role}=='Admin TU'" class="sidebar-wrapper">
             <ul class="nav">
                 <li class="nav-item">
-                <a class="nav-link" th:href="@{/}">
-                <i class="material-icons">dashboard</i>
-                <p>Home</p>
-                </a>
+                    <a class="nav-link" th:href="@{/}">
+                        <i class="material-icons">dashboard</i>
+                        <p>Home</p>
+                    </a>
                 </li>
                 <li class="nav-item ">
-                <a class="nav-link" th:href="@{/user/profile}">
-                <i class="material-icons">person</i>
-                <p>Profile</p>
-                </a>
+                    <a class="nav-link" th:href="@{/user/profile}">
+                        <i class="material-icons">person</i>
+                        <p>Profile</p>
+                    </a>
                 </li>
                 <li class="nav-item ">
-                <a class="nav-link" th:href="@{/ruangan/daftar-ruangan}">
-                <i class="material-icons">room</i>
-                <p>Ruangan</p>
-                </a>
+                    <a class="nav-link" th:href="@{/ruangan/daftar-ruangan}">
+                    <i class="material-icons">room</i>
+                    <p>Ruangan</p>
+                    </a>
                 </li>
                 <li class="nav-item ">
-                <a class="nav-link"  th:href="@{/user/add-user}" >
-                <i class="material-icons">add</i>
-                <p>Tambah Anggota</p>
-                </a>
+                    <a class="nav-link" th:href="@{/peminjaman-ruangan/daftar}">
+                        <i class="material-icons">search</i>
+                        <p>Daftar Peminjaman Ruangan</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" th:href="@{/pengadaan-fasilitas}">
+                        <i class="material-icons">add</i>
+                        <p>Pengadaan Fasilitas</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" th:href="@{/fasilitas/tambah-fasilitas}">
+                        <i class="material-icons">room</i>
+                        <p>Menambah Fasilitas</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link"  th:href="@{/user/add-user}" >
+                        <i class="material-icons">add</i>
+                        <p>Tambah Anggota</p>
+                    </a>
                 </li>
                 <li class="nav-item ">
                 <a class="nav-link" th:href="@{/logout}">
@@ -77,21 +95,21 @@
                 </a>
                 </li>
                 <li class="nav-item ">
+                <a class="nav-link" th:href="@{/ruangan/daftar-ruangan}">
+                <i class="material-icons">room</i>
+                <p>Ruangan</p>
+                </a>
+                </li>
+                <li class="nav-item ">
+                <a class="nav-link" th:href="@{/peminjaman-ruangan/daftar}">
+                <i class="material-icons">search</i>
+                <p>Daftar Peminjaman Ruangan</p>
+                </a>
+                </li>
+                <li class="nav-item ">
                 <a class="nav-link" th:href="@{/pengadaan-fasilitas}">
                 <i class="material-icons">add</i>
                 <p>Pengadaan Fasilitas</p>
-                </a>
-                </li>
-                <li class="nav-item ">
-                <a class="nav-link" th:href="@{/ruangan/daftar-peminjaman-ruangan}">
-                <i class="material-icons">search</i>
-                <p>Status Peminjaman</p>
-                </a>
-                </li>
-                <li class="nav-item ">
-                <a class="nav-link" th:href="@{/fasilitas/tambah-fasilitas}">
-                <i class="material-icons">room</i>
-                <p>Fasilitas</p>
                 </a>
                 </li>
                 <li class="nav-item ">
@@ -117,21 +135,15 @@
                     </a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" th:href="@{/pengadaan-fasilitas}">
-                        <i class="material-icons">add</i>
-                        <p>Pengadaan Fasilitas</p>
+                    <a class="nav-link" th:href="@{/ruangan/daftar-ruangan}">
+                    <i class="material-icons">room</i>
+                    <p>Ruangan</p>
                     </a>
-                </li>
+                    </li>
                 <li class="nav-item ">
-                    <a class="nav-link" th:href="@{/ruangan/daftar-peminjaman-ruangan}">
+                    <a class="nav-link" th:href="@{/peminjaman-ruangan/daftar}">
                         <i class="material-icons">search</i>
-                        <p>Status Peminjaman</p>
-                    </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" th:href="@{/fasilitas/tambah-fasilitas}">
-                        <i class="material-icons">room</i>
-                        <p>Fasilitas</p>
+                        <p>Daftar Peminjaman Ruangan</p>
                     </a>
                 </li>
                 <li class="nav-item ">
