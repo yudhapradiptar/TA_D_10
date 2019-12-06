@@ -49,7 +49,6 @@ public class UserController {
         model.addAttribute("listRole", listRole );
         String pageTitle = "Tambah Anggota";
         model.addAttribute("title", pageTitle);
-        model.addAttribute("role", userService.getUserRole());
         return "form-add-user";
     }
 

@@ -4,30 +4,33 @@
 <title th:remove="tag">Tambah Anggota</title>
 <header th:remove="tag">Tambah Anggota</header>
 
+
 <content th:remove="tag">
+
     <div class="container-fluid">
                 <div class="row">
                         <div class="col-lg-8 col-xlg-9 col-md-7">
                                 <h2>Tambah Anggota</h2>
                                 <div class="card">
                                     <div class="card-block">
+                                      
                                         <form th:action="@{/user/add-user}" method="POST" class="form-horizontal form-material"> 
                                             <div class="form-group">
                                                 <label class="col-md-12">Full Name</label>
                                                 <div class="col-md-12">
-                                                    <input type="text" name="nama" placeholder="Irene Pixelyne" class="form-control form-control-line" required="true">
+                                                    <input type="text" name="nama" placeholder="Irene Pixelyne" class="form-control form-control-line">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-12">Username</label>
                                                 <div class="col-md-12">
-                                                    <input type="text" name="username" placeholder="irenepixelyne" class="form-control form-control-line" required="true">
+                                                    <input type="text" name="username" placeholder="irenepixelyne" class="form-control form-control-line">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-12">Password</label>
                                                 <div class="col-md-12">
-                                                    <input type="password" name="password" class="form-control form-control-line" required="true">
+                                                    <input type="password" name="password" class="form-control form-control-line">
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -42,31 +45,31 @@
                                             <div class="form-group">
                                                 <label class="col-md-12">Place of Birth</label>
                                                 <div class="col-md-12">
-                                                    <input type="text" name="tempatLahir" placeholder="Jakarta" class="form-control form-control-line" required="true">
+                                                    <input type="text" name="tempatLahir" placeholder="Jakarta" class="form-control form-control-line">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-12">Date of Birth</label>
                                                 <div class="col-md-12">
-                                                    <input type="date" name="tanggalLahir" class="form-control form-control-line" required="true">
+                                                    <input type="date" name="tanggalLahir" class="form-control form-control-line">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-12">Address</label>
                                                 <div class="col-md-12">
-                                                    <input type="text" name="alamat" placeholder="Jakarta" class="form-control form-control-line" required="true">
+                                                    <input type="text" name="alamat" placeholder="Jakarta" class="form-control form-control-line">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-12">Phone Number</label>
                                                 <div class="col-md-12">
-                                                    <input type="number" name="telepon" placeholder="02156789" class="form-control form-control-line" required="true">
+                                                    <input type="number" name="telepon" placeholder="02156789" class="form-control form-control-line">
                                                 </div>
                                             </div>
                                         
                                             <div class="form-group">
                                                 <div class="col-sm-12">
-                                                    <button type="submit" class="btn btn-success">Tambah Anggota</button>
+                                                    <button type="submit" class="btn btn-success">Add Anggota</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -77,5 +80,7 @@
 
             </div>
         </div>
-    </content>
-    </html>
+        </div>
+    </div>
+</content>
+</html>
