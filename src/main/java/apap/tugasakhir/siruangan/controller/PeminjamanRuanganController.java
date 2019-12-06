@@ -46,6 +46,7 @@ public class PeminjamanRuanganController {
         RuanganModel ruangan = ruanganService.getRuanganByIdRuangan(idRuangan).get();
         model.addAttribute("ruangan", ruangan);
         model.addAttribute("message", message);
+        model.addAttribute("role", userService.getUserRole());
         return "form-peminjaman-ruangan";
     }
 
@@ -87,6 +88,7 @@ public class PeminjamanRuanganController {
         model.addAttribute("ruangan", ruangan);
         model.addAttribute("suratMessage", suratMessage);
         model.addAttribute("message", message);
+        model.addAttribute("role", userService.getUserRole());
         return "form-peminjaman-ruangan";
     }
 
@@ -122,11 +124,13 @@ public class PeminjamanRuanganController {
     @RequestParam(value="status") int status , Model model){
             if(status == 1){
                 PeminjamanRuanganModel newStatus = peminjamanRuanganService.changeStatus(peminjaman, 1);
+                model.addAttribute("role", userService.getUserRole());
                 model.addAttribute("statusPeminjaman", newStatus);
                 return "redirect:/peminjaman-ruangan/daftar";
             }
             else{
                 PeminjamanRuanganModel newStatus = peminjamanRuanganService.changeStatus(peminjaman, 2);
+                model.addAttribute("role", userService.getUserRole());
                 model.addAttribute("statusPeminjaman", newStatus);
                 return "redirect:/peminjaman-ruangan/daftar";
             }
