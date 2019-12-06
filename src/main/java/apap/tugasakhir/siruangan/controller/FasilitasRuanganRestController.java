@@ -21,6 +21,21 @@ public class FasilitasRuanganRestController {
     @GetMapping(value = "/fasilitas")
     private List<FasilitasRuanganDetail> getAllFasilitasByRuangan(@RequestParam("namaRuangan") String namaRuangan) {
         System.out.println("testestsetstestestestetset");
+        System.out.println("testestsetstestestestetset");
+        System.out.println("testestsetstestestestetset");
+        System.out.println("testestsetstestestestetset");
+        System.out.println("testestsetstestestestetset");
+        System.out.println("testestsetstestestestetset");
+        System.out.println("testestsetstestestestetset");
+        System.out.println("testestsetstestestestetset");
+        System.out.println("testestsetstestestestetset");
+        System.out.println("testestsetstestestestetset");
+        System.out.println("testestsetstestestestetset");
+        System.out.println("testestsetstestestestetset");
+        System.out.println("testestsetstestestestetset");
+        System.out.println("testestsetstestestestetset");
+        System.out.println("testestsetstestestestetset");
+        System.out.println("testestsetstestestestetset");
         List<FasilitasRuanganModel> fasilitas = fasilitasRuanganRestService.findByNamaRuangan(namaRuangan);
         List<FasilitasRuanganDetail> cleanFasilitas = new ArrayList<>();
         for (FasilitasRuanganModel fasilitasRuanganModel : fasilitas) {
