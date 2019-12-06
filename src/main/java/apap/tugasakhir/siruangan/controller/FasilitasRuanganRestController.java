@@ -29,6 +29,6 @@ public class FasilitasRuanganRestController {
             newCleanFasilitas.setJumlahFasilitas(fasilitasRuanganModel.getJumlahFasilitas());
             cleanFasilitas.add(newCleanFasilitas);
         }
-        return cleanFasilitas;
+        return "success-delete-fasilitas";
     }
 }
