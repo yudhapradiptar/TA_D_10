@@ -34,7 +34,7 @@ public class RuanganController {
 
     @Autowired
     private FasilitasService fasilitasService;
-
+    
     @Autowired
     private UserService userService;
 
@@ -60,6 +60,7 @@ public class RuanganController {
         String pageTitle = "Detil Ruangan";
         model.addAttribute("title", pageTitle);
         model.addAttribute("ruangan", ruangan);
+        model.addAttribute("role", userService.getUserRole());
         model.addAttribute("fasilitasJumlah", pairOfFasilitasAndJumlah);
         model.addAttribute("isPinjamRuanganAuthorized", isPinjamRuanganAuthorized);
         model.addAttribute("fasilitasRuang", fasilitasRuang);
@@ -71,6 +72,7 @@ public class RuanganController {
     public String daftarRuangan (Model model){
         List<RuanganModel> listRuanganModel = ruanganService.getRuanganList();
         model.addAttribute("listRuanganModel", listRuanganModel);
+        model.addAttribute("role", userService.getUserRole());
         return "list-ruangan";
     }
 }
