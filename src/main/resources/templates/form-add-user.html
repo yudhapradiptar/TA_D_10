@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymelaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="fragments/fragment :: main-layout (title=~{:: title}, head=~{:: header}, content=~{:: content})">
 
-<head>
-    <title> Tambah Anggota </title>
-    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
-    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
-</head>
+<title th:remove="tag">Tambah Anggota</title>
+<header th:remove="tag">Tambah Anggota</header>
 
-<body>
-    <nav th:replace="fragments/fragment :: navbar"></nav>
+
+<content th:remove="tag">
+
     <div class="container-fluid">
         <div class="container h-100 align-items-center">
             <br>
@@ -54,6 +52,5 @@
         </div>
         </div>
     </div>
-    <footer th:replace="fragments/fragment ::footer"></footer>
-</body>
+</content>
 </html>
