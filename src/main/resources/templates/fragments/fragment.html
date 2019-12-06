@@ -22,16 +22,12 @@
 <body>
 <div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="white" >
-        <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-        Tip 2: you can also add an image using data-image tag
-    -->
         <div class="logo">
             <a class="simple-text logo-normal">
                 <img th:src="@{/images/logo.png}" alt="Avatar" class="avatar" style="width:50px; height:50px;">
             </a>
         </div>
-        <div th:if="${role}=='ROLE_Admin TU'" class="sidebar-wrapper">
+        <div th:if="${role}=='Admin TU'" class="sidebar-wrapper">
             <ul class="nav">
                 <li class="nav-item">
                 <a class="nav-link" th:href="@{/}">
@@ -66,7 +62,7 @@
 
             </ul>
         </div>
-        <div th:if="${role}=='ROLE_Guru'" class="sidebar-wrapper">
+        <div th:if="${role}=='Guru'" class="sidebar-wrapper">
             <ul class="nav">
                 <li class="nav-item">
                 <a class="nav-link" th:href="@{/}">
@@ -106,7 +102,7 @@
                 </li>
             </ul>
         </div>
-        <div th:if="${role}=='ROLE_Siswa'" class="sidebar-wrapper">
+        <div th:if="${role}=='Siswa'" class="sidebar-wrapper">
             <ul class="nav">
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/}">
