@@ -1,5 +1,7 @@
 package apap.tugasakhir.siruangan.service;
 
+import java.util.NoSuchElementException;
+
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
@@ -37,6 +39,8 @@ public class SuratRestServiceImpl implements SuratRestService {
                 return null;
             }
         } catch (WebClientResponseException.NotFound notFound) {
+            return null;
+        } catch (NoSuchElementException noSuchElement) {
             return null;
         }
     }
