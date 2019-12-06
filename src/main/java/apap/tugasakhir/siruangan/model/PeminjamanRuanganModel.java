@@ -25,56 +25,66 @@ public class PeminjamanRuanganModel implements Serializable {
     @NotNull
     @Size(max=200)
     @Column(name="waktu_mulai", nullable = false)
+    @JsonProperty("waktu_mulai")
     private String waktuMulai;
 
     @NotNull
     @Size(max=200)
     @Column(name="waktu_selesai", nullable = false)
+    @JsonProperty("waktu_selesai")
     private String waktuSelesai;
 
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name="tanggal_mulai", nullable = false)
+    @JsonProperty("tanggal_mulai")
     private Date tanggalMulai;
 
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name="tanggal_selesai", nullable = false)
+    @JsonProperty("tanggal_selesai")
     private Date tanggalSelesai;
 
     @NotNull
     @Size(max=200)
     @Column(name="tujuan", nullable = false)
+    @JsonProperty("tujuan")
     private String tujuan;
 
     @NotNull
     @Size(max=200)
     @Column(name="keterangan", nullable = false)
+    @JsonProperty("keterangan")
     private String keterangan;
 
     @NotNull
     @Column(name="jumlah_peserta", nullable = false)
+    @JsonProperty("jumlah_peserta")
     private int jumlahPeserta;
 
     @NotNull
     @Column(name="is_disetujui", nullable = false)
+    @JsonProperty("is_disetujui")
     private int isDisetujui = 0;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="idRuangan", referencedColumnName = "idRuangan", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    // @JsonProperty("idRuangan")
+    @JsonProperty("ruangan")
     RuanganModel ruangan;
 
     @ManyToOne
     @JoinColumn(name= "idUserPeminjam", referencedColumnName = "idUser")
+    @JsonProperty("user_peminjam")
     UserModel userPeminjam;
     
 
     @ManyToOne
     @JoinColumn(name = "idUserPenyetuju", referencedColumnName = "idUser")
+    @JsonProperty("user_penyetuju")
     UserModel userPenyetuju = null;
 
     

@@ -103,6 +103,7 @@ public class UserController {
             try {
                 GuruDetailResponse guruDetailFromSivitas = userRestService.getGuru(uuid);
                 model.addAttribute("userDetail", guruDetailFromSivitas.getResult());
+                
             } catch (Exception e) {
                 isDataFromSivitasAvailable = false;
             }
@@ -126,6 +127,7 @@ public class UserController {
         }
         model.addAttribute("isDataFromSivitasAvailable", isDataFromSivitasAvailable);
         model.addAttribute("user", user);
+        model.addAttribute("role", userService.getUserRole());
         return "view-user-profile";
     }
 

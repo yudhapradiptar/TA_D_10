@@ -3,6 +3,10 @@ package apap.tugasakhir.siruangan.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -11,15 +15,18 @@ import java.util.List;
 public class RuanganModel implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("id")
     private Long idRuangan;
 
     @NotNull
     @Size(max=200)
     @Column(name="namaRuangan", nullable = false)
+    @JsonProperty("nama")
     private String namaRuangan;
 
     @NotNull
     @Column(name="kapasitasRuangan", nullable = false)
+    @JsonProperty("kapasitas")
     private int kapasitasRuangan;
 
     @OneToMany(mappedBy="ruangan")
