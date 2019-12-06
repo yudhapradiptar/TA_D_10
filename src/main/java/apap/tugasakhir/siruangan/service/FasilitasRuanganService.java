@@ -18,4 +18,5 @@ public interface FasilitasRuanganService {
 
     FasilitasRuanganModel getFasilitasRuanganByFasilitasAndRuangan(FasilitasModel fasilitasModel, RuanganModel ruanganModel);
 
+    void deleteFasilitasRuang(FasilitasRuanganModel fasilitasRuanganModel);
 }

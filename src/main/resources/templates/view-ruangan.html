@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymelaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="fragments/fragment :: main-layout (title=~{:: title}, head=~{:: header}, content=~{:: content})">
 
-<head>
-    <title> View Ruangan </title>
-    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
-    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
-</head>
+<title th:remove="tag">View Ruangan</title>
+<header th:remove="tag">View Ruangan</header>
 
-<body>
-<nav th:replace="fragments/fragment :: navbar"></nav>
+
+<content th:remove="tag">
 <div class="container-fluid">
     <div class="row text-center">
         <div class="col-md-4"></div>
@@ -31,13 +28,15 @@
                     <th scope="col">No</th>
                     <th scope="col">Nama</th>
                     <th scope="col">Jumlah di Ruangan</th>
+                    <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="fasilitas, iterationStatus : *{fasilitasJumlah}">
+                <tr th:each="fasilitas, iterationStatus : *{fasilitasRuang}">
                     <td th:text="${iterationStatus.count}"></td>
-                    <td th:text="${fasilitas.key.namaFasilitas}"></td>
-                    <td th:text="${fasilitas.value}"></td>
+                    <td th:text="${fasilitas.fasilitas.namaFasilitas}"></td>
+                    <td th:text="${fasilitas.jumlahFasilitas}"></td>
+                    <td><a class="btn btn-warning" th:href="@{/fasilitas/edit(idFasilitasRuang=${fasilitas.idFasilitasRuangan})}" role="button">Edit</a><a class="btn btn-danger" th:href="@{/fasilitas/delete(idFasilitasRuang=${fasilitas.idFasilitasRuangan})}" role="button">Delete</a></td>
                 </tr>
                 </tbody>
             </table>
@@ -50,6 +49,5 @@
     </div>
 
 </div>
-<footer th:replace="fragments/fragment ::footer"></footer>
-</body>
+</content>
 </html>

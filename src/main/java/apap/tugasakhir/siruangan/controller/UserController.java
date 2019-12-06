@@ -85,10 +85,10 @@ public class UserController {
             siswa.setAlamat(alamat);
             siswa.setTelepon(telepon);
             if(userRestService.addSiswa(user, siswa).block().getStatus()=="200"){
-                return "redirect:/";
+                return "home";
             }
         }
-        return "redirect:/";
+        return "add-user-success";
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)

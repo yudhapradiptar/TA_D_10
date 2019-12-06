@@ -34,13 +34,13 @@ public class RuanganController {
 
     @Autowired
     private FasilitasService fasilitasService;
-    
+
     @Autowired
     private UserService userService;
 
     @RequestMapping(path = "/view/{idRuangan}", method = RequestMethod.GET)
     public String viewRuangan(@PathVariable Long idRuangan, Model model){
-        
+
         RuanganModel ruangan = ruanganService.getRuanganByIdRuangan(idRuangan).get();
         HashMap<FasilitasModel, Integer> pairOfFasilitasAndJumlah = fasilitasRuanganService.getFasilitasDanJumlah(ruangan);
         boolean isPinjamRuanganAuthorized;
@@ -50,12 +50,14 @@ public class RuanganController {
         } else {
             isPinjamRuanganAuthorized = false;
         }
+        List<FasilitasRuanganModel> fasilitasRuang = ruanganService.getFasilitasRuanganList(idRuangan);
         String pageTitle = "Detil Ruangan";
         model.addAttribute("title", pageTitle);
         model.addAttribute("ruangan", ruangan);
         model.addAttribute("fasilitasJumlah", pairOfFasilitasAndJumlah);
         model.addAttribute("isPinjamRuanganAuthorized", isPinjamRuanganAuthorized);
-        return "view-ruangan";  
+        model.addAttribute("fasilitasRuang", fasilitasRuang);
+        return "view-ruangan";
     }
 
     @RequestMapping("/daftar-ruangan")

@@ -1,5 +1,6 @@
 package apap.tugasakhir.siruangan.service;
 
+import apap.tugasakhir.siruangan.model.FasilitasRuanganModel;
 import apap.tugasakhir.siruangan.model.RuanganModel;
 import apap.tugasakhir.siruangan.repository.RuanganDB;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,11 @@ public class RuanganServiceImpl implements RuanganService {
     @Override
     public List<RuanganModel> getRuanganList() {
         return ruanganDB.findAll();
+    }
+
+    @Override
+    public List<FasilitasRuanganModel> getFasilitasRuanganList(Long idRuangan) {
+        return ruanganDB.findByIdRuangan(idRuangan).get().getListFasilitasRuangan();
     }
 
 }
