@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import apap.tugasakhir.siruangan.model.PeminjamanRuanganModel;
 import apap.tugasakhir.siruangan.model.RuanganModel;
 import apap.tugasakhir.siruangan.model.UserModel;
+import apap.tugasakhir.siruangan.rest.SuratDetail;
 import apap.tugasakhir.siruangan.service.PeminjamanRuanganService;
 import apap.tugasakhir.siruangan.service.RuanganService;
+import apap.tugasakhir.siruangan.service.SuratRestService;
 import apap.tugasakhir.siruangan.service.UserService;
 
 
@@ -34,6 +34,9 @@ public class PeminjamanRuanganController {
 
     @Autowired
     PeminjamanRuanganService peminjamanRuanganService;
+
+    @Autowired
+    SuratRestService suratRestService;
     
     @RequestMapping(value = "/pinjam", method = RequestMethod.GET)
     public String peminjamanRuanganFormPage(@RequestParam(value = "idRuangan") Long idRuangan,
@@ -49,23 +52,40 @@ public class PeminjamanRuanganController {
 
     @RequestMapping(value = "/pinjam", method = RequestMethod.POST)
     public String peminjamanRuanganSubmitButton(@RequestParam(value = "idRuangan") Long idRuangan,
+                                                @RequestParam(value = "nomorSurat") String nomorSurat,
                                                 @ModelAttribute PeminjamanRuanganModel peminjaman,
                                                 Model model)
     {   
-        String message;
+        String message = "";
+        String suratMessage = "";
         RuanganModel ruangan = ruanganService.getRuanganByIdRuangan(idRuangan).get();
         UserModel userPeminjam = userService.getCurrentLoggedInUser();
         if(peminjamanRuanganService.dateTimeValidation(peminjaman) 
             && peminjamanRuanganService.capacityValidation(peminjaman)) {
             peminjaman.setUserPeminjam(userPeminjam);
+            SuratDetail suratPeminjamanRuangan = suratRestService.getSuratPeminjamanRuangan(nomorSurat);
+            if(suratPeminjamanRuangan == null) {
+                suratMessage = "surat tidak tersedia";
+            } else {
+                if(suratPeminjamanRuangan.getStatus().equals("Disetujui")
+                || suratPeminjamanRuangan.getStatus().equals("Diproses")
+                || suratPeminjamanRuangan.getStatus().equals("Selesai")) {
+                    peminjaman.setIsDisetujui(1);
+                }
+                peminjaman.setIsDisetujui(1);
+                suratMessage = "surat tersedia";
+            }
             peminjamanRuanganService.mengajukanPeminjamanRuangan(peminjaman);
             message = "Pengajuan peminjaman ruangan berhasil!";
             
         } else {
             message = "Ruangan tidak tersedia pada waktu tersebut atau jumlah peserta melebihi kapasitas";
         }
+
+        
        
         model.addAttribute("ruangan", ruangan);
+        model.addAttribute("suratMessage", suratMessage);
         model.addAttribute("message", message);
         return "form-peminjaman-ruangan";
     }

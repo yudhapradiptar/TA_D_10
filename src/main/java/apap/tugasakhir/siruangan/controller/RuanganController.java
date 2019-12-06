@@ -43,13 +43,15 @@ public class RuanganController {
         
         RuanganModel ruangan = ruanganService.getRuanganByIdRuangan(idRuangan).get();
         HashMap<FasilitasModel, Integer> pairOfFasilitasAndJumlah = fasilitasRuanganService.getFasilitasDanJumlah(ruangan);
-        boolean isPinjamRuanganAuthorized;
+        boolean isPinjamRuanganAuthorized = false;
         UserModel currentLoggedInUser = userService.getCurrentLoggedInUser();
-        if(currentLoggedInUser.getRole().getNama().equals("Guru") || currentLoggedInUser.getRole().getNama().equals("Siswa")) {
-            isPinjamRuanganAuthorized = true;
-        } else {
-            isPinjamRuanganAuthorized = false;
-        }
+        if(currentLoggedInUser != null) {
+            if(currentLoggedInUser.getRole().getNama().equals("Guru") || currentLoggedInUser.getRole().getNama().equals("Siswa")) {
+                isPinjamRuanganAuthorized = true;
+            } else {
+                isPinjamRuanganAuthorized = false;
+            }
+        } 
         String pageTitle = "Detil Ruangan";
         model.addAttribute("title", pageTitle);
         model.addAttribute("ruangan", ruangan);
